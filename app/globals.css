@@ -1,0 +1,183 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --font-lilita: 'Lilita One', sans-serif;
+    --font-text: 'Nunito', sans-serif;
+    --dark-blue: #3a5a70;
+    --bg-color: #F4F2EC;
+    --accent-color: #B6D8F2;
+}
+
+nav {
+    position: fixed;
+    inset: 0 auto auto 0;
+    width: 100%;
+    z-index: 50;
+    background-color: var(--bg-color);
+}
+
+.desktop-nav {
+    display: flex;
+    gap: 1rem;
+    font-family: var(--font-text);
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+nav a {
+    font-family: var(--font-text);
+    font-size: 20px;
+    font-weight: 500;
+    color:var(--dark-blue);
+}
+
+nav .links {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.mobile-nav {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0.5rem 0;
+    }
+    .desktop-nav {
+        display: none;   /* desktop-balk juist verbergen op mobiel */
+    }
+}
+
+.top-menu-mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-CTA {
+    padding: 0.75rem 1.75rem;
+    background-color: var(--dark-blue);
+    font-family: var(--font-text);
+    border-radius: 9999px;
+    font-weight: 600;
+    color: white;
+    font-size: clamp(0.73rem, 1vw, 2rem);
+}
+
+.hamburger-menu-open-link-container {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-text);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.hamburger-menu-open-link-container a {
+    border-bottom: 1px solid var(--dark-blue);
+    margin: 0 -1rem;
+    padding: 0.5rem 1rem;
+}
+
+.whatsapp {
+    animation: pulse 2s linear infinite;
+}
+
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;     
+}
+
+h1, h2, h3, h4, h5, h6, span {
+    font-family: var(--font-lilita);
+    color: var(--dark-blue);
+    line-height: 1;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: clamp(1.9rem, 3vw, 4.5rem);
+    margin-bottom: 1.5rem;
+}
+
+h3 {
+    font-size: clamp(1.5rem, 2.4vw, 3rem);
+    color: var(--dark-blue);
+    margin-bottom: 1.5rem;
+}
+
+p, a:not(nav a), select {
+    font-family: var(--font-text);
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    color:var(--dark-blue);
+}
+
+label {
+    font-family: var(--font-text);    
+}
+
+button:not(.nav-CTA){
+  color:var(--dark-blue);
+  border: 2px solid var(--dark-blue);
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  font-weight: 500!important;
+  font-family: var(--font-lilita);
+  font-size: clamp(1rem, 1.19vw, 1.25rem);
+  text-transform: uppercase;
+  background-color: transparent;
+  display: inline-block;
+  margin-bottom: 1rem;
+  box-shadow: 4px 4px 0px 0px var(--dark-blue);
+}
+
+@keyframes rotate {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+@keyframes rotate-reverse {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(-360deg);}
+}
+
+.rotate-wrapper {
+    animation: rotate 20s linear infinite;
+    transform-origin: center center!important;
+    will-change: transform!important;
+}
+
+.rotate-wrapper img {
+    animation: rotate-reverse 20s linear infinite;
+    transform-origin: center center!important;
+    will-change: transform!important;
+}
+
+
+@keyframes pulse {
+    0%, 100% {transform: scale(1);}
+    50% {transform: scale(1.1)}
+}
+
+
