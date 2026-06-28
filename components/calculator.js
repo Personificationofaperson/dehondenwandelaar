@@ -91,7 +91,7 @@ export default function Prijscalculator() {
 
     
     return (
-        <div className="calculatorOmhulsel flex lg:flex-row flex-col lg:p-12 p-6 lg:gap-32 gap-8 bg-white rounded-3xl border-[var(--dark-blue)] border-4">
+        <div id="tarieven" className="calculatorOmhulsel flex lg:flex-row flex-col lg:p-12 p-6 lg:gap-32 gap-8 bg-white rounded-3xl border-[var(--dark-blue)] border-4 mt-12">
             <div className="Klantinputberekening lg:w-1/2 w-full">
                 <form onSubmit={handleSubmit}>
                     <h3 className="mb-2 lg:pt-6 pt-4 mt-0 text-2xl">Kies een dienst</h3>
@@ -111,21 +111,21 @@ export default function Prijscalculator() {
                     <h3 className="mb-2 text-2xl lg:mt-0 mt-[-6px]">Jouw locatie</h3>
                     <div className="locatie gap-4 flex flex-col lg:mb-12 mb-8">
                         <div className="groepering-straat-nummer flex lg:flex-row flex-col gap-4">
-                            <label for="straat">Straatnaam
+                            <label htmlFor="straat">Straatnaam
                                 <input type="text" name="straat" id="straat" required className="w-full rounded-xl p-4 basis-[70%] bg-[var(--bg-color)] border-[var(--dark-blue)] border-4" placeholder="Straatnaam" />
                             </label>
-                            <label for="huisnummer">Huisnummer
+                            <label htmlFor="huisnummer">Huisnummer
                                 <input type="text" name="huisnummer" id="huisnummer" required className="w-full rounded-xl p-4 basis-[30%] bg-[var(--bg-color)] border-[var(--dark-blue)] border-4" placeholder="Huisnummer" />
                             </label>
                         </div>
-                        <label for="stad">Stad
+                        <label htmlFor="stad">Stad
                             <input type="text" name="stad" id="stad" required className="w-full rounded-xl p-4 bg-[var(--bg-color)] border-[var(--dark-blue)] border-4" placeholder="Stad" />
                         </label>
-                        <label for="postcode">Postcode
+                        <label htmlFor="postcode">Postcode
                             <input type="text" name="postcode" id="postcode" required className="w-full rounded-xl p-4 bg-[var(--bg-color)] border-[var(--dark-blue)] border-4" placeholder="Postcode" />
                         </label>
                     </div>
-                    <button type="submit">Prijs berekenen</button>
+                    <button type="submit" className="button">Prijs berekenen</button>
                 </form>               
             </div>
 
@@ -139,7 +139,7 @@ export default function Prijscalculator() {
                     <a 
                         href={`https://wa.me/32468584998?text=${gecodeerdeWhatsappTekst}`} 
                         target="_blank"
-                        className="normal-case"
+                        className="button normal-case"
                     >
                         Neem contact op 
                     </a>

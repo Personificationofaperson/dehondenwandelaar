@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 export default function Werkgebied() {
   return (
     <>
-      <div className="lg:py-16 py-12 relative">
+      <div id="werkgebied" className="lg:py-16 py-12 relative">
         <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white mix-blend-overlay opacity-50 blur-[40px]"></div>
         <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-[#3A5A70] mix-blend-overlay opacity-10 blur-[40px]"></div>
 

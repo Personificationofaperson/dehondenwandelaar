@@ -2,17 +2,17 @@ import { Icon } from "@iconify/react";
 
 export default function Beschikbaarheid() {
   return (
-    <>
-      {/*INTRODUCTIE*/}
-      <div className="intro flex flex-col justify-center text-center lg:pt-16 pt-12">
-        <h2 className="text-center"> Wanneer is de hondenuitlaat&shy;service beschikbaar?</h2>
-        <p className="text-center">
-          Kijk in een oogopslag welke momenten het beste passen voor jou en je hond.
-          <br /> Hulp nodig op een ander moment? Stuur me een berichtje!
-        </p>
-      </div>
+    <div id="beschikbaarheid" className="section">
+      <div className="w-full max-w-[80rem] mx-auto">
+        <div className="intro flex flex-col justify-center text-center">
+          <h2 className="text-center"> Wanneer is de hondenuitlaat&shy;service beschikbaar?</h2>
+          <p className="text-center">
+            Kijk in een oogopslag welke momenten het beste passen voor jou en je hond.
+            <br /> Hulp nodig op een ander moment? Stuur me een berichtje!
+          </p>
+        </div>
 
-      <div className="card-container grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="card-container grid grid-cols-1 md:grid-cols-2 gap-8">
 
 
         {/*CARD MA, DI & WOE*/}
@@ -88,13 +88,14 @@ export default function Beschikbaarheid() {
       </div>
 
       <div className="flex mt-8 justify-center">
-        <button
-          href="https://wa.me/32468584998"
+        <a 
+          href="https://ringtwice.be/nl/listworkers/495768-kimberly-v"
           target="_blank"
-          className="inline-flex justify-center items-center h-16 px-10 rounded-full border-[3px] border-[#3A5A70] bg-white text-[#3A5A70] shadow-[6px_6px_0px_#3A5A70] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all font-['Lilita_One'] tracking-tight text-2xl text-center">
+          className="button">
           Kennismaking inplannen
-        </button>
+        </a>
       </div>
-    </>
+    </div>
+    </div>
   );
 }

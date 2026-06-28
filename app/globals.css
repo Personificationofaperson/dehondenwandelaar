@@ -59,6 +59,39 @@ nav .links {
     .desktop-nav {
         display: none;   /* desktop-balk juist verbergen op mobiel */
     }
+
+    /* Make the top menu layout more flexible on very small screens so
+       the CTA can shrink instead of forcing horizontal overflow */
+    .top-menu-mobile {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .top-menu-mobile > a {
+        flex: 0 0 auto; /* logo link shouldn't grow */
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .top-menu-mobile > .nav-CTA {
+        flex: 1 1 auto; /* allow CTA to shrink/grow to available space */
+        min-width: 0; /* allow content to shrink below intrinsic width */
+        padding: 0.45rem 0.9rem; /* slightly smaller pill on mobile */
+        font-size: 0.9rem; /* tighter base font-size for the CTA */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0 0.5rem;
+    }
+
+    .top-menu-mobile > img {
+        flex: 0 0 auto; /* hamburger icon shouldn't grow */
+        width: 2.25rem;
+        height: 2.25rem;
+    }
 }
 
 .top-menu-mobile {
@@ -68,14 +101,14 @@ nav .links {
     align-items: center;
 }
 
-.nav-CTA {
+.nav-CTA, .nav-CTA a {
     padding: 0.75rem 1.75rem;
     background-color: var(--dark-blue);
     font-family: var(--font-text);
     border-radius: 9999px;
     font-weight: 600;
     color: white;
-    font-size: clamp(0.73rem, 1vw, 2rem);
+    font-size: clamp(0.7rem, 1.1vw, 2rem);
 }
 
 .hamburger-menu-open-link-container {
@@ -96,11 +129,12 @@ nav .links {
     animation: pulse 2s linear infinite;
 }
 
-body {
+body, html {
     background-color: var(--bg-color);
     margin: 0;
     padding: 0;
     overflow-x: hidden;     
+    max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6, span {
@@ -137,7 +171,7 @@ label {
     font-family: var(--font-text);    
 }
 
-button:not(.nav-CTA){
+.button:not(.nav-CTA) {
   color:var(--dark-blue);
   border: 2px solid var(--dark-blue);
   border-radius: 9999px;
@@ -180,4 +214,26 @@ button:not(.nav-CTA){
     50% {transform: scale(1.1)}
 }
 
+/* Component utilities: reusable helpers for full-bleed sections and consistent section spacing */
+@layer components {
+    .full-bleed {
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        width: 100vw;
+    }
 
+    .section {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    @media (max-width: 780px) {
+        .section {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+        }
+    }
+}

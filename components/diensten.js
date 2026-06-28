@@ -4,14 +4,14 @@ import Image from "next/image"
 export default function Diensten() {
   return (
     <>
-    <div id="diensten" className="lg:py-16 py-12 bg-[#B6D8F2] relative w-screen left-1/2 -translate-x-1/2">
+    <div id="diensten" className="full-bleed bg-[#B6D8F2] section">
       <div className="absolute top-0 left-0 w-full leading-[0] rotate-180 -mt-[1px]">
         <svg viewBox="0 0 1440 120" fill="#F4F2EC" preserveAspectRatio="none" className="w-full h-12 md:h-24 block">
           <path d="M0,0 C320,120 420,0 720,60 C1020,120 1120,0 1440,60 L1440,120 L0,120 Z"></path>
         </svg>
       </div>
 
-      <div className="w-full max-w-[80rem] mx-auto px-6 mt-12 md:mt-20">
+      <div className="w-full max-w-[80rem] mx-auto px-4 md:px-6 mt-12 md:mt-20">
         <div className="grid md:grid-cols-2 items-center">
           <h2 className="font-['Lilita_One'] uppercase tracking-tight">Mijn Diensten</h2>
           <p className="md:border-l-[4px] border-[#3A5A70]/20 md:pl-6 ">
@@ -20,7 +20,7 @@ export default function Diensten() {
         </div>
       </div>
 
-      <div className="w-full max-w-[80rem] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 gl:mt-16 mt-2 relative z-10">
+      <div className="w-full max-w-[80rem] mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-8 gl:mt-16 mt-2 relative z-10">
         <div className="border-[4px] border-[#3A5A70] rounded-[2rem] overflow-hidden flex flex-col transition-transform duration-300 bg-white hover:-translate-y-2 bg-[#B6D8F2] shadow-[8px_8px_0px_#3A5A70] relative">
           <div className="absolute top-4 left-4 z-20 bg-white border-[3px] border-[#3A5A70] rounded-full px-4 py-1.5 flex items-center gap-2 shadow-[2px_2px_0px_#3A5A70]">
             <Icon icon="solar:star-bold" className="text-lg text-[#3A5A70]"></Icon>
@@ -50,7 +50,7 @@ export default function Diensten() {
               <span className="inline-flex items-center px-3 py-1.5 rounded-xl bg-white border-[2px] border-[#3A5A70] shadow-[2px_2px_0px_#3A5A70] font-semibold text-sm">8 km rond Dilsen</span>
             </div>
             
-              <a href="https://wa.me/32468584998"
+              <a href="https://ringtwice.be/nl/listworkers/495768-kimberly-v"
               className="inline-flex justify-center items-center h-12 px-6 rounded-full border-[3px] border-[#3A5A70] bg-white text-[#3A5A70] shadow-[3px_3px_0px_#3A5A70] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all font-['Lilita_One'] uppercase tracking-tight text-xl w-full"
               target="_blank"
             >
@@ -82,7 +82,7 @@ export default function Diensten() {
               <span className="inline-flex items-center px-3 py-1.5 rounded-xl bg-white border-[2px] border-[#3A5A70] shadow-[2px_2px_0px_#3A5A70]">8km van Dilsen</span>
             </div>
             
-             <a href="https://wa.me/32468584998"
+             <a href="https://ringtwice.be/nl/listworkers/495768-kimberly-v"
               className="inline-flex justify-center items-center h-12 px-6 rounded-full border-[3px] border-[#3A5A70] bg-white text-[#3A5A70] shadow-[3px_3px_0px_#3A5A70] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all font-['Lilita_One'] uppercase tracking-tight text-xl w-full mt-auto"
               target="_blank">
               Boek wandeling
@@ -116,7 +116,7 @@ export default function Diensten() {
               <span className="inline-flex items-center px-3 py-1.5 rounded-xl bg-white border-[2px] border-[#3A5A70] shadow-[2px_2px_0px_#3A5A70]">Max 5 km rond Dilsen</span>
             </div>
             
-              <a href="https://wa.me/32468584998"
+              <a href="https://ringtwice.be/nl/listworkers/495768-kimberly-v"
               className="inline-flex justify-center items-center h-12 px-6 rounded-full border-[3px] border-[#3A5A70] bg-white text-[#3A5A70] shadow-[3px_3px_0px_#3A5A70] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all font-['Lilita_One'] uppercase tracking-tight text-xl w-full mt-auto"
               target="_blank">
               Boek drop-in

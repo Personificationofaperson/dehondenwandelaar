@@ -3,10 +3,11 @@ import { Icon } from "@iconify/react";
 
 export default function RingTwice() {
   return (
-    <div className="w-full max-w-[80rem] mx-auto lg:py-16 py-8">
-      <div className="relative border-[4px] border-[#3A5A70] rounded-[2.5rem] bg-white p-10 lg:p-12 overflow-hidden shadow-[8px_8px_0px_#B6D8F2]">
-        {/* decoratieve cirkel rechtsboven */}
-        <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full border-[4px] border-[#3A5A70] bg-[#F4F2EC]"></div>
+    <div className="section">
+      <div className="w-full max-w-[80rem] mx-auto py-8">
+        <div className="relative border-[4px] border-[#3A5A70] rounded-[2.5rem] bg-white p-10 lg:p-12 overflow-hidden shadow-[8px_8px_0px_#B6D8F2]">
+          {/* decoratieve cirkel rechtsboven */}
+          <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full border-[4px] border-[#3A5A70] bg-[#F4F2EC]"></div>
 
         <div className="relative flex lg:flex-row flex-col items-start gap-6">
           {/* icoon */}
@@ -23,15 +24,17 @@ export default function RingTwice() {
             </p>
 
             
-            <button href="https://wa.me/32468584998"
+            <a href="https://api.whatsapp.com/send/?phone=32468584998&text=Hoi%21+Ik+heb+een+vraag+over%3A+%5BPrijs+%2F+Beschikbaarheid+%2F+Iets+anders%5D.+Het+gaat+om+de+dienst%3A+%5BNaam+dienst%5D.+Groetjes%2C+%5BNaam%5D&type=phone_number&app_absent=0&utm_campaign=website&utm_source=google"
               target="_blank"
-              className="hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all"
+              className="button"
             >
               Boek gratis kennismaking
-            </button>
+            </a>
           </div>
         </div>
       </div>
+    </div>
+    <div/>
     </div>
   );
 }

@@ -21,32 +21,36 @@ export default function HamburgerMenu() { //het hamburger menu component, by def
         return (
             <>
             <nav className="desktop-nav">
-                <img src="./dehondenwandelaar-logo.png" className="hamburger-menu-logo w-16 h-16"></img>
+                <Link href="/">
+                    <img src="./dehondenwandelaar-logo.png" className="hamburger-menu-logo w-16 h-16"></img>
+                </Link>
                 <div className="links">
-                    <Link href="#">Voordelen</Link> {/*geen page reload voor laden van andere pagina, wel bij HTML a tags*/}
-                    <Link href="#">Beschikbaarheid</Link>
-                    <Link href="#">Diensten</Link> 
-                    <Link href="#">Werkgebied</Link>
-                    <Link href="#">Tarieven</Link>
-                    <Link href="#">Over</Link>
+                    <Link href="#voordelen">Voordelen</Link> {/*geen page reload voor laden van andere pagina, wel bij HTML a tags*/}
+                    <Link href="#beschikbaarheid">Beschikbaarheid</Link>
+                    <Link href="#diensten">Diensten</Link> 
+                    <Link href="#werkgebied">Werkgebied</Link>
+                    <Link href="#tarieven">Tarieven</Link>
+                    <Link href="#over">Over</Link>
                 </div>
-                <button className="nav-CTA" href="#">Gratis kennismaking</button>
+                <button className="nav-CTA"><a className="text-white" href="https://ringtwice.be/nl/listworkers/495768-kimberly-v">Gratis kennismaking</a></button>
             </nav>
 
         <nav className="mobile-nav">
             <div className="top-menu-mobile">
-                <img src="./dehondenwandelaar-logo.png" className="hamburger-menu-logo w-14 h-14"></img>
-                <button className="nav-CTA" href="#">Gratis kennismaking</button>
+                <Link href="/">
+                    <img src="./dehondenwandelaar-logo.png" className="hamburger-menu-logo w-14 h-14"></img>
+                </Link>
+                <button className="nav-CTA"><a className="text-white" href="https://ringtwice.be/nl/listworkers/495768-kimberly-v">Gratis kennismaking</a></button>
                 <img src={hamburgerIcon} alt="hamburger-menu-icon" className="w-10 h-10" onClick={OpenAndCloseHamburgerMenu}></img>
             </div>
             {isOpen && (
             <div className="hamburger-menu-open-link-container">
-                <Link href="#">Voordelen</Link> {/*geen page reload voor laden van andere pagina, wel bij HTML a tags*/}
-                <Link href="#">Beschikbaarheid</Link>
-                <Link href="#">Diensten</Link> 
-                <Link href="#">Werkgebied</Link>
-                <Link href="#">Tarieven</Link>
-                <Link href="#">Over</Link>
+                <Link href="#voordelen">Voordelen</Link> {/*geen page reload voor laden van andere pagina, wel bij HTML a tags*/}
+                <Link href="#beschikbaarheid">Beschikbaarheid</Link>
+                <Link href="#diensten">Diensten</Link> 
+                <Link href="#werkgebied">Werkgebied</Link>
+                <Link href="#tarieven">Tarieven</Link>
+                <Link href="#over">Over</Link>
             </div>
             )}
         </nav>

@@ -11,7 +11,7 @@ export default function rootLayout({ children }) {
         <html lang="nl" suppressHydrationWarning>
             <body className="overflow-x-hidden">
                 <HamburgerMenu />
-                <main className="pt-28 px-8 md:px-16">
+                <main className="pt-28 px-4 md:px-6 max-w-[80rem] mx-auto">
                     {children}
                 </main>
                 <Whatsapp/>

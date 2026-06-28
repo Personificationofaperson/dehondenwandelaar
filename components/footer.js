@@ -13,7 +13,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="w-full max-w-[80rem] mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="w-full max-w-[80rem] mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
       {/* LOGO + INTRO */}
       <div>
         <Image src="/dehondenwandelaar-logo.png" alt="De Hondenwandelaar" width={120} height={120} className="w-28 h-auto mb-4" />
