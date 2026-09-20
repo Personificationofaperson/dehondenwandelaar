@@ -1,50 +1,45 @@
-// components/Boeken.js
-import Image from "next/image";
+import Image from "next/image"
+import CtaKnoppen from "./cta-knoppen"
 
-export default function CTA() {
-  const fotos = [
-    { src: "/hondenoppas.webp", alt: "Vrouw met witte hond", rotate: "-rotate-[20deg]" },
-    { src: "/weekend-wandeling.webp", alt: "Vrouw aait grote, zwarte retriever", rotate: "rotate-[20deg]" },
-    { src: "/hondenuitlaatservice-met-mechelse-herder.webp", alt: "Vrouw met Mechelse Herder", rotate: "-rotate-[10deg]" },
-    { src: "/3-honden-wandeling.jpg", alt: "Vrouw wordt gevolgd door 3 kleine honden op een wandeling", rotate: "rotate-[20deg]" },
-  ];
+const FOTOS = [
+  { src: "/hondenoppas.webp", alt: "Kimberly met een witte hond" },
+  { src: "/weekend-wandeling.webp", alt: "Kimberly aait een grote zwarte hond" },
+  { src: "/hondenuitlaatservice-met-mechelse-herder.webp", alt: "Kimberly met een Mechelse herder" },
+  { src: "/3-honden-wandeling.jpg", alt: "Kimberly op wandeling met drie kleine honden" },
+]
 
+export default function Cta() {
   return (
-    <div className="full-bleed bg-[#3A5A70] section">
-      {/* TITEL + INTRO + KNOP */}
-      <div className="w-full max-w-[80rem] mx-auto px-4 md:px-6 text-center">
-        <h2 className="font-['Lilita_One'] uppercase tracking-tight text-white">
-          Honden&shy;uitlaatservice boeken<br/> omgeving Dilsen-Stokkem
+    <section className="full-bleed bg-brand-900">
+      <div className="shell section text-center">
+        <span className="eyebrow !text-brand-200">Klaar om te starten?</span>
+        <h2 className="mx-auto mt-3 max-w-3xl !text-white">
+          Plan een gratis kennismaking en kijk of het klikt
         </h2>
-
-        <p className="mt-4 text-white/80">
-          Stuur me een bericht via Ring Twice en we plannen snel een fijne kennismaking in.
+        <p className="mx-auto mt-5 max-w-xl text-brand-100">
+          Eén wandeling samen, vrijblijvend. Daarna beslis je pas of je verder wil.
         </p>
 
-        
-        <a href="https://ringtwice.be/nl/listworkers/495768-kimberly-v"
-          className="button !bg-[var(--bg-color)]">
-          Boek gratis kennismaking
-        </a>
-      </div>
+        <div className="mt-9 flex justify-center">
+          <CtaKnoppen plek="cta-onderaan" licht />
+        </div>
 
-      {/* FOTORIJ */}
-      <div className="mt-4 grid grid-cols-1 lg:grid-cols-4 gap-6 px-4 md:px-6">
-        {fotos.map((foto, i) => (
-          <div
-            key={i}
-            className={`border-[4px] border-[#1f3140] rounded-[1.5rem] overflow-hidden shadow-[6px_6px_0px_#1f3140] transform ${foto.rotate}`}
-          >
-            <Image
-              src={foto.src}
-              alt={foto.alt}
-              width={500}
-              height={500}
-              className="w-full h-72 object-cover object-[bottom]-_50px"
-            />
-          </div>
-        ))}
+        <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {FOTOS.map((foto) => (
+            <li key={foto.src} className="overflow-hidden rounded-2xl">
+              <Image
+                src={foto.src}
+                alt={foto.alt}
+                width={500}
+                height={600}
+                loading="lazy"
+                sizes="(max-width: 768px) 46vw, 22vw"
+                className="h-44 w-full object-cover transition-transform duration-500 hover:scale-105 md:h-60"
+              />
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
-  );
+    </section>
+  )
 }

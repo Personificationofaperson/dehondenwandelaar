@@ -1,63 +1,84 @@
-// components/Footer.js
-import Image from "next/image";
-import { Icon } from "@iconify/react";
+import Image from "next/image"
+import { RINGTWICE_URL, whatsappLink } from "../lib/prijzen"
+
+const MENU = [
+  { label: "Diensten", href: "#diensten" },
+  { label: "Tarieven", href: "#tarieven" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Zo werkt het", href: "#hoe-werkt-het" },
+  { label: "Werkgebied", href: "#werkgebied" },
+  { label: "Over mij", href: "#over" },
+  { label: "Veelgestelde vragen", href: "#faq" },
+]
 
 export default function Footer() {
-  const menu = [
-    { label: "Voordelen", href: "#voordelen" },
-    { label: "Beschikbaarheid", href: "#beschikbaarheid" },
-    { label: "Diensten", href: "#diensten" },
-    { label: "Werkgebied", href: "#werkgebied" },
-    { label: "Over", href: "#over" },
-    { label: "Tarieven", href: "#tarieven" },
-  ];
-
   return (
-    <footer className="w-full max-w-[80rem] mx-auto px-4 md:px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-10">
-      {/* LOGO + INTRO */}
-      <div>
-        <Image src="/dehondenwandelaar-logo.png" alt="De Hondenwandelaar" width={120} height={120} className="w-28 h-auto mb-4" />
-        <p className="text-sm mb-0">
-          De Hondenwandelaar biedt een persoonlijke en betrouwbare hondenuitlaatservice aan. Je kan ook gebruikmaken van liefdevolle hondenoppasdiensten.
-        </p>
-      </div>
+    <footer className="border-t border-brand-700/10">
+      <div className="shell grid gap-10 py-14 md:grid-cols-4">
+        <div className="md:col-span-2">
+          <Image
+            src="/dehondenwandelaar-logo.png"
+            alt="De Hondenwandelaar"
+            width={120}
+            height={120}
+            loading="lazy"
+            className="mb-4 h-16 w-16 object-contain"
+          />
+          <p className="max-w-sm text-[15px] leading-relaxed text-muted">
+            De Hondenwandelaar biedt een persoonlijke en betrouwbare
+            hondenuitlaatservice in Dilsen-Stokkem en omgeving. Ook voor liefdevolle
+            hondenoppas kan je bij mij terecht.
+          </p>
+        </div>
 
-      {/* MENU */}
-      <div>
-        <h4 className="mb-4">Menu</h4>
-        <ul className="flex flex-col gap-2">
-          {menu.map((item) => (
-            <li key={item.label}>
-              <a href={item.href} className=" hover:opacity-100 hover:underline text-sm">
-                {item.label}
+        <nav aria-label="Footermenu">
+          <h2 className="mb-4 font-display text-lg text-brand-900">Menu</h2>
+          <ul className="space-y-2">
+            {MENU.map((item) => (
+              <li key={item.href}>
+                <a href={item.href} className="text-[15px] text-muted hover:text-clay-700 hover:underline">
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <h2 className="mb-4 font-display text-lg text-brand-900">Contact</h2>
+          <ul className="space-y-2 text-[15px] text-muted">
+            <li>Dilsen-Stokkem, Limburg</li>
+            <li>Wandelingen: 8 km rondom Dilsen-Stokkem</li>
+            <li>Oppas: tot 30 km rondom Dilsen-Stokkem</li>
+            <li className="pt-2">
+              <a
+                href={whatsappLink("Hoi Kimberly! Ik heb een vraag over de hondenuitlaatservice.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-clay-700 hover:underline"
+              >
+                Stuur een WhatsApp
               </a>
             </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* CONTACT */}
-      <div>
-        <h4 className="mb-4">Neem Contact Op</h4>
-        <div className="flex flex-col ">
-          <p className="text-sm mb-3">Werkgebied uitlaatservice: 8 km rondom Dilsen-Stokkem</p>
-          <p className="text-sm mb-3">Werkgebied oppas: 30 km rondom Dilsen-Stokkem</p>
-          <a href="https://wa.me/32468584998" target="_blank" className="hover:underline text-sm mb-3">Service boeken</a>
-          <a href="https://wa.me/32468584998" target="_blank" className="hover:underline text-sm mb-3">WhatsApp</a>
+            <li>
+              <a
+                href={RINGTWICE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-clay-700 hover:underline"
+              >
+                Boek via Ring Twice
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
-      {/* KAART */}
-      <div>
-        <div className="border-[3px] border-[#3A5A70] rounded-[1.5rem] overflow-hidden h-56">
-          <iframe
-            src="https://www.google.com/maps?q=Dilsen-Stokkem&output=embed"
-            title="Werkgebied Dilsen-Stokkem"
-            className="w-full h-full"
-            loading="lazy"
-          ></iframe>
-        </div>
+      <div className="shell border-t border-brand-700/10 py-6">
+        <p className="text-sm text-muted">
+          © {new Date().getFullYear()} De Hondenwandelaar — Dilsen-Stokkem
+        </p>
       </div>
     </footer>
-  );
+  )
 }

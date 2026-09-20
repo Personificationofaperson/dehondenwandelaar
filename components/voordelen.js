@@ -1,57 +1,86 @@
-import { Icon } from '@iconify/react';
+const PUNTEN = [
+  {
+    titel: "De scan",
+    tekst:
+      "Met een waakzame blik anticipeer ik continu op de omgeving. Ik zie prikkels — andere honden, fietsers, een luide bestelwagen — lang voordat jouw hond ze opmerkt.",
+    icoon: (
+      <>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+        <path d="m9 12 2 2 4-4" />
+      </>
+    ),
+  },
+  {
+    titel: "Lichaamstaal lezen",
+    tekst:
+      "Ik kijk écht naar de hond. We wandelen tot jouw viervoeter voldaan en rustig is. De behoeften van je hond bepalen het tempo, niet de klok.",
+    icoon: (
+      <>
+        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+        <circle cx="12" cy="12" r="3" />
+      </>
+    ),
+  },
+  {
+    titel: "Altijd één op één",
+    tekst:
+      "Geen groepswandelingen waarin jouw hond ondersneeuwt. Alle aandacht gaat naar jouw viervoeter, van de voordeur tot de thuiskomst.",
+    icoon: (
+      <>
+        <path d="M19 14c1.5-1.5 2-3 2-4.5a3.5 3.5 0 0 0-6-2.5L12 10 9 7a3.5 3.5 0 0 0-6 2.5C3 11 3.5 12.5 5 14l7 7 7-7Z" />
+      </>
+    ),
+  },
+  {
+    titel: "Verplichte kennismaking",
+    tekst:
+      "Vertrouwen bouw je op. Ik wil jouw hond kennen en begrijpen nog voor we samen de deur uitgaan. Daarom is een uitgebreide kennismaking altijd gratis en altijd verplicht.",
+    icoon: (
+      <>
+        <rect x="3" y="4" width="18" height="18" rx="3" />
+        <path d="M16 2v4M8 2v4M3 10h18" />
+      </>
+    ),
+  },
+]
 
 export default function Voordelen() {
   return (
-    <div id="voordelen" className="section">
-      <div className="w-full max-w-[80rem] mx-auto">
-        <div className="intro flex flex-col justify-center text-center">
-          <h2 className="text-center">Voordelen van een hondenuitlaatservice</h2>
-          <p className="text-center">
-            Elk detail telt wanneer het om het welzijn van jouw viervoeter gaat. 
-            Met de onderstaande voordelen maak ik het verschil:
+    <section id="voordelen" className="section">
+      <div className="shell">
+        <div className="max-w-2xl">
+          <span className="eyebrow">Waarom bij mij</span>
+          <h2 className="mt-3">Rust, aandacht en een paar ogen die meekijken</h2>
+          <p className="lead mt-4">
+            Elk detail telt wanneer het om het welzijn van jouw viervoeter gaat.
+            Dit is wat het verschil maakt:
           </p>
         </div>
-        
-        <div className="cards-container flex flex-col lg:flex-row gap-6">
 
-          {/* KAART 1: De scan */}
-          <div className="card w-full lg:w-1/4 border-4 rounded-3xl border-[var(--dark-blue)] shadow-[4px_4px_0px_0px_var(--accent-color)] p-8 bg-white">
-            <div className="icon bg-[var(--accent-color)] p-4 inline-block border-[var(--dark-blue)] rounded-full border-4 mb-6 justify-center">
-              <Icon icon="solar:shield-check-linear" width="24" height="24" color="#3a5a70" />
-            </div>
-            <h3>De 'scan'</h3>
-            <p className="mb-0">Met een waakzame blik anticipeer ik continu op de omgeving. Ik zie prikkels, zoals andere honden of situaties, lang voordat jouw hond ze opmerkt, voor maximale rust en veiligheid.</p>
-          </div>
-
-          {/* KAART 2: Lichaamstaal */}
-          <div className="card w-full lg:w-1/4 border-4 rounded-3xl border-[var(--dark-blue)] shadow-[4px_4px_0px_0px_var(--accent-color)] p-8 bg-white">
-            <div className="icon bg-[var(--accent-color)] p-4 inline-block border-[var(--dark-blue)] rounded-full border-4 mb-6 justify-center">
-              <Icon icon="solar:eye-linear" width="24" height="24" color="#3a5a70" />
-            </div>
-            <h3>Lichaamstaal</h3>
-            <p className="mb-0">Ik kijk echt naar de hond. We wandelen tot jouw viervoeter voldaan en rustig is. De behoeften van jouw hond bepalen het tempo.</p>
-          </div>
-
-          {/* KAART 3: Jouw hond, jouw alles */}
-          <div className="card w-full lg:w-1/4 border-4 rounded-3xl border-[var(--dark-blue)] shadow-[4px_4px_0px_0px_var(--accent-color)] p-8 bg-white">
-            <div className="icon bg-[var(--accent-color)] p-4 inline-block border-[var(--dark-blue)] rounded-full border-4 mb-6 justify-center">
-              <Icon icon="solar:hand-heart-linear" width="24" height="24" color="#3a5a70" />
-            </div>
-            <h3>Jouw hond, jouw alles</h3>
-            <p className="mb-0">Ik begrijp dat je hond alles voor je is. Daarom ontzorg ik jou volledig. Veiligheid en welzijn zijn prioriteit nummer één, met warme, professionele service.</p>
-          </div>
-
-          {/* KAART 4: Verplichte intake */}
-          <div className="card w-full lg:w-1/4 border-4 rounded-3xl border-[var(--dark-blue)] shadow-[4px_4px_0px_0px_var(--accent-color)] p-8 bg-white">
-            <div className="icon bg-[var(--accent-color)] p-4 inline-block border-[var(--dark-blue)] rounded-full border-4 mb-6 justify-center">
-              <Icon icon="solar:calendar-linear" width="24" height="24" color="#3a5a70" />
-            </div>
-            <h3>Verplichte intake</h3>
-            <p className="mb-0">Vertrouwen moet je opbouwen. Ik wil jouw hond écht kennen en begrijpen nog voordat we de deur uitgaan. Daarom is een uitgebreide kennismaking vooraf altijd verplicht.</p>
-          </div>
-
-        </div>
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {PUNTEN.map((p) => (
+            <li key={p.titel} className="card card-hover reveal p-7">
+              <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-100">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#3A5A70"
+                  strokeWidth="1.9"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  {p.icoon}
+                </svg>
+              </span>
+              <h3>{p.titel}</h3>
+              <p className="mt-2.5 text-[15px] leading-relaxed text-muted">{p.tekst}</p>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
-  );
+    </section>
+  )
 }

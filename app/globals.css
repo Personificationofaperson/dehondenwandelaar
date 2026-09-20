@@ -1,239 +1,259 @@
-
-
-@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------
+   DESIGN TOKENS
+   Kleuren staan ook in tailwind.config.js (bv. bg-brand-700).
+   Deze variabelen zijn er voor plekken waar een utility niet past.
+---------------------------------------------------------------- */
 :root {
-    --font-lilita: 'Lilita One', sans-serif;
-    --font-text: 'Nunito', sans-serif;
-    --dark-blue: #3a5a70;
-    --bg-color: #F4F2EC;
-    --accent-color: #B6D8F2;
+  --ink: #22323d;
+  --muted: #51707f;
+  --cream: #f4f2ec;
+  --brand-100: #dcedfa;
+  --brand-200: #b6d8f2;
+  --brand-700: #3a5a70;
+  --brand-900: #1f3b4d;
+  --clay-500: #d9734e;
+  --clay-700: #a84a30;
+
+  --nav-h: 4.5rem;
+  --shell: 78rem;
 }
 
-nav {
-    position: fixed;
-    inset: 0 auto auto 0;
-    width: 100%;
-    z-index: 50;
-    background-color: var(--bg-color);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* sticky nav mag ankerdoelen niet afdekken */
+    scroll-padding-top: calc(var(--nav-h) + 1.5rem);
+  }
 
-.desktop-nav {
-    display: flex;
-    gap: 1rem;
-    font-family: var(--font-text);
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-}
-
-nav a {
-    font-family: var(--font-text);
-    font-size: 20px;
-    font-weight: 500;
-    color:var(--dark-blue);
-}
-
-nav .links {
-    display: flex;
-    flex-direction: row;
-    gap: 3rem;
-}
-
-.mobile-nav {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .mobile-nav {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding: 0.5rem 0;
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: .01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .01ms !important;
     }
-    .desktop-nav {
-        display: none;   /* desktop-balk juist verbergen op mobiel */
-    }
+  }
 
-    /* Make the top menu layout more flexible on very small screens so
-       the CTA can shrink instead of forcing horizontal overflow */
-    .top-menu-mobile {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0.5rem;
-    }
+  body {
+    background-color: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-    .top-menu-mobile > a {
-        flex: 0 0 auto; /* logo link shouldn't grow */
-        display: inline-flex;
-        align-items: center;
-    }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display), system-ui, sans-serif;
+    color: var(--brand-900);
+    line-height: 1.05;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
 
-    .top-menu-mobile > .nav-CTA {
-        flex: 1 1 auto; /* allow CTA to shrink/grow to available space */
-        min-width: 0; /* allow content to shrink below intrinsic width */
-        padding: 0.45rem 0.9rem; /* slightly smaller pill on mobile */
-        font-size: 0.9rem; /* tighter base font-size for the CTA */
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin: 0 0.5rem;
-    }
+  h1 { font-size: clamp(2.35rem, 1.6rem + 3.2vw, 4.25rem); }
+  h2 { font-size: clamp(1.9rem, 1.4rem + 2.2vw, 3rem); }
+  h3 { font-size: clamp(1.25rem, 1.1rem + .75vw, 1.6rem); }
+  h4 { font-size: clamp(1.05rem, 1rem + .35vw, 1.25rem); }
 
-    .top-menu-mobile > img {
-        flex: 0 0 auto; /* hamburger icon shouldn't grow */
-        width: 2.25rem;
-        height: 2.25rem;
-    }
+  p { text-wrap: pretty; }
+
+  /* Zichtbare focus voor toetsenbordgebruikers */
+  :focus-visible {
+    outline: 3px solid var(--clay-700);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection { background: var(--brand-200); color: var(--brand-900); }
 }
 
-.top-menu-mobile {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-CTA, .nav-CTA a {
-    padding: 0.75rem 1.75rem;
-    background-color: var(--dark-blue);
-    font-family: var(--font-text);
-    border-radius: 9999px;
-    font-weight: 600;
-    color: white;
-    font-size: clamp(0.7rem, 1.1vw, 2rem);
-}
-
-.hamburger-menu-open-link-container {
-    display: flex;
-    flex-direction: column;
-    font-family: var(--font-text);
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.hamburger-menu-open-link-container a {
-    border-bottom: 1px solid var(--dark-blue);
-    margin: 0 -1rem;
-    padding: 0.5rem 1rem;
-}
-
-.whatsapp {
-    animation: pulse 2s linear infinite;
-}
-
-body, html {
-    background-color: var(--bg-color);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;     
-    max-width: 100%;
-}
-
-h1, h2, h3, h4, h5, h6, span {
-    font-family: var(--font-lilita);
-    color: var(--dark-blue);
-    line-height: 1;
-}
-
-h1 {
-    font-size: clamp(2rem, 5vw, 4.5rem);
-    margin-bottom: 1rem;
-}
-
-h2 {
-    font-size: clamp(1.9rem, 3vw, 4.5rem);
-    margin-bottom: 1.5rem;
-}
-
-h3 {
-    font-size: clamp(1.5rem, 2.4vw, 3rem);
-    color: var(--dark-blue);
-    margin-bottom: 1.5rem;
-}
-
-p, a:not(nav a), select {
-    font-family: var(--font-text);
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 2rem;
-    color:var(--dark-blue);
-}
-
-label {
-    font-family: var(--font-text);    
-}
-
-.button:not(.nav-CTA) {
-  color:var(--dark-blue);
-  border: 2px solid var(--dark-blue);
-  border-radius: 9999px;
-  padding: 0.75rem 1.75rem;
-  font-weight: 500!important;
-  font-family: var(--font-lilita);
-  font-size: clamp(1rem, 1.19vw, 1.25rem);
-  text-transform: uppercase;
-  background-color: transparent;
-  display: inline-block;
-  margin-bottom: 1rem;
-  box-shadow: 4px 4px 0px 0px var(--dark-blue);
-}
-
-@keyframes rotate {
-  from {transform: rotate(0deg);}
-  to {transform: rotate(360deg);}
-}
-
-@keyframes rotate-reverse {
-  from {transform: rotate(0deg);}
-  to {transform: rotate(-360deg);}
-}
-
-.rotate-wrapper {
-    animation: rotate 20s linear infinite;
-    transform-origin: center center!important;
-    will-change: transform!important;
-}
-
-.rotate-wrapper img {
-    animation: rotate-reverse 20s linear infinite;
-    transform-origin: center center!important;
-    will-change: transform!important;
-}
-
-
-@keyframes pulse {
-    0%, 100% {transform: scale(1);}
-    50% {transform: scale(1.1)}
-}
-
-/* Component utilities: reusable helpers for full-bleed sections and consistent section spacing */
+/* ---------------------------------------------------------------
+   COMPONENTEN
+---------------------------------------------------------------- */
 @layer components {
-    .full-bleed {
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        width: 100vw;
-    }
+  .shell {
+    width: 100%;
+    max-width: var(--shell);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) { .shell { padding-inline: 2rem; } }
 
-    .section {
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-    }
+  .section { padding-block: clamp(3.5rem, 7vw, 6.5rem); }
 
-    @media (max-width: 780px) {
-        .section {
-        padding-top: 2.5rem;
-        padding-bottom: 2.5rem;
-        }
+  .full-bleed {
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    width: 100vw;
+  }
+
+  /* Klein label boven een titel */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .8125rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--clay-700);
+  }
+
+  .lead {
+    font-size: clamp(1.0625rem, 1rem + .35vw, 1.25rem);
+    color: var(--muted);
+    max-width: 62ch;
+  }
+
+  /* ---- Knoppen ---- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-height: 3rem;
+    padding: .75rem 1.5rem;
+    border-radius: 9999px;
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, color .18s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:active { transform: translateY(0); }
+  .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+  .btn-primary {
+    background: var(--clay-700);
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(31, 59, 77, .06), 0 14px 28px -14px rgba(168, 74, 48, .7);
+  }
+  .btn-primary:hover { background: #93412a; }
+
+  .btn-secondary {
+    background: #fff;
+    color: var(--brand-900);
+    border: 1.5px solid rgba(58, 90, 112, .25);
+    box-shadow: 0 1px 2px rgba(31, 59, 77, .05);
+  }
+  .btn-secondary:hover { border-color: var(--brand-700); background: var(--brand-50, #f0f7fc); }
+
+  .btn-whatsapp {
+    background: #25d366;
+    color: #06301a;
+    box-shadow: 0 2px 4px rgba(31, 59, 77, .06), 0 14px 28px -14px rgba(37, 211, 102, .8);
+  }
+  .btn-whatsapp:hover { background: #1fbb59; }
+
+  .btn-ghost-light {
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, .45);
+  }
+  .btn-ghost-light:hover { background: rgba(255, 255, 255, .22); }
+
+  /* ---- Kaarten ---- */
+  .card {
+    background: #fff;
+    border: 1px solid rgba(58, 90, 112, .12);
+    border-radius: 1.5rem;
+    box-shadow: 0 1px 2px rgba(31, 59, 77, .05), 0 8px 24px -12px rgba(31, 59, 77, .18);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(58, 90, 112, .22);
+    box-shadow: 0 2px 4px rgba(31, 59, 77, .06), 0 18px 40px -18px rgba(31, 59, 77, .28);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+    padding: .375rem .75rem;
+    border-radius: 9999px;
+    background: var(--brand-100);
+    color: var(--brand-900);
+    font-size: .8125rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* ---- Formulier ---- */
+  .field {
+    width: 100%;
+    min-height: 3rem;
+    padding: .75rem 1rem;
+    border-radius: .875rem;
+    border: 1.5px solid rgba(58, 90, 112, .25);
+    background: #fff;
+    color: var(--ink);
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-size: 1rem;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .field::placeholder { color: rgba(81, 112, 127, .6); }
+  .field:focus {
+    outline: none;
+    border-color: var(--brand-700);
+    box-shadow: 0 0 0 3px rgba(182, 216, 242, .9);
+  }
+  /* Foutstaat pas tonen nadat de gebruiker het veld verlaten heeft */
+  .field:user-invalid {
+    border-color: var(--clay-700);
+    box-shadow: 0 0 0 3px rgba(168, 74, 48, .15);
+  }
+
+  .field-label {
+    display: block;
+    margin-bottom: .375rem;
+    font-size: .875rem;
+    font-weight: 700;
+    color: var(--brand-900);
+  }
+
+  select.field {
+    appearance: none;
+    padding-right: 2.75rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233a5a70' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.125rem;
+  }
+}
+
+/* ---------------------------------------------------------------
+   SCROLL REVEAL (progressive enhancement, puur decoratief)
+---------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: none; }
     }
+    .reveal {
+      animation: reveal .7s ease backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+/* WhatsApp-bel */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes wa-pulse {
+    0%, 100% { box-shadow: 0 8px 24px -8px rgba(37, 211, 102, .8), 0 0 0 0 rgba(37, 211, 102, .45); }
+    50% { box-shadow: 0 8px 24px -8px rgba(37, 211, 102, .8), 0 0 0 12px rgba(37, 211, 102, 0); }
+  }
+  .wa-fab { animation: wa-pulse 2.6s ease-out infinite; }
 }
