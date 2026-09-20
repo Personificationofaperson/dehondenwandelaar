@@ -15,7 +15,7 @@ const STAPPEN = [
     nummer: "03",
     titel: "De wandelingen starten",
     tekst:
-      "Je boekt via Ring Twice, waardoor elke opdracht verzekerd is en de betaling veilig verloopt. Na elke wandeling krijg je een update.",
+      "Je boekt via Ring Twice, waardoor elke opdracht verzekerd is en de betaling veilig verloopt. Na elke wandeling krijg je een berichtje met foto's en hoe het gegaan is.",
   },
 ]
 
