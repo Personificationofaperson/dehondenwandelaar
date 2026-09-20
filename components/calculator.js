@@ -174,6 +174,19 @@ export default function Calculator() {
 
   const ingevuld = Boolean(frequentie || dagen.length > 0 || moment || startdatum || naam)
 
+  function meetContact(positie) {
+    track(EVENTS.CONTACT_KLIK, {
+      plek: "calculator",
+      positie,
+      kanaal: "whatsapp",
+      dienst: dienst.korteNaam,
+      aantal_honden: aantalHonden,
+      prijs: totaal,
+      frequentie: frequentie || "niet ingevuld",
+      met_details: ingevuld,
+    })
+  }
+
   return (
     <section id="tarieven" className="full-bleed bg-white">
       <div className="shell section">
@@ -400,6 +413,15 @@ export default function Calculator() {
 
                 {prijsKlaar ? (
                   <>
+                    <VerzendKnop
+                      href={whatsappLink(bouwBericht())}
+                      onKlik={() => meetContact("boven")}
+                    />
+                    <p className="mb-5 mt-3 text-center text-xs text-muted">
+                      Of vul hieronder nog even in wanneer je me nodig hebt, dan staat
+                      dat meteen in je bericht.
+                    </p>
+
                     <ExtraVragen
                       idPrefix={idPrefix}
                       open={detailsOpen}
@@ -422,29 +444,19 @@ export default function Calculator() {
                       setEinddatum={setEinddatum}
                     />
 
-                    <a
-                      href={whatsappLink(bouwBericht())}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() =>
-                        track(EVENTS.CONTACT_KLIK, {
-                          plek: "calculator",
-                          kanaal: "whatsapp",
-                          dienst: dienst.korteNaam,
-                          aantal_honden: aantalHonden,
-                          prijs: totaal,
-                          frequentie: frequentie || "niet ingevuld",
-                          met_details: ingevuld,
-                        })
-                      }
-                      className="btn btn-whatsapp mt-5 w-full"
-                    >
-                      Stuur dit door via WhatsApp
-                    </a>
-                    <p className="mt-3 text-center text-xs text-muted">
-                      Alles wat je hierboven invulde, staat straks in je bericht. Je kan
-                      het nog aanpassen voor je verstuurt.
-                    </p>
+                    {ingevuld && (
+                      <>
+                        <VerzendKnop
+                          href={whatsappLink(bouwBericht())}
+                          onKlik={() => meetContact("onder")}
+                          className="mt-5"
+                        />
+                        <p className="mt-3 text-center text-xs text-muted">
+                          Alles wat je invulde staat straks in je bericht. Je kan het nog
+                          aanpassen voor je verstuurt.
+                        </p>
+                      </>
+                    )}
                   </>
                 ) : (
                   <p className="rounded-2xl bg-brand-50 px-4 py-3 text-sm text-muted">
@@ -465,6 +477,23 @@ export default function Calculator() {
         </div>
       </div>
     </section>
+  )
+}
+
+function VerzendKnop({ href, onKlik, className = "" }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={onKlik}
+      className={`btn btn-whatsapp w-full ${className}`}
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.41a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Z" />
+      </svg>
+      Stuur dit door via WhatsApp
+    </a>
   )
 }
 

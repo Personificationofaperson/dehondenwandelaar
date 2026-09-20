@@ -24,7 +24,7 @@ const KAARTEN = [
     objectPosition: "center",
     tekst:
       "Ben je de hele dag weg? Dan kom ik twee keer langs, 's ochtends en 's avonds, telkens voor drie kwartier. Je hond komt buiten, krijgt aandacht en blijft in zijn vertrouwde omgeving.",
-    kenmerken: ["2 × 45 min", "Ochtend en avond", "Ook voor twee dagen"],
+    kenmerken: ["2 × 45 min", "Ochtend en avond", "Max 6 km rond Dilsen"],
     uitgelicht: false,
   },
 ]

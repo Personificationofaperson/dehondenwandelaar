@@ -106,15 +106,6 @@ const jsonLd = {
         price: "70",
         priceCurrency: "EUR",
       },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Dagpakket voor twee dagen, vier bezoeken van 45 minuten",
-        },
-        price: "140",
-        priceCurrency: "EUR",
-      },
     ],
   },
   openingHoursSpecification: [

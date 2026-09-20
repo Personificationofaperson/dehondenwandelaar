@@ -29,7 +29,7 @@ const VRAGEN = [
   {
     vraag: "Wat houdt het dagpakket precies in?",
     antwoord:
-      "Ik kom twee keer langs op dezelfde dag, 's ochtends en 's avonds, telkens voor drie kwartier. Dat is bedoeld voor baasjes die de hele dag van huis zijn. Je hond komt twee keer goed buiten en blijft de rest van de dag in zijn eigen omgeving. Je kan het ook voor twee opeenvolgende dagen boeken.",
+      "Ik kom twee keer langs op dezelfde dag, 's ochtends en 's avonds, telkens voor drie kwartier. Dat is bedoeld voor baasjes die de hele dag van huis zijn. Je hond komt twee keer goed buiten en blijft de rest van de dag in zijn eigen omgeving.",
   },
   {
     vraag: "Waarom verloopt alles via Ring Twice?",
