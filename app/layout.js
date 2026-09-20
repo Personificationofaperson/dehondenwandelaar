@@ -94,18 +94,24 @@ const jsonLd = {
       {
         "@type": "Offer",
         itemOffered: { "@type": "Service", name: "Hondenwandeling van 30 minuten" },
-        price: "15",
+        price: "18",
         priceCurrency: "EUR",
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Weekendwandeling van een dag" },
+        itemOffered: {
+          "@type": "Service",
+          name: "Dagpakket, twee bezoeken van 45 minuten op één dag",
+        },
         price: "70",
         priceCurrency: "EUR",
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "Weekendwandeling van twee dagen" },
+        itemOffered: {
+          "@type": "Service",
+          name: "Dagpakket voor twee dagen, vier bezoeken van 45 minuten",
+        },
         price: "140",
         priceCurrency: "EUR",
       },

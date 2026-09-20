@@ -19,12 +19,17 @@ const VRAGEN = [
   {
     vraag: "Hoe zit het met de reiskost?",
     antwoord:
-      "Ik reken € 0,52 per gereden kilometer, heen en terug. Die kost zit automatisch in de richtprijs die je hierboven berekent, dus je weet vooraf precies waar je aan toe bent.",
+      "Ik reken € 0,52 per gereden kilometer, heen en terug. Bij het dagpakket kom ik twee keer langs, dus daar zitten ook twee ritten in. Alles zit automatisch in de richtprijs die je hierboven berekent, dus je weet vooraf precies waar je aan toe bent.",
   },
   {
     vraag: "Ik woon net buiten je werkgebied. Kan het dan niet?",
     antwoord:
-      "Ik blijf binnen 6 km rond Dilsen-Stokkem, ook voor de weekendwandeling. Zit je er net buiten? Stuur een berichtje, dan kijken we samen wat haalbaar is.",
+      "Ik blijf binnen 6 km rond Dilsen-Stokkem, ook voor het dagpakket. Zit je er net buiten? Stuur een berichtje, dan kijken we samen wat haalbaar is.",
+  },
+  {
+    vraag: "Wat houdt het dagpakket precies in?",
+    antwoord:
+      "Ik kom twee keer langs op dezelfde dag, 's ochtends en 's avonds, telkens voor drie kwartier. Dat is bedoeld voor baasjes die de hele dag van huis zijn. Je hond komt twee keer goed buiten en blijft de rest van de dag in zijn eigen omgeving. Je kan het ook voor twee opeenvolgende dagen boeken.",
   },
   {
     vraag: "Waarom verloopt alles via Ring Twice?",

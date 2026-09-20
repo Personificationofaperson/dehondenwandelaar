@@ -26,10 +26,10 @@ const ZONES = [
       "Gefocust op Dilsen-Stokkem en de directe omstreken. Door lokaal te blijven gaat de tijd naar de wandeling in plaats van naar de auto.",
   },
   {
-    titel: "Weekendwandeling",
+    titel: "Dagpakket",
     straal: "6",
     tekst:
-      "Die dag is volledig voor jouw hond gereserveerd. Ook hier blijf ik binnen 6 km van het centrum van Dilsen, zodat de rit kort blijft en de wandeling lang.",
+      "Bij een dagpakket rijd ik twee keer heen en terug op dezelfde dag. Daarom blijft ook hier 6 km de grens, zodat de tijd naar je hond gaat in plaats van naar de weg.",
   },
 ]
 

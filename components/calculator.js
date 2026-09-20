@@ -41,7 +41,7 @@ export default function Calculator() {
 
   const dienst = CALCULEERBARE_DIENSTEN.find((d) => d.id === dienstId)
   const hondenOptie = HONDEN_OPTIES.find((h) => h.aantal === aantalHonden)
-  const reis = status === "klaar" && km != null ? reiskost(km) : 0
+  const reis = status === "klaar" && km != null ? reiskost(km, dienst.ritten) : 0
   const subtotaal = dienst.prijs + hondenOptie.meerprijs
   const totaal = subtotaal + reis
   const prijsKlaar = status === "klaar"
@@ -111,7 +111,7 @@ export default function Calculator() {
         dienst: dienst.korteNaam,
         aantal_honden: aantalHonden,
         afstand_km: afstand,
-        prijs: subtotaal + reiskost(afstand),
+        prijs: subtotaal + reiskost(afstand, dienst.ritten),
       })
     } catch {
       setStatus("fout")
@@ -214,6 +214,9 @@ export default function Calculator() {
                     />
                     <span className="block text-sm font-bold leading-snug text-brand-900">
                       {d.korteNaam}
+                    </span>
+                    <span className="mt-0.5 block text-xs font-semibold text-muted">
+                      {d.duur}
                     </span>
                     <span className="mt-1 block font-display text-xl text-clay-700">
                       {euro(d.prijs)}
@@ -358,7 +361,9 @@ export default function Calculator() {
                 <p className="mt-2 font-display text-5xl leading-none">{euro(totaal)}</p>
                 <p className="mt-2 text-sm text-brand-100">
                   {prijsKlaar
-                    ? `Inclusief reiskost voor ${km} km enkele rit.`
+                    ? dienst.ritten > 1
+                      ? `Inclusief ${dienst.ritten} ritten van en naar jouw adres op ${km} km.`
+                      : `Inclusief reiskost voor ${km} km enkele rit.`
                     : "Reiskost komt hier nog bij zodra je je adres invult."}
                 </p>
               </div>
@@ -373,7 +378,11 @@ export default function Calculator() {
                     />
                   )}
                   <Regel
-                    label="Reiskost heen en terug"
+                    label={
+                      dienst.ritten > 1
+                        ? `Reiskost, ${dienst.ritten} ritten heen en terug`
+                        : "Reiskost heen en terug"
+                    }
                     waarde={prijsKlaar ? `+ ${euro(reis)}` : "nog te bepalen"}
                     grijs={!prijsKlaar}
                   />

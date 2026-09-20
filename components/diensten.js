@@ -13,18 +13,18 @@ const KAARTEN = [
     objectPosition: "center 65%",
     tekst:
       "Een actieve, verfrissende wandeling in de eigen buurt. Ideaal terwijl jij aan het werk bent, even geen tijd hebt of gewoon een helpende hand kan gebruiken.",
-    kenmerken: ["30 tot 60 min", "Max 6 km rond Dilsen", "Solo of in duo"],
+    kenmerken: ["30 min", "Max 6 km rond Dilsen", "Solo of in duo"],
     uitgelicht: true,
   },
   {
-    id: "weekend-1",
-    titel: "Weekendwandeling",
+    id: "dagpakket-1",
+    titel: "Het dagpakket",
     foto: "/weekend-wandeling.webp",
     alt: "Kimberly aait een grote zwarte hond tijdens een lange wandeling",
     objectPosition: "center",
     tekst:
-      "Weekendje weg of gewoon geen tijd? Ik neem je hond uren mee op sjok, in zijn vertrouwde omgeving, zodat hij daarna voldaan kan soezen.",
-    kenmerken: ["Uren plezier", "Max 6 km rond Dilsen", "Ook twee dagen mogelijk"],
+      "Ben je de hele dag weg? Dan kom ik twee keer langs, 's ochtends en 's avonds, telkens voor drie kwartier. Je hond komt buiten, krijgt aandacht en blijft in zijn vertrouwde omgeving.",
+    kenmerken: ["2 × 45 min", "Ochtend en avond", "Ook voor twee dagen"],
     uitgelicht: false,
   },
 ]
