@@ -2,14 +2,32 @@ import Image from "next/image"
 import { ZICHTBARE_REVIEWS, BRONNEN } from "../lib/reviews"
 import Sterren from "./sterren"
 
+// Alle reviews krijgen een even grote kaart in hetzelfde raster, zodat geen
+// enkele belangrijker oogt dan de andere. De kaarten met een foto worden
+// diagonaal geplaatst, linksboven en rechtsonder, zodat de foto's niet samen
+// in één kolom belanden en er alsnog een rangorde lijkt te ontstaan.
+function diagonaal(reviews) {
+  const metFoto = reviews.filter((r) => r.foto)
+  const zonder = reviews.filter((r) => !r.foto)
+  const volgorde = []
+  let rij = 0
+
+  while (metFoto.length || zonder.length) {
+    const links = rij % 2 === 0 ? metFoto : zonder
+    const rechts = rij % 2 === 0 ? zonder : metFoto
+    const eerste = links.shift() ?? rechts.shift()
+    const tweede = rechts.shift() ?? links.shift()
+    if (eerste) volgorde.push(eerste)
+    if (tweede) volgorde.push(tweede)
+    rij += 1
+  }
+
+  return volgorde
+}
+
 export default function Reviews() {
   if (ZICHTBARE_REVIEWS.length === 0) return null
-
-  // Reviews met een foto krijgen een brede kaart met de foto links naast de
-  // tekst. Reviews zonder foto komen er in gelijke kolommen onder. Zo blijven
-  // de hoogtes bij elkaar in de buurt en vallen er geen gaten in het raster.
-  const metFoto = ZICHTBARE_REVIEWS.filter((r) => r.foto)
-  const zonderFoto = ZICHTBARE_REVIEWS.filter((r) => !r.foto)
+  const reviews = diagonaal(ZICHTBARE_REVIEWS)
 
   return (
     <section id="reviews" className="section">
@@ -30,67 +48,51 @@ export default function Reviews() {
           </div>
         </div>
 
-        <div className="mt-12 space-y-5">
-          {metFoto.map((review) => (
-            <ReviewKaart key={review.id} review={review} breed />
+        <ul className="mt-12 grid gap-5 md:grid-cols-2">
+          {reviews.map((review) => (
+            <li key={review.id} className="flex">
+              <ReviewKaart review={review} />
+            </li>
           ))}
-
-          {zonderFoto.length > 0 && (
-            <ul className="grid gap-5 md:grid-cols-2">
-              {zonderFoto.map((review) => (
-                <li key={review.id} className="flex">
-                  <ReviewKaart review={review} />
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        </ul>
       </div>
     </section>
   )
 }
 
-function ReviewKaart({ review, breed = false }) {
+function ReviewKaart({ review }) {
   const bron = BRONNEN[review.bron]
 
   return (
-    <figure
-      className={`card reveal flex w-full flex-col overflow-hidden sm:flex-row ${
-        breed ? "" : "h-full"
-      }`}
-    >
+    <figure className="card reveal flex h-full w-full flex-col overflow-hidden sm:flex-row">
       {review.foto && (
-        <div
-          className={`relative h-56 w-full shrink-0 bg-brand-100 sm:h-auto ${
-            breed ? "sm:w-[34%] lg:w-[30%]" : "sm:w-[40%]"
-          }`}
-        >
+        <div className="relative h-48 w-full shrink-0 bg-brand-100 sm:h-auto sm:w-[34%]">
           <Image
             src={review.foto}
             alt={review.fotoAlt ?? ""}
             fill
             loading="lazy"
-            sizes={breed ? "(max-width: 640px) 92vw, 34vw" : "(max-width: 768px) 92vw, 22vw"}
+            sizes="(max-width: 768px) 92vw, 18vw"
             className="object-cover"
           />
         </div>
       )}
 
-      <div className={`flex flex-1 flex-col p-6 ${breed ? "sm:p-8 lg:p-10" : "sm:p-7"}`}>
+      <div className="flex flex-1 flex-col p-6 sm:p-7">
         <div className="flex items-center justify-between gap-3">
           {review.sterren ? <Sterren aantal={review.sterren} /> : <Aanhaling />}
           <BronBadge bron={bron} />
         </div>
 
-        {review.titel && (
-          <h3 className={`mt-3 ${breed ? "text-xl" : "text-lg"}`}>{review.titel}</h3>
-        )}
+        {review.titel && <h3 className="mt-3 text-lg">{review.titel}</h3>}
 
-        <blockquote
-          className={`mt-3 flex-1 leading-relaxed text-ink ${breed ? "text-base sm:text-lg" : "text-[15px]"}`}
-        >
-          &ldquo;{review.tekst}&rdquo;
-        </blockquote>
+        {/* Kortere reviews staan verticaal gecentreerd, zodat de extra ruimte
+            boven en onder verdeeld wordt in plaats van als een gat onderaan. */}
+        <div className="flex flex-1 items-center">
+          <blockquote className="mt-3 text-[15px] leading-relaxed text-ink">
+            &ldquo;{review.tekst}&rdquo;
+          </blockquote>
+        </div>
 
         <figcaption className="mt-5 flex items-center gap-3 border-t border-brand-700/10 pt-4">
           <span
