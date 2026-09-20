@@ -20,11 +20,6 @@ export default function Hero() {
 
       <div className="shell relative grid items-center gap-12 pb-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:pb-24">
         <div>
-          <span className="pill mb-6">
-            <span className="h-2 w-2 rounded-full bg-[#2BA84A]" aria-hidden="true" />
-            Nu plaats voor nieuwe honden
-          </span>
-
           {/* De H1 draagt het zoekwoord voluit: dienst plus plaats. */}
           <h1>
             Hondenuitlaatservice

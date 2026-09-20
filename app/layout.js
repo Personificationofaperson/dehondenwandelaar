@@ -3,7 +3,7 @@ import { Outfit, Plus_Jakarta_Sans } from "next/font/google"
 import Nav from "../components/nav"
 import Footer from "../components/footer"
 import Whatsapp from "../components/whatsapp"
-import { GtmScript, GtmNoScript } from "../components/gtm"
+import { GtmHeadScript, GtmNoScript } from "../components/gtm"
 
 // next/font host de fonts mee vanaf je eigen domein en zet ze in de
 // <head> met preload. Dat scheelt twee render-blokkerende requests naar
@@ -134,6 +134,11 @@ const jsonLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="nl" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Zo hoog mogelijk in de head, anders weigert Search Console de
+            verificatie via Tag Manager. */}
+        <GtmHeadScript />
+      </head>
       <body>
         <GtmNoScript />
         <script
@@ -150,7 +155,6 @@ export default function RootLayout({ children }) {
         <main id="hoofdinhoud">{children}</main>
         <Footer />
         <Whatsapp />
-        <GtmScript />
       </body>
     </html>
   )
