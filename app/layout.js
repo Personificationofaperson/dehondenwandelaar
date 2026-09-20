@@ -45,12 +45,15 @@ export const metadata = {
       "Persoonlijke hondenuitlaatservice in Dilsen-Stokkem. Geen massale groepen, wel rust en aandacht. Bereken meteen je richtprijs.",
   },
   robots: { index: true, follow: true },
-  // Zet NEXT_PUBLIC_GSC_VERIFICATION in Vercel met de code die Google Search
-  // Console je geeft bij de HTML-tag-methode. Dan verschijnt de meta-tag hier
-  // automatisch en kan je het domein verifiëren.
-  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
-    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
-    : undefined,
+  // De verificatiecode van Search Console, HTML-tag-methode. Die hoort
+  // publiek in de broncode te staan, dus hij mag hier gewoon in. Wil je hem
+  // later wisselen zonder de code aan te raken, zet dan
+  // NEXT_PUBLIC_GSC_VERIFICATION in Vercel, die heeft voorrang.
+  verification: {
+    google:
+      process.env.NEXT_PUBLIC_GSC_VERIFICATION ||
+      "bFjZOxPdy4T97e4AuWw6RdZIf1MpbXt--7WCfA1RdYY",
+  },
 }
 
 export const viewport = {
