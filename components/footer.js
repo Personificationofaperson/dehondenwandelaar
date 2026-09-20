@@ -48,8 +48,7 @@ export default function Footer() {
           <h2 className="mb-4 font-display text-lg text-brand-900">Contact</h2>
           <ul className="space-y-2 text-[15px] text-muted">
             <li>Dilsen-Stokkem, Limburg</li>
-            <li>Wandelingen: 8 km rondom Dilsen-Stokkem</li>
-            <li>Weekendwandeling: tot 10 km rondom Dilsen-Stokkem</li>
+            <li>Werkgebied: 6 km rondom Dilsen-Stokkem</li>
             <li className="pt-2">
               <a
                 href={whatsappLink("Hoi Kimberly! Ik heb een vraag over de hondenuitlaatservice.")}
@@ -76,7 +75,7 @@ export default function Footer() {
 
       <div className="shell border-t border-brand-700/10 py-6">
         <p className="text-sm text-muted">
-          © {new Date().getFullYear()} De Hondenwandelaar — Dilsen-Stokkem
+          © {new Date().getFullYear()} De Hondenwandelaar, Dilsen-Stokkem
         </p>
       </div>
     </footer>

@@ -46,8 +46,8 @@ export default function Calculator() {
   const totaal = subtotaal + reis
   const prijsKlaar = status === "klaar"
 
-  // Eén keer de aandacht trekken zodra de prijs er staat — geen herhaling,
-  // want een knop die blijft bewegen wordt snel vervelend.
+  // Eén keer de aandacht trekken zodra de prijs er staat, zonder herhaling.
+  // Een knop die blijft bewegen wordt snel vervelend.
   useEffect(() => {
     if (!prijsKlaar) return
     setVraagAandacht(true)
@@ -182,7 +182,7 @@ export default function Calculator() {
           <h2 className="mt-3">Bereken je richtprijs in twee tellen</h2>
           <p className="lead mt-4">
             Geen verrassingen achteraf. Kies je dienst, vul je adres in en je ziet
-            meteen wat een wandeling voor jouw adres kost — reiskost inbegrepen.
+            meteen wat een wandeling voor jouw adres kost, reiskost inbegrepen.
           </p>
         </div>
 
@@ -646,7 +646,7 @@ function ExtraVragen({
               {moment === "middag" && (
                 <p className="mt-2 rounded-xl bg-clay-100 px-3.5 py-2.5 text-xs leading-relaxed text-clay-700">
                   Mijn solo-plekken in de middag zijn volzet. Een middagwandeling kan enkel
-                  als jouw hond kan meelopen met een retriever die ik al vast uitlaat — ik
+                  als jouw hond kan meelopen met een retriever die ik al vast uitlaat. Ik
                   laat je eerlijk weten of dat past.
                 </p>
               )}

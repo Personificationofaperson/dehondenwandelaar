@@ -5,11 +5,11 @@ import Sterren from "./sterren"
 export default function Reviews() {
   if (ZICHTBARE_REVIEWS.length === 0) return null
 
-  // De eerste review krijgt een brede kaart over de volle breedte, de rest
-  // staat er in gelijke kolommen onder. Alle kaarten met een foto zetten die
-  // links naast de tekst, zodat de hoogtes bij elkaar in de buurt blijven en
-  // er geen gaten in het raster vallen.
-  const [eerste, ...rest] = ZICHTBARE_REVIEWS
+  // Reviews met een foto krijgen een brede kaart met de foto links naast de
+  // tekst. Reviews zonder foto komen er in gelijke kolommen onder. Zo blijven
+  // de hoogtes bij elkaar in de buurt en vallen er geen gaten in het raster.
+  const metFoto = ZICHTBARE_REVIEWS.filter((r) => r.foto)
+  const zonderFoto = ZICHTBARE_REVIEWS.filter((r) => !r.foto)
 
   return (
     <section id="reviews" className="section">
@@ -31,11 +31,13 @@ export default function Reviews() {
         </div>
 
         <div className="mt-12 space-y-5">
-          <ReviewKaart review={eerste} breed />
+          {metFoto.map((review) => (
+            <ReviewKaart key={review.id} review={review} breed />
+          ))}
 
-          {rest.length > 0 && (
+          {zonderFoto.length > 0 && (
             <ul className="grid gap-5 md:grid-cols-2">
-              {rest.map((review) => (
+              {zonderFoto.map((review) => (
                 <li key={review.id} className="flex">
                   <ReviewKaart review={review} />
                 </li>

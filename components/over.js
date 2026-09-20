@@ -19,7 +19,7 @@ const PUNTEN = [
   {
     titel: "Flexibel waar het kan",
     tekst:
-      "Twijfel je of ik beschikbaar ben op jouw moment? Stuur gewoon een berichtje — er is vaker iets mogelijk dan je denkt.",
+      "Twijfel je of ik beschikbaar ben op jouw moment? Stuur gewoon een berichtje, er is vaker iets mogelijk dan je denkt.",
   },
 ]
 

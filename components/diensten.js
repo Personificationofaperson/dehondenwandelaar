@@ -13,7 +13,7 @@ const KAARTEN = [
     objectPosition: "center 65%",
     tekst:
       "Een actieve, verfrissende wandeling in de eigen buurt. Ideaal terwijl jij aan het werk bent, even geen tijd hebt of gewoon een helpende hand kan gebruiken.",
-    kenmerken: ["30 – 60 min", "Max 8 km rond Dilsen", "Solo of in duo"],
+    kenmerken: ["30 tot 60 min", "Max 6 km rond Dilsen", "Solo of in duo"],
     uitgelicht: true,
   },
   {
@@ -24,7 +24,7 @@ const KAARTEN = [
     objectPosition: "center",
     tekst:
       "Weekendje weg of gewoon geen tijd? Ik neem je hond uren mee op sjok, in zijn vertrouwde omgeving, zodat hij daarna voldaan kan soezen.",
-    kenmerken: ["Uren plezier", "Tot 10 km van Dilsen", "Ook twee dagen mogelijk"],
+    kenmerken: ["Uren plezier", "Max 6 km rond Dilsen", "Ook twee dagen mogelijk"],
     uitgelicht: false,
   },
 ]
@@ -109,8 +109,8 @@ export default function Diensten() {
 
         <p className="mt-8 rounded-2xl border border-brand-700/15 bg-brand-50 px-6 py-5 text-[15px] leading-relaxed text-muted">
           <strong className="text-brand-900">Hoogstens twee honden samen.</strong> Ik wandel
-          solo of in duo, en een duo vormen we alleen als de karakters bij elkaar passen —
-          dat beoordeel ik tijdens de kennismaking. Geen groepen, geen honden die elkaar
+          solo of in duo, en een duo vormen we alleen als de karakters bij elkaar passen.
+          Dat beoordeel ik tijdens de kennismaking. Geen groepen, geen honden die elkaar
           moeten verdragen.
         </p>
       </div>

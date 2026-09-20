@@ -1,5 +1,5 @@
 // Alle antwoorden komen uit informatie die al op de site stond.
-// Voeg gerust vragen toe — de lijst rendert zichzelf.
+// Voeg gerust vragen toe, de lijst rendert zichzelf.
 const VRAGEN = [
   {
     vraag: "Wandel je met groepjes honden?",
@@ -14,7 +14,7 @@ const VRAGEN = [
   {
     vraag: "Is de kennismaking echt verplicht?",
     antwoord:
-      "Ja, en ze is gratis. Ik wil je hond en zijn routines kennen nog voor we samen de deur uitgaan. Meteen zie ik ook of hij in duo kan wandelen en met welk maatje dat zou klikken. Je wandelt één keer mee, en pas daarna beslis je of je verder wil.",
+      "Ja, en ze is gratis en vrijblijvend. Ik kom langs om je hond en zijn routines te leren kennen, en om te zien of hij in duo kan wandelen en met welk maatje dat zou klikken. Er wordt tijdens die kennismaking nog niet gewandeld. Pas daarna beslis je of je verder wil.",
   },
   {
     vraag: "Hoe zit het met de reiskost?",
@@ -24,7 +24,7 @@ const VRAGEN = [
   {
     vraag: "Ik woon net buiten je werkgebied. Kan het dan niet?",
     antwoord:
-      "Voor wandelingen blijf ik binnen 8 km rond Dilsen-Stokkem, voor de weekendwandeling tot 10 km. Zit je er net buiten? Stuur een berichtje, dan kijken we samen wat haalbaar is.",
+      "Ik blijf binnen 6 km rond Dilsen-Stokkem, ook voor de weekendwandeling. Zit je er net buiten? Stuur een berichtje, dan kijken we samen wat haalbaar is.",
   },
   {
     vraag: "Waarom verloopt alles via Ring Twice?",
@@ -42,7 +42,7 @@ export default function Faq() {
             <span className="eyebrow">Veelgestelde vragen</span>
             <h2 className="mt-3">Nog iets dat je wil weten?</h2>
             <p className="lead mt-4">
-              Staat je vraag er niet bij? Stuur gerust een berichtje — ik antwoord
+              Staat je vraag er niet bij? Stuur gerust een berichtje, ik antwoord
               meestal dezelfde dag.
             </p>
           </div>

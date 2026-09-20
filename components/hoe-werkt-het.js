@@ -3,13 +3,13 @@ const STAPPEN = [
     nummer: "01",
     titel: "Je stuurt een berichtje",
     tekst:
-      "Via WhatsApp of Ring Twice. Vertel kort over je hond en wanneer je hulp zoekt — ik antwoord meestal dezelfde dag.",
+      "Via WhatsApp of Ring Twice. Vertel kort over je hond en wanneer je hulp zoekt. Ik antwoord meestal dezelfde dag.",
   },
   {
     nummer: "02",
     titel: "We maken kennis, gratis",
     tekst:
-      "We wandelen één keer samen. Ik leer je hond en zijn routines kennen, jij leert mij kennen. Pas daarna beslis je iets.",
+      "Ik kom langs, leer je hond en zijn routines kennen en jij leert mij kennen. Er wordt niet gewandeld, het is puur kennismaken. Pas daarna beslis je iets.",
   },
   {
     nummer: "03",

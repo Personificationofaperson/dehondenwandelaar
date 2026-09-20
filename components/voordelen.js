@@ -2,7 +2,7 @@ const PUNTEN = [
   {
     titel: "De scan",
     tekst:
-      "Met een waakzame blik anticipeer ik continu op de omgeving. Ik zie prikkels — andere honden, fietsers, een luide bestelwagen — lang voordat jouw hond ze opmerkt.",
+      "Met een waakzame blik anticipeer ik continu op de omgeving. Andere honden, fietsers, een luide bestelwagen: ik zie ze lang voordat jouw hond ze opmerkt.",
     icoon: (
       <>
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
@@ -34,7 +34,7 @@ const PUNTEN = [
   {
     titel: "Verplichte kennismaking",
     tekst:
-      "Vertrouwen bouw je op. Ik wil jouw hond kennen en begrijpen nog voor we samen de deur uitgaan. Daarom is een uitgebreide kennismaking altijd gratis en altijd verplicht.",
+      "Vertrouwen bouw je op. Ik wil jouw hond kennen en begrijpen nog voor we samen de deur uitgaan. Daarom kom ik eerst langs, gratis en vrijblijvend.",
     icoon: (
       <>
         <rect x="3" y="4" width="18" height="18" rx="3" />

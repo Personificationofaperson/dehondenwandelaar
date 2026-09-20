@@ -46,6 +46,12 @@ export const metadata = {
       "Persoonlijke hondenuitlaatservice in Dilsen-Stokkem. Geen massale groepen, wel rust en aandacht. Bereken meteen je richtprijs.",
   },
   robots: { index: true, follow: true },
+  // Zet NEXT_PUBLIC_GSC_VERIFICATION in Vercel met de code die Google Search
+  // Console je geeft bij de HTML-tag-methode. Dan verschijnt de meta-tag hier
+  // automatisch en kan je het domein verifiëren.
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+    : undefined,
 }
 
 export const viewport = {
@@ -78,9 +84,33 @@ const jsonLd = {
       latitude: 51.0347,
       longitude: 5.7381,
     },
-    geoRadius: 8000,
+    geoRadius: 6000,
   },
   priceRange: "€€",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Diensten",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Hondenwandeling van 30 minuten" },
+        price: "15",
+        priceCurrency: "EUR",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Weekendwandeling van een dag" },
+        price: "70",
+        priceCurrency: "EUR",
+      },
+      {
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: "Weekendwandeling van twee dagen" },
+        price: "140",
+        priceCurrency: "EUR",
+      },
+    ],
+  },
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",

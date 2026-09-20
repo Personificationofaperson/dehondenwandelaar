@@ -3,36 +3,33 @@ const MOMENTEN = [
     titel: "Avond",
     dagen: "Elke dag",
     tekst: "Vanaf 17:30 de deur uit. Dit is het ruimste moment in mijn agenda.",
-    ruim: true,
   },
   {
     titel: "Vroege ochtend",
     dagen: "Maandag, dinsdag & woensdag",
     tekst:
       "Lukt het 's ochtends zelf niet? Dan spring ik graag bij, voor jij de deur uitgaat.",
-    ruim: true,
   },
   {
     titel: "Middag",
     dagen: "Alleen in duo",
     tekst:
-      "Mijn solo-plekken in de middag zijn volzet. Een middagwandeling kan enkel nog als jouw hond kan meelopen met een retriever die ik al vast uitlaat — en alleen als de karakters bij elkaar passen.",
-    ruim: false,
+      "Mijn solo-plekken in de middag zijn volzet. Een middagwandeling kan enkel nog als jouw hond kan meelopen met een retriever die ik al vast uitlaat, en alleen als de karakters bij elkaar passen.",
   },
 ]
 
 const ZONES = [
   {
     titel: "Wandelingen",
-    straal: "8",
+    straal: "6",
     tekst:
       "Gefocust op Dilsen-Stokkem en de directe omstreken. Door lokaal te blijven gaat de tijd naar de wandeling in plaats van naar de auto.",
   },
   {
     titel: "Weekendwandeling",
-    straal: "10",
+    straal: "6",
     tekst:
-      "Die dag is volledig voor jouw hond gereserveerd, dus houd ik de afstand beperkt tot 10 km van het centrum van Dilsen.",
+      "Die dag is volledig voor jouw hond gereserveerd. Ook hier blijf ik binnen 6 km van het centrum van Dilsen, zodat de rit kort blijft en de wandeling lang.",
   },
 ]
 
@@ -45,8 +42,8 @@ export default function Praktisch() {
           <h2 className="mt-3">Wanneer ik er ben, en waar ik kom</h2>
           <p className="lead mt-4">
             Ik werk met vaste momenten en duidelijke zones. Zo blijft er tijd over
-            voor de wandeling zelf — en past een ander moment beter, stuur dan
-            gewoon een berichtje.
+            voor de wandeling zelf. Past een ander moment beter, stuur dan gewoon
+            een berichtje.
           </p>
         </div>
 
@@ -62,19 +59,10 @@ export default function Praktisch() {
 
             <ul className="space-y-3">
               {MOMENTEN.map((moment) => (
-                <li
-                  key={moment.titel}
-                  className={`card reveal p-6 ${moment.ruim ? "" : "bg-brand-50"}`}
-                >
+                <li key={moment.titel} className="card reveal p-6">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                     <p className="font-display text-lg text-brand-900">{moment.titel}</p>
-                    <span
-                      className={`rounded-pill px-3 py-1 text-xs font-bold ${
-                        moment.ruim
-                          ? "bg-brand-100 text-brand-900"
-                          : "bg-clay-100 text-clay-700"
-                      }`}
-                    >
+                    <span className="rounded-pill bg-brand-100 px-3 py-1 text-xs font-bold text-brand-900">
                       {moment.dagen}
                     </span>
                   </div>
@@ -84,7 +72,7 @@ export default function Praktisch() {
             </ul>
 
             <p className="mt-4 text-sm text-muted">
-              Past geen van deze momenten? Stuur een berichtje — soms schuift er wel
+              Past geen van deze momenten? Stuur een berichtje, soms schuift er wel
               iets in overleg.
             </p>
           </div>

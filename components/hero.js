@@ -26,7 +26,7 @@ export default function Hero() {
           <p className="lead mt-6">
             Geen massale groepen of gehaaste rondjes. Ik wandel solo, of met een
             vast duo waarvan de karakters écht bij elkaar passen. Ik lees de
-            lichaamstaal en houd de omgeving in de gaten — zodat jij je viervoeter
+            lichaamstaal en houd de omgeving in de gaten, zodat jij je viervoeter
             met een gerust hart meegeeft.
           </p>
 
@@ -62,7 +62,7 @@ export default function Hero() {
             />
           </div>
 
-          {/* zwevende reviewkaart — sociale bewijskracht meteen bovenaan */}
+          {/* zwevende reviewkaart, sociale bewijskracht meteen bovenaan */}
           <figure className="card mt-4 p-4 sm:absolute sm:-bottom-6 sm:left-6 sm:mt-0 sm:max-w-[19rem] sm:p-5">
             <Sterren aantal={5} />
             <blockquote className="mt-2 text-[15px] leading-snug text-ink">
@@ -70,7 +70,7 @@ export default function Hero() {
               aankan.&rdquo;
             </blockquote>
             <figcaption className="mt-2 text-xs font-semibold text-muted">
-              Lara H. — via Google
+              Lara H., via Google
             </figcaption>
           </figure>
         </div>

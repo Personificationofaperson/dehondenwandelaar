@@ -5,6 +5,7 @@ const FOTOS = [
   { src: "/hondenoppas.webp", alt: "Kimberly met een witte hond" },
   { src: "/weekend-wandeling.webp", alt: "Kimberly aait een grote zwarte hond" },
   { src: "/hondenuitlaatservice-met-mechelse-herder.webp", alt: "Kimberly met een Mechelse herder" },
+  { src: "/review-lara-hond.webp", alt: "Pomeriaan met zijn bal in het gras" },
 ]
 
 export default function Cta() {
@@ -16,14 +17,14 @@ export default function Cta() {
           Plan een gratis kennismaking en kijk of het klikt
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-brand-100">
-          Eén wandeling samen, vrijblijvend. Daarna beslis je pas of je verder wil.
+Ik kom vrijblijvend langs om je hond te leren kennen. Daarna beslis je pas of je verder wil.
         </p>
 
         <div className="mt-9 flex justify-center">
           <CtaKnoppen plek="cta-onderaan" licht />
         </div>
 
-        <ul className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
           {FOTOS.map((foto) => (
             <li key={foto.src} className="overflow-hidden rounded-2xl">
               <Image
