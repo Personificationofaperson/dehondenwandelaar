@@ -13,7 +13,7 @@ const MENU = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-brand-700/10">
+    <footer className="border-t border-ink/8">
       <div className="shell grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <Image
@@ -32,11 +32,11 @@ export default function Footer() {
         </div>
 
         <nav aria-label="Footermenu">
-          <h2 className="mb-4 font-display text-lg text-brand-900">Menu</h2>
+          <h2 className="mb-4 font-display text-lg text-ink">Menu</h2>
           <ul className="space-y-2">
             {MENU.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="text-[15px] text-muted hover:text-clay-700 hover:underline">
+                <a href={item.href} className="text-[15px] text-muted hover:text-accent hover:underline">
                   {item.label}
                 </a>
               </li>
@@ -45,7 +45,7 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h2 className="mb-4 font-display text-lg text-brand-900">Contact</h2>
+          <h2 className="mb-4 font-display text-lg text-ink">Contact</h2>
           <ul className="space-y-2 text-[15px] text-muted">
             <li>Dilsen-Stokkem, Limburg</li>
             <li>Werkgebied: 6 km rondom Dilsen-Stokkem</li>
@@ -54,7 +54,7 @@ export default function Footer() {
                 href={whatsappLink("Hoi Kimberly! Ik heb een vraag over de hondenuitlaatservice.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-bold text-clay-700 hover:underline"
+                className="font-bold text-accent hover:underline"
               >
                 Stuur een WhatsApp
               </a>
@@ -64,7 +64,7 @@ export default function Footer() {
                 href={RINGTWICE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-bold text-clay-700 hover:underline"
+                className="font-bold text-accent hover:underline"
               >
                 Boek via Ring Twice
               </a>
@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="shell border-t border-brand-700/10 py-6">
+      <div className="shell border-t border-ink/8 py-6">
         <p className="text-sm text-muted">
           © {new Date().getFullYear()} De Hondenwandelaar, Dilsen-Stokkem
         </p>

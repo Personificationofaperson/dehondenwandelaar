@@ -1,5 +1,5 @@
 import "./globals.css"
-import { Lilita_One, Nunito } from "next/font/google"
+import { Outfit, Plus_Jakarta_Sans } from "next/font/google"
 import Nav from "../components/nav"
 import Footer from "../components/footer"
 import Whatsapp from "../components/whatsapp"
@@ -8,14 +8,13 @@ import { GtmScript, GtmNoScript } from "../components/gtm"
 // next/font host de fonts mee vanaf je eigen domein en zet ze in de
 // <head> met preload. Dat scheelt twee render-blokkerende requests naar
 // Google Fonts en is meteen ook AVG-vriendelijker.
-const display = Lilita_One({
-  weight: "400",
+const display = Outfit({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-display",
 })
 
-const body = Nunito({
+const body = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-body",
@@ -55,7 +54,7 @@ export const metadata = {
 }
 
 export const viewport = {
-  themeColor: "#F4F2EC",
+  themeColor: "#F6F1EA",
 }
 
 // Gestructureerde data zodat Google weet dat dit een lokaal bedrijf is.

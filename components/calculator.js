@@ -192,7 +192,7 @@ export default function Calculator() {
       <div className="shell section">
         <div className="max-w-2xl">
           <span className="eyebrow">Tarieven</span>
-          <h2 className="mt-3">Bereken je richtprijs in twee tellen</h2>
+          <h2 className="mt-3">Wat kost een hondenuitlaatservice in Dilsen-Stokkem?</h2>
           <p className="lead mt-4">
             Geen verrassingen achteraf. Kies je dienst, vul je adres in en je ziet
             meteen wat een wandeling voor jouw adres kost, reiskost inbegrepen.
@@ -210,8 +210,8 @@ export default function Calculator() {
                     key={d.id}
                     className={`cursor-pointer rounded-2xl border-[1.5px] p-4 transition-all ${
                       dienstId === d.id
-                        ? "border-clay-700 bg-clay-100 shadow-soft"
-                        : "border-brand-700/20 bg-white hover:border-brand-700/40"
+                        ? "border-accent bg-accent-soft shadow-soft"
+                        : "border-ink/15 bg-white hover:border-ink/30"
                     }`}
                   >
                     <input
@@ -225,13 +225,13 @@ export default function Calculator() {
                       }}
                       className="sr-only"
                     />
-                    <span className="block text-sm font-bold leading-snug text-brand-900">
-                      {d.korteNaam}
+                    <span className="block text-sm font-bold leading-snug text-ink">
+                      {d.naam}
                     </span>
                     <span className="mt-0.5 block text-xs font-semibold text-muted">
                       {d.duur}
                     </span>
-                    <span className="mt-1 block font-display text-xl text-clay-700">
+                    <span className="mt-1 block font-display text-xl text-accent">
                       {euro(d.prijs)}
                     </span>
                   </label>
@@ -250,8 +250,8 @@ export default function Calculator() {
                     key={h.aantal}
                     className={`cursor-pointer rounded-pill border-[1.5px] px-5 py-2.5 text-sm font-bold transition-all ${
                       aantalHonden === h.aantal
-                        ? "border-clay-700 bg-clay-100 text-brand-900"
-                        : "border-brand-700/20 bg-white text-muted hover:border-brand-700/40"
+                        ? "border-accent bg-accent-soft text-ink"
+                        : "border-ink/15 bg-white text-muted hover:border-ink/30"
                     }`}
                   >
                     <input
@@ -267,7 +267,7 @@ export default function Calculator() {
                     />
                     {h.naam}
                     {h.meerprijs > 0 && (
-                      <span className="ml-1.5 font-semibold text-clay-700">
+                      <span className="ml-1.5 font-semibold text-accent">
                         +{euro(h.meerprijs)}
                       </span>
                     )}
@@ -367,12 +367,12 @@ export default function Calculator() {
           {/* ------------------------- PRIJSKAART ------------------------- */}
           <div className="lg:sticky lg:top-[calc(var(--nav-h)+1.5rem)] lg:self-start">
             <div className="card overflow-hidden">
-              <div className="bg-brand-900 px-7 py-6 text-white">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-brand-200">
+              <div className="bg-moss px-7 py-6 text-white">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-moss-text">
                   Jouw richtprijs
                 </span>
                 <p className="mt-2 font-display text-5xl leading-none">{euro(totaal)}</p>
-                <p className="mt-2 text-sm text-brand-100">
+                <p className="mt-2 text-sm text-moss-text">
                   {prijsKlaar
                     ? dienst.ritten > 1
                       ? `Inclusief ${dienst.ritten} ritten van en naar jouw adres op ${km} km.`
@@ -399,7 +399,7 @@ export default function Calculator() {
                     waarde={prijsKlaar ? `+ ${euro(reis)}` : "nog te bepalen"}
                     grijs={!prijsKlaar}
                   />
-                  <div className="flex items-baseline justify-between border-t border-brand-700/15 pt-3 font-bold text-brand-900">
+                  <div className="flex items-baseline justify-between border-t border-ink/12 pt-3 font-bold text-ink">
                     <dt>Totaal</dt>
                     <dd className="font-display text-xl">{euro(totaal)}</dd>
                   </div>
@@ -407,7 +407,7 @@ export default function Calculator() {
 
                 <p aria-live="polite" className="mt-4 min-h-[1.25rem] text-sm">
                   {status === "fout" && (
-                    <span className="font-semibold text-clay-700">{foutmelding}</span>
+                    <span className="font-semibold text-accent">{foutmelding}</span>
                   )}
                 </p>
 
@@ -459,9 +459,9 @@ export default function Calculator() {
                     )}
                   </>
                 ) : (
-                  <p className="rounded-2xl bg-brand-50 px-4 py-3 text-sm text-muted">
+                  <p className="rounded-2xl bg-accent-soft px-4 py-3 text-sm text-muted">
                     Vul je adres in en druk op{" "}
-                    <strong className="text-brand-900">Bereken mijn richtprijs</strong>. Daarna
+                    <strong className="text-ink">Bereken mijn richtprijs</strong>. Daarna
                     kan je alles in één klik naar me doorsturen.
                   </p>
                 )}
@@ -536,8 +536,8 @@ function ExtraVragen({
 
   return (
     <div
-      className={`overflow-hidden rounded-2xl border-[1.5px] bg-brand-50 transition-colors ${
-        aandacht ? "attentie border-clay-700" : "border-brand-700/15"
+      className={`overflow-hidden rounded-2xl border-[1.5px] bg-accent-soft transition-colors ${
+        aandacht ? "attentie border-accent" : "border-ink/12"
       }`}
     >
       <button
@@ -550,12 +550,12 @@ function ExtraVragen({
         <span className="flex items-start gap-3">
           <span
             aria-hidden="true"
-            className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-clay-700 text-sm font-bold text-white"
+            className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-white"
           >
             ?
           </span>
           <span>
-            <span className="block text-sm font-bold text-brand-900">
+            <span className="block text-sm font-bold text-ink">
               Wanneer heb je me nodig?
             </span>
             <span className="block text-xs text-muted">
@@ -568,7 +568,7 @@ function ExtraVragen({
           height="20"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#3A5A70"
+          stroke="#355B47"
           strokeWidth="2.4"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -580,7 +580,7 @@ function ExtraVragen({
       </button>
 
       {open && (
-        <div id={`${idPrefix}-extra`} className="space-y-5 border-t border-brand-700/10 px-5 py-5">
+        <div id={`${idPrefix}-extra`} className="space-y-5 border-t border-ink/8 px-5 py-5">
           <fieldset className="border-0 p-0">
             <legend className="field-label">Hoe vaak heb je me nodig?</legend>
             <div className="flex flex-col gap-2">
@@ -589,8 +589,8 @@ function ExtraVragen({
                   key={f.id}
                   className={`flex cursor-pointer items-center gap-3 rounded-xl border-[1.5px] px-4 py-2.5 text-sm font-semibold transition-colors ${
                     frequentie === f.id
-                      ? "border-clay-700 bg-clay-100 text-brand-900"
-                      : "border-brand-700/20 bg-white text-muted"
+                      ? "border-accent bg-accent-soft text-ink"
+                      : "border-ink/15 bg-white text-muted"
                   }`}
                 >
                   <input
@@ -615,8 +615,8 @@ function ExtraVragen({
                     key={dag.kort}
                     className={`cursor-pointer rounded-xl border-[1.5px] px-3.5 py-2 text-sm font-bold transition-colors ${
                       dagen.includes(dag.kort)
-                        ? "border-clay-700 bg-clay-100 text-brand-900"
-                        : "border-brand-700/20 bg-white text-muted"
+                        ? "border-accent bg-accent-soft text-ink"
+                        : "border-ink/15 bg-white text-muted"
                     }`}
                   >
                     <input
@@ -682,7 +682,7 @@ function ExtraVragen({
                 ))}
               </select>
               {moment === "middag" && (
-                <p className="mt-2 rounded-xl bg-clay-100 px-3.5 py-2.5 text-xs leading-relaxed text-clay-700">
+                <p className="mt-2 rounded-xl bg-accent-soft px-3.5 py-2.5 text-xs leading-relaxed text-accent">
                   Mijn solo-plekken in de middag zijn volzet. Een middagwandeling kan enkel
                   als jouw hond kan meelopen met een retriever die ik al vast uitlaat. Ik
                   laat je eerlijk weten of dat past.

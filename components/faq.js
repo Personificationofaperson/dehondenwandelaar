@@ -45,7 +45,7 @@ export default function Faq() {
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
             <span className="eyebrow">Veelgestelde vragen</span>
-            <h2 className="mt-3">Nog iets dat je wil weten?</h2>
+            <h2 className="mt-3">Veelgestelde vragen over de uitlaatservice</h2>
             <p className="lead mt-4">
               Staat je vraag er niet bij? Stuur gerust een berichtje, ik antwoord
               meestal dezelfde dag.
@@ -56,13 +56,13 @@ export default function Faq() {
             {VRAGEN.map((item) => (
               <li key={item.vraag}>
                 <details className="card group overflow-hidden [&[open]]:shadow-lift">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-display text-lg text-brand-900 marker:hidden [&::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-6 font-display text-lg text-ink marker:hidden [&::-webkit-details-marker]:hidden">
                     {item.vraag}
                     <span
                       aria-hidden="true"
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-100 transition-transform duration-200 group-open:rotate-45"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-moss-soft transition-transform duration-200 group-open:rotate-45"
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3A5A70" strokeWidth="2.6" strokeLinecap="round">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#355B47" strokeWidth="2.6" strokeLinecap="round">
                         <path d="M12 5v14M5 12h14" />
                       </svg>
                     </span>

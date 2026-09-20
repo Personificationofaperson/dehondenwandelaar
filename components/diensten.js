@@ -36,12 +36,12 @@ export default function Diensten() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
             <span className="eyebrow">Mijn diensten</span>
-            <h2 className="mt-3">Twee manieren waarop ik je dag lichter maak</h2>
+            <h2 className="mt-3">Wandelingen en dagopvang in Dilsen-Stokkem</h2>
           </div>
           <p className="lead md:max-w-sm md:text-right">
             Alle prijzen zijn exclusief reiskost. Hoeveel dat voor jouw adres
             precies is, reken je{" "}
-            <a href="#tarieven" className="font-bold text-clay-700 underline underline-offset-4">
+            <a href="#tarieven" className="font-bold text-accent underline underline-offset-4">
               hieronder in twee tellen uit
             </a>
             .
@@ -55,16 +55,16 @@ export default function Diensten() {
               <li
                 key={kaart.id}
                 className={`card card-hover reveal relative flex flex-col overflow-hidden ${
-                  kaart.uitgelicht ? "ring-2 ring-clay-500/40" : ""
+                  kaart.uitgelicht ? "ring-2 ring-accent-bright/40" : ""
                 }`}
               >
                 {kaart.uitgelicht && (
-                  <span className="absolute left-4 top-4 z-10 rounded-pill bg-clay-700 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white">
+                  <span className="absolute left-4 top-4 z-10 rounded-pill bg-accent px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-white">
                     Meest gekozen
                   </span>
                 )}
 
-                <div className="relative h-60 w-full overflow-hidden bg-brand-100 md:h-72">
+                <div className="relative h-60 w-full overflow-hidden bg-moss-soft md:h-72">
                   <Image
                     src={kaart.foto}
                     alt={kaart.alt}
@@ -79,7 +79,7 @@ export default function Diensten() {
                   <div className="flex items-baseline justify-between gap-3">
                     <h3>{kaart.titel}</h3>
                     {dienst?.prijs != null && (
-                      <span className="whitespace-nowrap font-display text-2xl text-clay-700">
+                      <span className="whitespace-nowrap font-display text-2xl text-accent">
                         {euro(dienst.prijs)}
                       </span>
                     )}
@@ -107,8 +107,8 @@ export default function Diensten() {
           })}
         </ul>
 
-        <p className="mt-8 rounded-2xl border border-brand-700/15 bg-brand-50 px-6 py-5 text-[15px] leading-relaxed text-muted">
-          <strong className="text-brand-900">Hoogstens twee honden samen.</strong> Ik wandel
+        <p className="mt-8 rounded-2xl border border-ink/12 bg-accent-soft px-6 py-5 text-[15px] leading-relaxed text-muted">
+          <strong className="text-ink">Hoogstens twee honden samen.</strong> Ik wandel
           solo of in duo, en een duo vormen we alleen als de karakters bij elkaar passen.
           Dat beoordeel ik tijdens de kennismaking. Geen groepen, geen honden die elkaar
           moeten verdragen.

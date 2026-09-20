@@ -23,7 +23,7 @@ export default function CtaKnoppen({ plek, className = "", licht = false }) {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => track(EVENTS.CONTACT_KLIK, { plek, kanaal: "whatsapp" })}
-        className={`btn ${licht ? "btn-ghost-light" : "btn-secondary"}`}
+        className={`btn ${licht ? "btn-ghost-light" : "btn-soft"}`}
       >
         Stel eerst een vraag
       </a>

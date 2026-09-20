@@ -10,13 +10,13 @@ const FOTOS = [
 
 export default function Cta() {
   return (
-    <section className="full-bleed bg-brand-900">
+    <section className="full-bleed bg-moss">
       <div className="shell section text-center">
-        <span className="eyebrow !text-brand-200">Klaar om te starten?</span>
+        <span className="eyebrow !text-moss-text">Klaar om te starten?</span>
         <h2 className="mx-auto mt-3 max-w-3xl !text-white">
-          Plan een gratis kennismaking en kijk of het klikt
+          Hondenuitlaatservice boeken in Dilsen-Stokkem
         </h2>
-        <p className="mx-auto mt-5 max-w-xl text-brand-100">
+        <p className="mx-auto mt-5 max-w-xl text-moss-text">
 Ik kom vrijblijvend langs om je hond te leren kennen. Daarna beslis je pas of je verder wil.
         </p>
 

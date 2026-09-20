@@ -25,7 +25,7 @@ export default function HoeWerktHet() {
       <div className="shell">
         <div className="max-w-2xl">
           <span className="eyebrow">Zo gaat het in zijn werk</span>
-          <h2 className="mt-3">Van eerste berichtje tot eerste wandeling</h2>
+          <h2 className="mt-3">Zo werkt de uitlaatservice, stap voor stap</h2>
         </div>
 
         <ol className="mt-12 grid gap-5 md:grid-cols-3">
@@ -33,7 +33,7 @@ export default function HoeWerktHet() {
             <li key={stap.nummer} className="card reveal relative p-7 pt-9">
               <span
                 aria-hidden="true"
-                className="absolute right-6 top-5 font-display text-5xl leading-none text-brand-100"
+                className="absolute right-6 top-5 font-display text-5xl leading-none text-moss-soft"
               >
                 {stap.nummer}
               </span>
@@ -43,15 +43,15 @@ export default function HoeWerktHet() {
           ))}
         </ol>
 
-        <div className="card reveal mt-6 flex flex-col gap-5 bg-brand-50 p-7 sm:flex-row sm:items-center">
+        <div className="card reveal mt-6 flex flex-col gap-5 bg-accent-soft p-7 sm:flex-row sm:items-center">
           <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white shadow-soft">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3A5A70" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#355B47" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
               <path d="m9 12 2 2 4-4" />
             </svg>
           </span>
           <p className="text-[15px] leading-relaxed text-muted">
-            <strong className="text-brand-900">Alle boekingen lopen via Ring Twice.</strong>{" "}
+            <strong className="text-ink">Alle boekingen lopen via Ring Twice.</strong>{" "}
             Daardoor is elke opdracht automatisch verzekerd en verloopt de betaling voor
             jou volledig veilig. Geen gedoe met cash of facturen, wel zekerheid.
           </p>

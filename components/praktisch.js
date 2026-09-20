@@ -39,7 +39,7 @@ export default function Praktisch() {
       <div className="shell section">
         <div className="max-w-2xl">
           <span className="eyebrow">Praktisch</span>
-          <h2 className="mt-3">Wanneer ik er ben, en waar ik kom</h2>
+          <h2 className="mt-3">Beschikbaarheid en werkgebied rond Dilsen-Stokkem</h2>
           <p className="lead mt-4">
             Ik werk met vaste momenten en duidelijke zones. Zo blijft er tijd over
             voor de wandeling zelf. Past een ander moment beter, stuur dan gewoon
@@ -61,8 +61,8 @@ export default function Praktisch() {
               {MOMENTEN.map((moment) => (
                 <li key={moment.titel} className="card reveal p-6">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <p className="font-display text-lg text-brand-900">{moment.titel}</p>
-                    <span className="rounded-pill bg-brand-100 px-3 py-1 text-xs font-bold text-brand-900">
+                    <p className="font-display text-lg text-ink">{moment.titel}</p>
+                    <span className="rounded-pill bg-moss-soft px-3 py-1 text-xs font-bold text-ink">
                       {moment.dagen}
                     </span>
                   </div>
@@ -89,8 +89,8 @@ export default function Praktisch() {
             <ul className="space-y-3">
               {ZONES.map((zone) => (
                 <li key={zone.titel} className="card reveal flex gap-5 p-6">
-                  <span className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-brand-100 text-center">
-                    <span className="font-display text-xl leading-none text-brand-900">
+                  <span className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-moss-soft text-center">
+                    <span className="font-display text-xl leading-none text-ink">
                       {zone.straal}
                     </span>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-muted">
@@ -98,7 +98,7 @@ export default function Praktisch() {
                     </span>
                   </span>
                   <span>
-                    <strong className="block text-brand-900">{zone.titel}</strong>
+                    <strong className="block text-ink">{zone.titel}</strong>
                     <span className="mt-1 block text-[15px] leading-relaxed text-muted">
                       {zone.tekst}
                     </span>
@@ -120,13 +120,13 @@ export default function Praktisch() {
 
 function Icoon({ children }) {
   return (
-    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100">
+    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-moss-soft">
       <svg
         width="20"
         height="20"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#3A5A70"
+        stroke="#355B47"
         strokeWidth="1.9"
         strokeLinecap="round"
         strokeLinejoin="round"

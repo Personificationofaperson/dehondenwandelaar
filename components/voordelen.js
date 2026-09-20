@@ -50,7 +50,7 @@ export default function Voordelen() {
       <div className="shell">
         <div className="max-w-2xl">
           <span className="eyebrow">Waarom bij mij</span>
-          <h2 className="mt-3">Rust, aandacht en een paar ogen die meekijken</h2>
+          <h2 className="mt-3">Wat deze hondenuitlaatservice anders maakt</h2>
           <p className="lead mt-4">
             Elk detail telt wanneer het om het welzijn van jouw viervoeter gaat.
             Dit is wat het verschil maakt:
@@ -60,13 +60,13 @@ export default function Voordelen() {
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {PUNTEN.map((p) => (
             <li key={p.titel} className="card card-hover reveal p-7">
-              <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-100">
+              <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-moss-soft">
                 <svg
                   width="22"
                   height="22"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="#3A5A70"
+                  stroke="#355B47"
                   strokeWidth="1.9"
                   strokeLinecap="round"
                   strokeLinejoin="round"

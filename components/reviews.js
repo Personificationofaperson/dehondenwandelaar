@@ -30,31 +30,33 @@ export default function Reviews() {
   const reviews = diagonaal(ZICHTBARE_REVIEWS)
 
   return (
-    <section id="reviews" className="section">
-      <div className="shell">
+    <section id="reviews" className="px-3 py-6 sm:px-6 lg:px-10">
+      <div className="rounded-[2.5rem] bg-moss py-16 text-white sm:rounded-[2.75rem] sm:py-20">
+        <div className="shell">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <span className="eyebrow">Wat klanten zeggen</span>
-            <h2 className="mt-3">Baasjes die hun hond met een gerust hart meegeven</h2>
+            <span className="eyebrow !text-moss-text">Wat klanten zeggen</span>
+            <h2 className="mt-3 !text-white">Baasjes over de uitlaatservice</h2>
           </div>
-          <div className="flex shrink-0 items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-soft">
+          <div className="flex shrink-0 items-center gap-3 rounded-2xl bg-white/10 px-5 py-4">
             <Sterren aantal={5} label="5 van de 5 sterren" />
-            <span className="text-sm font-bold text-brand-900">
+            <span className="text-sm font-bold text-white">
               5,0 gemiddeld
-              <span className="block text-xs font-semibold text-muted">
+              <span className="block text-xs font-semibold text-moss-text">
                 op Google en Ring Twice
               </span>
             </span>
           </div>
         </div>
 
-        <ul className="mt-12 grid gap-5 md:grid-cols-2">
-          {reviews.map((review) => (
-            <li key={review.id} className="flex">
-              <ReviewKaart review={review} />
-            </li>
-          ))}
-        </ul>
+          <ul className="mt-12 grid gap-5 md:grid-cols-2">
+            {reviews.map((review) => (
+              <li key={review.id} className="flex">
+                <ReviewKaart review={review} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   )
@@ -64,9 +66,9 @@ function ReviewKaart({ review }) {
   const bron = BRONNEN[review.bron]
 
   return (
-    <figure className="card reveal flex h-full w-full flex-col overflow-hidden sm:flex-row">
+    <figure className="reveal flex h-full w-full flex-col overflow-hidden rounded-[1.75rem] bg-white/[.09] sm:flex-row">
       {review.foto && (
-        <div className="relative h-48 w-full shrink-0 bg-brand-100 sm:h-auto sm:w-[34%]">
+        <div className="relative h-48 w-full shrink-0 bg-moss-deep sm:h-auto sm:w-[34%]">
           <Image
             src={review.foto}
             alt={review.fotoAlt ?? ""}
@@ -84,27 +86,27 @@ function ReviewKaart({ review }) {
           <BronBadge bron={bron} />
         </div>
 
-        {review.titel && <h3 className="mt-3 text-lg">{review.titel}</h3>}
+        {review.titel && <h3 className="mt-3 text-lg !text-white">{review.titel}</h3>}
 
         {/* Kortere reviews staan verticaal gecentreerd, zodat de extra ruimte
             boven en onder verdeeld wordt in plaats van als een gat onderaan. */}
         <div className="flex flex-1 items-center">
-          <blockquote className="mt-3 text-[15px] leading-relaxed text-ink">
+          <blockquote className="mt-3 text-[15px] leading-relaxed text-white/90">
             &ldquo;{review.tekst}&rdquo;
           </blockquote>
         </div>
 
-        <figcaption className="mt-5 flex items-center gap-3 border-t border-brand-700/10 pt-4">
+        <figcaption className="mt-5 flex items-center gap-3 border-t border-white/15 pt-4">
           <span
             aria-hidden="true"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-100 font-display text-sm text-brand-900"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 font-display text-sm font-semibold text-white"
           >
             {review.naam.charAt(0)}
           </span>
           <span className="text-sm">
-            <span className="block font-bold leading-tight text-brand-900">{review.naam}</span>
+            <span className="block font-bold leading-tight text-white">{review.naam}</span>
             {review.datum && (
-              <span className="block text-xs font-semibold text-muted">{review.datum}</span>
+              <span className="block text-xs font-semibold text-moss-text">{review.datum}</span>
             )}
           </span>
           {bron.url && (
@@ -112,7 +114,7 @@ function ReviewKaart({ review }) {
               href={bron.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-auto shrink-0 text-xs font-bold text-clay-700 underline underline-offset-4"
+              className="ml-auto shrink-0 text-xs font-bold text-moss-text underline underline-offset-4"
             >
               Bekijken
             </a>
@@ -125,7 +127,7 @@ function ReviewKaart({ review }) {
 
 function BronBadge({ bron }) {
   return (
-    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-pill border border-brand-700/15 bg-white px-2.5 py-1 text-xs font-bold text-muted">
+    <span className="inline-flex shrink-0 items-center gap-1.5 rounded-pill bg-white/15 px-2.5 py-1 text-xs font-bold text-white">
       <span
         aria-hidden="true"
         className="h-2 w-2 rounded-full"
@@ -138,7 +140,7 @@ function BronBadge({ bron }) {
 
 function Aanhaling() {
   return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="#B6D8F2" aria-hidden="true">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="rgba(255,255,255,.35)" aria-hidden="true">
       <path d="M7.5 5C5 5 3 7 3 9.5S5 14 7.5 14c.3 0 .6 0 .9-.1-.5 2.2-2.2 3.9-4.4 4.4l.5 1.6c3.9-.9 6.5-4.3 6.5-8.4V9.5C11 7 9 5 7.5 5Zm9 0C14 5 12 7 12 9.5S14 14 16.5 14c.3 0 .6 0 .9-.1-.5 2.2-2.2 3.9-4.4 4.4l.5 1.6c3.9-.9 6.5-4.3 6.5-8.4V9.5C20 7 18 5 16.5 5Z" />
     </svg>
   )

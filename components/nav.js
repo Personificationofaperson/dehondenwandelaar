@@ -34,13 +34,14 @@ export default function Nav() {
   }, [open])
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-shadow duration-300 ${
-        gescrold ? "shadow-soft" : ""
-      }`}
-      style={{ backgroundColor: "rgba(244,242,236,.88)", backdropFilter: "blur(12px)" }}
-    >
-      <nav aria-label="Hoofdnavigatie" className="shell">
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
+      <nav
+        aria-label="Hoofdnavigatie"
+        className={`mx-auto max-w-shell rounded-[1.75rem] bg-white/95 px-4 transition-shadow duration-300 sm:px-6 ${
+          gescrold ? "shadow-lift" : "shadow-soft"
+        }`}
+        style={{ backdropFilter: "blur(12px)" }}
+      >
         <div className="flex h-[var(--nav-h)] items-center justify-between gap-4">
           <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="De Hondenwandelaar, naar boven">
             <Image
@@ -51,7 +52,7 @@ export default function Nav() {
               priority
               className="h-11 w-11 object-contain"
             />
-            <span className="hidden font-display text-lg leading-none text-brand-900 sm:block">
+            <span className="hidden font-display text-lg leading-none text-ink sm:block">
               De Hondenwandelaar
             </span>
           </Link>
@@ -61,7 +62,7 @@ export default function Nav() {
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="text-[15px] font-semibold text-brand-700 transition-colors hover:text-clay-700"
+                  className="text-[15px] font-medium text-muted transition-colors hover:text-accent"
                 >
                   {l.label}
                 </Link>
@@ -87,7 +88,7 @@ export default function Nav() {
               aria-expanded={open}
               aria-controls="mobiel-menu"
               aria-label={open ? "Menu sluiten" : "Menu openen"}
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-700/20 bg-white text-brand-900 lg:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-ink/15 bg-white text-ink lg:hidden"
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
                 {open ? (
@@ -108,13 +109,13 @@ export default function Nav() {
         </div>
 
         {open && (
-          <ul id="mobiel-menu" className="border-t border-brand-700/10 py-2 lg:hidden">
+          <ul id="mobiel-menu" className="border-t border-ink/8 py-2 lg:hidden">
             {LINKS.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block border-b border-brand-700/10 py-3 font-semibold text-brand-900 last:border-0"
+                  className="block border-b border-ink/8 py-3 font-semibold text-ink last:border-0"
                 >
                   {l.label}
                 </Link>

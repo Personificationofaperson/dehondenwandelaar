@@ -39,7 +39,7 @@ export default function Over() {
             />
           </div>
           <span className="absolute -bottom-5 left-6 rounded-2xl bg-white px-5 py-3 shadow-lift">
-            <span className="block font-display text-2xl leading-none text-clay-700">20+</span>
+            <span className="block font-display text-2xl leading-none text-accent">20+</span>
             <span className="text-xs font-bold uppercase tracking-wider text-muted">
               jaar met honden
             </span>
@@ -48,7 +48,7 @@ export default function Over() {
 
         <div>
           <span className="eyebrow">Over mij</span>
-          <h2 className="mt-3">Hoi, ik ben Kimberly</h2>
+          <h2 className="mt-3">Hoi, ik ben Kimberly, jouw hondenwandelaar</h2>
           <p className="lead mt-4">
             Jouw hond is een waardevol deel van je gezin. Mijn doel is om jullie
             allebei te ontzorgen, met een veilige en begripvolle aanpak.
@@ -57,7 +57,7 @@ export default function Over() {
           <ul className="mt-9 grid gap-5 sm:grid-cols-2">
             {PUNTEN.map((punt) => (
               <li key={punt.titel}>
-                <strong className="block font-display text-lg text-brand-900">{punt.titel}</strong>
+                <strong className="block font-display text-lg text-ink">{punt.titel}</strong>
                 <span className="mt-1.5 block text-[15px] leading-relaxed text-muted">
                   {punt.tekst}
                 </span>
