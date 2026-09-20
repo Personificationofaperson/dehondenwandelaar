@@ -5,7 +5,6 @@ const FOTOS = [
   { src: "/hondenoppas.webp", alt: "Kimberly met een witte hond" },
   { src: "/weekend-wandeling.webp", alt: "Kimberly aait een grote zwarte hond" },
   { src: "/hondenuitlaatservice-met-mechelse-herder.webp", alt: "Kimberly met een Mechelse herder" },
-  { src: "/3-honden-wandeling.jpg", alt: "Kimberly op wandeling met drie kleine honden" },
 ]
 
 export default function Cta() {
@@ -24,7 +23,7 @@ export default function Cta() {
           <CtaKnoppen plek="cta-onderaan" licht />
         </div>
 
-        <ul className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <ul className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {FOTOS.map((foto) => (
             <li key={foto.src} className="overflow-hidden rounded-2xl">
               <Image

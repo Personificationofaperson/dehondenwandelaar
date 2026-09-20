@@ -249,6 +249,18 @@
   }
 }
 
+/* Eenmalige aandachtspuls op het vragenblok in de calculator.
+   Eén keer, niet in een lus: iets wat blijft bewegen wordt vervelend
+   en leidt af van de knop eronder. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes attentie {
+    0% { box-shadow: 0 0 0 0 rgba(168, 74, 48, .35); }
+    70% { box-shadow: 0 0 0 10px rgba(168, 74, 48, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(168, 74, 48, 0); }
+  }
+  .attentie { animation: attentie 1s ease-out 2; }
+}
+
 /* WhatsApp-bel */
 @media (prefers-reduced-motion: no-preference) {
   @keyframes wa-pulse {

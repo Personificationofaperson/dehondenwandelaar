@@ -1,38 +1,38 @@
 const MOMENTEN = [
   {
-    dagen: "Maandag, dinsdag & woensdag",
-    items: [
-      { titel: "Middagwandelingen", tekst: "Tussen 12:00 en 13:30" },
-      { titel: "Drop-ins", tekst: "Korte bezoekjes of een plaspauze" },
-    ],
+    titel: "Avond",
+    dagen: "Elke dag",
+    tekst: "Vanaf 17:30 de deur uit. Dit is het ruimste moment in mijn agenda.",
+    ruim: true,
   },
   {
-    dagen: "Donderdag & vrijdag",
-    items: [
-      { titel: "Avond- of namiddagwandelingen", tekst: "Vanaf 17:30 de deur uit" },
-      { titel: "Vroege ochtend", tekst: "Lukt het 's ochtends niet? Ik spring graag bij" },
-    ],
+    titel: "Vroege ochtend",
+    dagen: "Maandag, dinsdag & woensdag",
+    tekst:
+      "Lukt het 's ochtends zelf niet? Dan spring ik graag bij, voor jij de deur uitgaat.",
+    ruim: true,
+  },
+  {
+    titel: "Middag",
+    dagen: "Alleen in duo",
+    tekst:
+      "Mijn solo-plekken in de middag zijn volzet. Een middagwandeling kan enkel nog als jouw hond kan meelopen met een retriever die ik al vast uitlaat — en alleen als de karakters bij elkaar passen.",
+    ruim: false,
   },
 ]
 
 const ZONES = [
   {
-    titel: "Wandelingen & drop-ins",
-    straal: "Max 8 km",
+    titel: "Wandelingen",
+    straal: "8",
     tekst:
       "Gefocust op Dilsen-Stokkem en de directe omstreken. Door lokaal te blijven gaat de tijd naar de wandeling in plaats van naar de auto.",
   },
   {
     titel: "Weekendwandeling",
-    straal: "Tot 10 km",
+    straal: "10",
     tekst:
       "Die dag is volledig voor jouw hond gereserveerd, dus houd ik de afstand beperkt tot 10 km van het centrum van Dilsen.",
-  },
-  {
-    titel: "Hondenoppas",
-    straal: "Tot 30 km",
-    tekst:
-      "Voor oppas kom ik verder. Woon je net buiten de zone? Stuur gerust een berichtje, dan kijken we samen wat kan.",
   },
 ]
 
@@ -54,31 +54,38 @@ export default function Praktisch() {
           <div>
             <h3 className="mb-5 flex items-center gap-2.5">
               <Icoon>
-                <rect x="3" y="4" width="18" height="18" rx="3" />
-                <path d="M16 2v4M8 2v4M3 10h18" />
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3 2" />
               </Icoon>
               Beschikbaarheid
             </h3>
-            <ul className="space-y-4">
-              {MOMENTEN.map((blok) => (
-                <li key={blok.dagen} className="card reveal p-6">
-                  <p className="font-display text-lg text-brand-900">{blok.dagen}</p>
-                  <ul className="mt-4 space-y-3">
-                    {blok.items.map((item) => (
-                      <li key={item.titel} className="flex gap-3">
-                        <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-clay-500" />
-                        <span className="text-[15px] leading-snug">
-                          <strong className="text-brand-900">{item.titel}</strong>
-                          <span className="block text-muted">{item.tekst}</span>
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+
+            <ul className="space-y-3">
+              {MOMENTEN.map((moment) => (
+                <li
+                  key={moment.titel}
+                  className={`card reveal p-6 ${moment.ruim ? "" : "bg-brand-50"}`}
+                >
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <p className="font-display text-lg text-brand-900">{moment.titel}</p>
+                    <span
+                      className={`rounded-pill px-3 py-1 text-xs font-bold ${
+                        moment.ruim
+                          ? "bg-brand-100 text-brand-900"
+                          : "bg-clay-100 text-clay-700"
+                      }`}
+                    >
+                      {moment.dagen}
+                    </span>
+                  </div>
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-muted">{moment.tekst}</p>
                 </li>
               ))}
             </ul>
+
             <p className="mt-4 text-sm text-muted">
-              Een andere dag of een ander uur nodig? Dat kan bijna altijd in overleg.
+              Past geen van deze momenten? Stuur een berichtje — soms schuift er wel
+              iets in overleg.
             </p>
           </div>
 
@@ -90,14 +97,17 @@ export default function Praktisch() {
               </Icoon>
               Werkgebied
             </h3>
+
             <ul className="space-y-3">
               {ZONES.map((zone) => (
                 <li key={zone.titel} className="card reveal flex gap-5 p-6">
                   <span className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-brand-100 text-center">
-                    <span className="font-display text-base leading-none text-brand-900">
-                      {zone.straal.replace(/[^0-9]/g, "")}
+                    <span className="font-display text-xl leading-none text-brand-900">
+                      {zone.straal}
                     </span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-muted">km</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-muted">
+                      km
+                    </span>
                   </span>
                   <span>
                     <strong className="block text-brand-900">{zone.titel}</strong>
@@ -108,6 +118,11 @@ export default function Praktisch() {
                 </li>
               ))}
             </ul>
+
+            <p className="mt-4 text-sm text-muted">
+              Woon je net buiten de zone? Vraag het gerust, dan kijken we samen wat
+              haalbaar is.
+            </p>
           </div>
         </div>
       </div>
@@ -118,7 +133,17 @@ export default function Praktisch() {
 function Icoon({ children }) {
   return (
     <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-100">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A5A70" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#3A5A70"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
         {children}
       </svg>
     </span>

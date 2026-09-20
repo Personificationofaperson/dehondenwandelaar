@@ -12,7 +12,7 @@ import Cta from "../components/cta"
 export const metadata = {
   title: "Hondenuitlaatservice Dilsen-Stokkem | De Hondenwandelaar",
   description:
-    "Persoonlijke hondenuitlaatservice in Dilsen-Stokkem. Geen massale groepen, wel rust en aandacht. Bereken meteen je richtprijs inclusief reiskost.",
+    "Persoonlijke hondenuitlaatservice in Dilsen-Stokkem. Solo of in duo, nooit in groep. Bereken meteen je richtprijs inclusief reiskost.",
 }
 
 export default function Home() {

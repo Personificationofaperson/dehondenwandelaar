@@ -24,9 +24,10 @@ export default function Hero() {
           </h1>
 
           <p className="lead mt-6">
-            Geen massale groepen of gehaaste rondjes. Ik wandel met jouw hond
-            alleen, lees zijn lichaamstaal en houd de omgeving in de gaten — zodat
-            jij je viervoeter met een gerust hart meegeeft.
+            Geen massale groepen of gehaaste rondjes. Ik wandel solo, of met een
+            vast duo waarvan de karakters écht bij elkaar passen. Ik lees de
+            lichaamstaal en houd de omgeving in de gaten — zodat jij je viervoeter
+            met een gerust hart meegeeft.
           </p>
 
           <CtaKnoppen plek="hero" className="mt-8" />

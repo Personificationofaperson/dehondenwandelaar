@@ -28,12 +28,12 @@ export const metadata = {
     template: "%s | De Hondenwandelaar",
   },
   description:
-    "Persoonlijke hondenuitlaatservice in Dilsen-Stokkem en omgeving. Kleine groepen, verplichte kennismaking en 20+ jaar ervaring. Bereken meteen je richtprijs.",
+    "Persoonlijke hondenuitlaatservice in Dilsen-Stokkem en omgeving. Solo of in duo, nooit in groep. Verplichte kennismaking en 20+ jaar ervaring. Bereken meteen je richtprijs.",
   keywords: [
     "hondenuitlaatservice",
     "hond uitlaten Dilsen-Stokkem",
-    "hondenoppas Limburg",
-    "hondenuitlaatservice Maasmechelen",
+    "hond uitlaten Maasmechelen",
+    "hondenuitlaatservice Limburg",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -61,7 +61,7 @@ const jsonLd = {
   "@type": "LocalBusiness",
   name: "De Hondenwandelaar",
   description:
-    "Persoonlijke hondenuitlaatservice en hondenoppas in Dilsen-Stokkem en omgeving.",
+    "Persoonlijke hondenuitlaatservice in Dilsen-Stokkem en omgeving. Solo of in duo, nooit in groep.",
   url: "https://dehondenwandelaar.be",
   telephone: "+32468584998",
   image: "https://dehondenwandelaar.be/dehondenwandelaar-logo.png",
@@ -85,12 +85,20 @@ const jsonLd = {
     {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: ["Monday", "Tuesday", "Wednesday"],
-      opens: "12:00",
-      closes: "13:30",
+      opens: "06:30",
+      closes: "08:30",
     },
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Thursday", "Friday"],
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
       opens: "17:30",
       closes: "20:00",
     },

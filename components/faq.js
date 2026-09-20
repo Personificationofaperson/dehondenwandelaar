@@ -4,12 +4,17 @@ const VRAGEN = [
   {
     vraag: "Wandel je met groepjes honden?",
     antwoord:
-      "Nee. Ik wandel één op één met jouw hond. Geen massale groepen waarin je viervoeter ondersneeuwt, en geen gehaaste rondjes: we wandelen tot je hond voldaan en rustig is.",
+      "Nee. Ik wandel solo of met een duo van hoogstens twee honden, en een duo vormen we alleen als hun karakters echt bij elkaar passen. Geen groep waarin jouw hond ondersneeuwt, en geen gehaaste rondjes: we wandelen tot je hond voldaan en rustig is.",
+  },
+  {
+    vraag: "Wanneer ben je beschikbaar?",
+    antwoord:
+      "'s Avonds vanaf 17:30, elke dag van de week. In de vroege ochtend op maandag, dinsdag en woensdag. Middagwandelingen kunnen alleen nog als duo: mijn solo-plekken in de middag zijn volzet, dus jouw hond moet dan kunnen meelopen met een retriever die ik al vast uitlaat.",
   },
   {
     vraag: "Is de kennismaking echt verplicht?",
     antwoord:
-      "Ja, en ze is gratis. Ik wil je hond en zijn routines kennen nog voor we samen de deur uitgaan. We wandelen één keer samen, jij ziet hoe ik werk, en pas daarna beslis je of je verder wil.",
+      "Ja, en ze is gratis. Ik wil je hond en zijn routines kennen nog voor we samen de deur uitgaan. Meteen zie ik ook of hij in duo kan wandelen en met welk maatje dat zou klikken. Je wandelt één keer mee, en pas daarna beslis je of je verder wil.",
   },
   {
     vraag: "Hoe zit het met de reiskost?",
@@ -19,12 +24,7 @@ const VRAGEN = [
   {
     vraag: "Ik woon net buiten je werkgebied. Kan het dan niet?",
     antwoord:
-      "Voor wandelingen en drop-ins blijf ik binnen 8 km rond Dilsen-Stokkem, voor de weekendwandeling tot 10 km, en voor oppas kom ik tot 30 km. Zit je er net buiten? Stuur een berichtje, dan kijken we samen wat haalbaar is.",
-  },
-  {
-    vraag: "Wat als ik je op een ander moment nodig heb?",
-    antwoord:
-      "Mijn vaste momenten zijn de middag op maandag, dinsdag en woensdag, en de avond of vroege ochtend op donderdag en vrijdag. Een andere dag of een ander uur kan bijna altijd in overleg.",
+      "Voor wandelingen blijf ik binnen 8 km rond Dilsen-Stokkem, voor de weekendwandeling tot 10 km. Zit je er net buiten? Stuur een berichtje, dan kijken we samen wat haalbaar is.",
   },
   {
     vraag: "Waarom verloopt alles via Ring Twice?",

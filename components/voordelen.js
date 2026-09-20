@@ -22,9 +22,9 @@ const PUNTEN = [
     ),
   },
   {
-    titel: "Altijd één op één",
+    titel: "Solo of een vast duo",
     tekst:
-      "Geen groepswandelingen waarin jouw hond ondersneeuwt. Alle aandacht gaat naar jouw viervoeter, van de voordeur tot de thuiskomst.",
+      "Nooit meer dan twee honden samen, en alleen als hun karakters matchen. Geen groep waarin jouw hond ondersneeuwt of een maatje moet verdragen.",
     icoon: (
       <>
         <path d="M19 14c1.5-1.5 2-3 2-4.5a3.5 3.5 0 0 0-6-2.5L12 10 9 7a3.5 3.5 0 0 0-6 2.5C3 11 3.5 12.5 5 14l7 7 7-7Z" />

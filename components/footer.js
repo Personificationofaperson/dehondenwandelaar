@@ -26,8 +26,8 @@ export default function Footer() {
           />
           <p className="max-w-sm text-[15px] leading-relaxed text-muted">
             De Hondenwandelaar biedt een persoonlijke en betrouwbare
-            hondenuitlaatservice in Dilsen-Stokkem en omgeving. Ook voor liefdevolle
-            hondenoppas kan je bij mij terecht.
+            hondenuitlaatservice in Dilsen-Stokkem en omgeving. Solo of in een vast
+            duo, nooit in een groep.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export default function Footer() {
           <ul className="space-y-2 text-[15px] text-muted">
             <li>Dilsen-Stokkem, Limburg</li>
             <li>Wandelingen: 8 km rondom Dilsen-Stokkem</li>
-            <li>Oppas: tot 30 km rondom Dilsen-Stokkem</li>
+            <li>Weekendwandeling: tot 10 km rondom Dilsen-Stokkem</li>
             <li className="pt-2">
               <a
                 href={whatsappLink("Hoi Kimberly! Ik heb een vraag over de hondenuitlaatservice.")}

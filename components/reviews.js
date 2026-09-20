@@ -5,6 +5,12 @@ import Sterren from "./sterren"
 export default function Reviews() {
   if (ZICHTBARE_REVIEWS.length === 0) return null
 
+  // De eerste review krijgt een brede kaart over de volle breedte, de rest
+  // staat er in gelijke kolommen onder. Alle kaarten met een foto zetten die
+  // links naast de tekst, zodat de hoogtes bij elkaar in de buurt blijven en
+  // er geen gaten in het raster vallen.
+  const [eerste, ...rest] = ZICHTBARE_REVIEWS
+
   return (
     <section id="reviews" className="section">
       <div className="shell">
@@ -24,46 +30,63 @@ export default function Reviews() {
           </div>
         </div>
 
-        {/* Kolomlayout: reviews verschillen in lengte, dus laten we ze netjes
-            in elkaar schuiven in plaats van een raster met gaten. */}
-        <div className="mt-12 columns-1 gap-5 md:columns-2 lg:columns-3">
-          {ZICHTBARE_REVIEWS.map((review) => (
-            <ReviewKaart key={review.id} review={review} />
-          ))}
+        <div className="mt-12 space-y-5">
+          <ReviewKaart review={eerste} breed />
+
+          {rest.length > 0 && (
+            <ul className="grid gap-5 md:grid-cols-2">
+              {rest.map((review) => (
+                <li key={review.id} className="flex">
+                  <ReviewKaart review={review} />
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </section>
   )
 }
 
-function ReviewKaart({ review }) {
+function ReviewKaart({ review, breed = false }) {
   const bron = BRONNEN[review.bron]
 
   return (
-    <figure className="card reveal mb-5 flex break-inside-avoid flex-col overflow-hidden">
+    <figure
+      className={`card reveal flex w-full flex-col overflow-hidden sm:flex-row ${
+        breed ? "" : "h-full"
+      }`}
+    >
       {review.foto && (
-        <div className="relative h-44 w-full bg-brand-100">
+        <div
+          className={`relative h-56 w-full shrink-0 bg-brand-100 sm:h-auto ${
+            breed ? "sm:w-[34%] lg:w-[30%]" : "sm:w-[40%]"
+          }`}
+        >
           <Image
             src={review.foto}
             alt={review.fotoAlt ?? ""}
-            width={600}
-            height={500}
+            fill
             loading="lazy"
-            sizes="(max-width: 768px) 92vw, 30vw"
-            className="h-full w-full object-cover"
+            sizes={breed ? "(max-width: 640px) 92vw, 34vw" : "(max-width: 768px) 92vw, 22vw"}
+            className="object-cover"
           />
         </div>
       )}
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className={`flex flex-1 flex-col p-6 ${breed ? "sm:p-8 lg:p-10" : "sm:p-7"}`}>
         <div className="flex items-center justify-between gap-3">
           {review.sterren ? <Sterren aantal={review.sterren} /> : <Aanhaling />}
           <BronBadge bron={bron} />
         </div>
 
-        {review.titel && <h3 className="mt-3 text-lg">{review.titel}</h3>}
+        {review.titel && (
+          <h3 className={`mt-3 ${breed ? "text-xl" : "text-lg"}`}>{review.titel}</h3>
+        )}
 
-        <blockquote className="mt-3 text-[15px] leading-relaxed text-ink">
+        <blockquote
+          className={`mt-3 flex-1 leading-relaxed text-ink ${breed ? "text-base sm:text-lg" : "text-[15px]"}`}
+        >
           &ldquo;{review.tekst}&rdquo;
         </blockquote>
 

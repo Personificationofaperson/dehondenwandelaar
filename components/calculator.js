@@ -1,6 +1,6 @@
 "use client"
 
-import { useId, useRef, useState } from "react"
+import { useEffect, useId, useRef, useState } from "react"
 import {
   DIENSTEN,
   HONDEN_OPTIES,
@@ -29,19 +29,31 @@ export default function Calculator() {
   const [status, setStatus] = useState("leeg") // leeg | laden | klaar | fout
   const [foutmelding, setFoutmelding] = useState("")
 
-  // Optionele extra vragen
+  // Extra vragen
   const [detailsOpen, setDetailsOpen] = useState(false)
+  const [vraagAandacht, setVraagAandacht] = useState(false)
   const [naam, setNaam] = useState("")
+  const [frequentie, setFrequentie] = useState("")
   const [dagen, setDagen] = useState([])
   const [moment, setMoment] = useState("")
-  const [frequentie, setFrequentie] = useState("")
   const [startdatum, setStartdatum] = useState("")
+  const [einddatum, setEinddatum] = useState("")
 
   const dienst = CALCULEERBARE_DIENSTEN.find((d) => d.id === dienstId)
   const hondenOptie = HONDEN_OPTIES.find((h) => h.aantal === aantalHonden)
   const reis = status === "klaar" && km != null ? reiskost(km) : 0
   const subtotaal = dienst.prijs + hondenOptie.meerprijs
   const totaal = subtotaal + reis
+  const prijsKlaar = status === "klaar"
+
+  // Eén keer de aandacht trekken zodra de prijs er staat — geen herhaling,
+  // want een knop die blijft bewegen wordt snel vervelend.
+  useEffect(() => {
+    if (!prijsKlaar) return
+    setVraagAandacht(true)
+    const t = setTimeout(() => setVraagAandacht(false), 2000)
+    return () => clearTimeout(t)
+  }, [prijsKlaar])
 
   function eersteInteractie() {
     if (gestart.current) return
@@ -58,8 +70,16 @@ export default function Calculator() {
     }
   }
 
-  function wisselDag(dag) {
-    setDagen((d) => (d.includes(dag) ? d.filter((x) => x !== dag) : [...d, dag]))
+  function wisselDag(kort) {
+    setDagen((d) => (d.includes(kort) ? d.filter((x) => x !== kort) : [...d, kort]))
+  }
+
+  function kiesFrequentie(id) {
+    setFrequentie(id)
+    // dag- en datumvelden verschillen per frequentie, dus leeg ze bij wissel
+    setDagen([])
+    setStartdatum("")
+    setEinddatum("")
   }
 
   async function berekenReiskost(e) {
@@ -86,6 +106,7 @@ export default function Calculator() {
       const afstand = Number(data.distanceValue)
       setKm(afstand)
       setStatus("klaar")
+      setDetailsOpen(true)
       track(EVENTS.PRIJS_BEREKEND, {
         dienst: dienst.korteNaam,
         aantal_honden: aantalHonden,
@@ -98,6 +119,17 @@ export default function Calculator() {
         "Het berekenen lukte even niet. Probeer het zo nog eens, of stuur me gewoon een berichtje."
       )
     }
+  }
+
+  function datumNL(waarde) {
+    if (!waarde) return null
+    const [j, m, d] = waarde.split("-")
+    return `${d}/${m}/${j}`
+  }
+
+  function dagenVoluit() {
+    // in de volgorde van de week, niet in klikvolgorde
+    return DAGEN.filter((d) => dagen.includes(d.kort)).map((d) => d.lang)
   }
 
   function bouwBericht() {
@@ -113,21 +145,34 @@ export default function Calculator() {
     if (frequentie) {
       regels.push(`• Hoe vaak: ${FREQUENTIES.find((f) => f.id === frequentie)?.naam}`)
     }
-    if (dagen.length > 0) {
-      regels.push(`• Gewenste dagen: ${dagen.join(", ")}`)
+
+    const lijst = dagenVoluit()
+    if (lijst.length > 0) {
+      const label = frequentie === "structureel" ? "Vaste dagen" : "Dagen die het best passen"
+      regels.push(`• ${label}: ${lijst.join(", ")}`)
     }
+
     if (moment) {
-      regels.push(`• Gewenst moment: ${MOMENTEN.find((m) => m.id === moment)?.naam}`)
+      regels.push(`• Moment van de dag: ${MOMENTEN.find((m) => m.id === moment)?.naam}`)
     }
-    if (startdatum) {
-      regels.push(`• Liefst starten vanaf: ${startdatum}`)
+
+    if (frequentie === "vakantie") {
+      if (startdatum || einddatum) {
+        regels.push(
+          `• Periode: ${datumNL(startdatum) ?? "nog te bepalen"} tot ${
+            datumNL(einddatum) ?? "nog te bepalen"
+          }`
+        )
+      }
+    } else if (startdatum) {
+      regels.push(`• Liefst starten vanaf: ${datumNL(startdatum)}`)
     }
 
     regels.push("", naam ? `Groetjes, ${naam}` : "Groetjes!")
     return regels.join("\n")
   }
 
-  const prijsKlaar = status === "klaar"
+  const ingevuld = Boolean(frequentie || dagen.length > 0 || moment || startdatum || naam)
 
   return (
     <section id="tarieven" className="full-bleed bg-white">
@@ -143,7 +188,7 @@ export default function Calculator() {
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
           {/* ------------------------- FORMULIER ------------------------- */}
-          <form onSubmit={berekenReiskost} noValidate={false}>
+          <form onSubmit={berekenReiskost}>
             <fieldset className="border-0 p-0">
               <legend className="field-label !mb-3 !text-base">1. Welke dienst zoek je?</legend>
               <div className="grid gap-2.5 sm:grid-cols-3">
@@ -179,7 +224,10 @@ export default function Calculator() {
             </fieldset>
 
             <fieldset className="mt-8 border-0 p-0">
-              <legend className="field-label !mb-3 !text-base">2. Hoeveel honden?</legend>
+              <legend className="field-label !mb-1 !text-base">2. Hoeveel honden?</legend>
+              <p className="mb-3 text-sm text-muted">
+                Maximaal twee, en alleen als hun karakters bij elkaar passen.
+              </p>
               <div className="flex flex-wrap gap-2.5">
                 {HONDEN_OPTIES.map((h) => (
                   <label
@@ -287,8 +335,16 @@ export default function Calculator() {
               </div>
             </fieldset>
 
-            <button type="submit" className="btn btn-primary mt-6 w-full sm:w-auto" disabled={status === "laden"}>
-              {status === "laden" ? "Even rekenen…" : prijsKlaar ? "Opnieuw berekenen" : "Bereken mijn richtprijs"}
+            <button
+              type="submit"
+              className="btn btn-primary mt-6 w-full sm:w-auto"
+              disabled={status === "laden"}
+            >
+              {status === "laden"
+                ? "Even rekenen…"
+                : prijsKlaar
+                  ? "Opnieuw berekenen"
+                  : "Bereken mijn richtprijs"}
             </button>
           </form>
 
@@ -311,7 +367,10 @@ export default function Calculator() {
                 <dl className="space-y-2.5 text-[15px]">
                   <Regel label={dienst.korteNaam} waarde={euro(dienst.prijs)} />
                   {hondenOptie.meerprijs > 0 && (
-                    <Regel label={`Meerprijs ${hondenOptie.naam}`} waarde={`+ ${euro(hondenOptie.meerprijs)}`} />
+                    <Regel
+                      label={`Meerprijs ${hondenOptie.naam}`}
+                      waarde={`+ ${euro(hondenOptie.meerprijs)}`}
+                    />
                   )}
                   <Regel
                     label="Reiskost heen en terug"
@@ -325,11 +384,35 @@ export default function Calculator() {
                 </dl>
 
                 <p aria-live="polite" className="mt-4 min-h-[1.25rem] text-sm">
-                  {status === "fout" && <span className="font-semibold text-clay-700">{foutmelding}</span>}
+                  {status === "fout" && (
+                    <span className="font-semibold text-clay-700">{foutmelding}</span>
+                  )}
                 </p>
 
                 {prijsKlaar ? (
                   <>
+                    <ExtraVragen
+                      idPrefix={idPrefix}
+                      open={detailsOpen}
+                      aandacht={vraagAandacht}
+                      setOpen={(v) => {
+                        setDetailsOpen(v)
+                        if (v) track(EVENTS.DETAILS_GEOPEND)
+                      }}
+                      naam={naam}
+                      setNaam={setNaam}
+                      frequentie={frequentie}
+                      kiesFrequentie={kiesFrequentie}
+                      dagen={dagen}
+                      wisselDag={wisselDag}
+                      moment={moment}
+                      setMoment={setMoment}
+                      startdatum={startdatum}
+                      setStartdatum={setStartdatum}
+                      einddatum={einddatum}
+                      setEinddatum={setEinddatum}
+                    />
+
                     <a
                       href={whatsappLink(bouwBericht())}
                       target="_blank"
@@ -341,50 +424,33 @@ export default function Calculator() {
                           dienst: dienst.korteNaam,
                           aantal_honden: aantalHonden,
                           prijs: totaal,
-                          met_details: detailsOpen && (dagen.length > 0 || Boolean(moment) || Boolean(frequentie)),
+                          frequentie: frequentie || "niet ingevuld",
+                          met_details: ingevuld,
                         })
                       }
-                      className="btn btn-whatsapp w-full"
+                      className="btn btn-whatsapp mt-5 w-full"
                     >
                       Stuur dit door via WhatsApp
                     </a>
                     <p className="mt-3 text-center text-xs text-muted">
-                      Je gegevens worden alvast in het bericht gezet. Je kan alles nog
-                      aanpassen voor je verstuurt.
+                      Alles wat je hierboven invulde, staat straks in je bericht. Je kan
+                      het nog aanpassen voor je verstuurt.
                     </p>
-
-                    <ExtraVragen
-                      idPrefix={idPrefix}
-                      open={detailsOpen}
-                      setOpen={(v) => {
-                        setDetailsOpen(v)
-                        if (v) track(EVENTS.DETAILS_GEOPEND)
-                      }}
-                      naam={naam}
-                      setNaam={setNaam}
-                      dagen={dagen}
-                      wisselDag={wisselDag}
-                      moment={moment}
-                      setMoment={setMoment}
-                      frequentie={frequentie}
-                      setFrequentie={setFrequentie}
-                      startdatum={startdatum}
-                      setStartdatum={setStartdatum}
-                    />
                   </>
                 ) : (
                   <p className="rounded-2xl bg-brand-50 px-4 py-3 text-sm text-muted">
-                    Vul je adres in en druk op <strong className="text-brand-900">Bereken mijn
-                    richtprijs</strong>. Daarna kan je alles in één klik naar me doorsturen.
+                    Vul je adres in en druk op{" "}
+                    <strong className="text-brand-900">Bereken mijn richtprijs</strong>. Daarna
+                    kan je alles in één klik naar me doorsturen.
                   </p>
                 )}
               </div>
             </div>
 
             <p className="mt-4 px-2 text-xs leading-relaxed text-muted">
-              Een richtprijs, geen offerte. De definitieve afspraak maken we samen tijdens
-              de gratis kennismaking. Alle boekingen lopen via Ring Twice, waardoor elke
-              opdracht verzekerd is.
+              Een richtprijs, geen offerte. De definitieve afspraak maken we samen tijdens de
+              gratis kennismaking. Alle boekingen lopen via Ring Twice, waardoor elke opdracht
+              verzekerd is.
             </p>
           </div>
         </div>
@@ -407,20 +473,35 @@ function Regel({ label, waarde, grijs }) {
 function ExtraVragen({
   idPrefix,
   open,
+  aandacht,
   setOpen,
   naam,
   setNaam,
+  frequentie,
+  kiesFrequentie,
   dagen,
   wisselDag,
   moment,
   setMoment,
-  frequentie,
-  setFrequentie,
   startdatum,
   setStartdatum,
+  einddatum,
+  setEinddatum,
 }) {
+  const toontDagen = frequentie === "structureel" || frequentie === "sporadisch"
+  const toontPeriode = frequentie === "vakantie"
+
+  const dagLabel =
+    frequentie === "structureel"
+      ? "Welke dagen wil je vast?"
+      : "Op welke dagen heb je me meestal nodig?"
+
   return (
-    <div className="mt-5 rounded-2xl border border-brand-700/15 bg-brand-50">
+    <div
+      className={`overflow-hidden rounded-2xl border-[1.5px] bg-brand-50 transition-colors ${
+        aandacht ? "attentie border-clay-700" : "border-brand-700/15"
+      }`}
+    >
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -428,12 +509,20 @@ function ExtraVragen({
         aria-controls={`${idPrefix}-extra`}
         className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left"
       >
-        <span>
-          <span className="block text-sm font-bold text-brand-900">
-            Nog even dit, dan weet ik meteen alles
+        <span className="flex items-start gap-3">
+          <span
+            aria-hidden="true"
+            className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-clay-700 text-sm font-bold text-white"
+          >
+            ?
           </span>
-          <span className="block text-xs text-muted">
-            Optioneel — scheelt ons een paar berichtjes heen en weer
+          <span>
+            <span className="block text-sm font-bold text-brand-900">
+              Wanneer heb je me nodig?
+            </span>
+            <span className="block text-xs text-muted">
+              Vul dit in, dan kan ik meteen zeggen of het past
+            </span>
           </span>
         </span>
         <svg
@@ -454,21 +543,6 @@ function ExtraVragen({
 
       {open && (
         <div id={`${idPrefix}-extra`} className="space-y-5 border-t border-brand-700/10 px-5 py-5">
-          <div>
-            <label className="field-label" htmlFor={`${idPrefix}-naam`}>
-              Hoe heet je?
-            </label>
-            <input
-              id={`${idPrefix}-naam`}
-              className="field"
-              type="text"
-              autoComplete="given-name"
-              placeholder="Je voornaam"
-              value={naam}
-              onChange={(e) => setNaam(e.target.value)}
-            />
-          </div>
-
           <fieldset className="border-0 p-0">
             <legend className="field-label">Hoe vaak heb je me nodig?</legend>
             <div className="flex flex-col gap-2">
@@ -485,7 +559,7 @@ function ExtraVragen({
                     type="radio"
                     name={`${idPrefix}-freq`}
                     checked={frequentie === f.id}
-                    onChange={() => setFrequentie(f.id)}
+                    onChange={() => kiesFrequentie(f.id)}
                     className="sr-only"
                   />
                   {f.naam}
@@ -494,59 +568,118 @@ function ExtraVragen({
             </div>
           </fieldset>
 
-          <fieldset className="border-0 p-0">
-            <legend className="field-label">Welke dagen passen het best?</legend>
-            <div className="flex flex-wrap gap-2">
-              {DAGEN.map((dag) => (
-                <label
-                  key={dag}
-                  className={`cursor-pointer rounded-xl border-[1.5px] px-3.5 py-2 text-sm font-bold transition-colors ${
-                    dagen.includes(dag)
-                      ? "border-clay-700 bg-clay-100 text-brand-900"
-                      : "border-brand-700/20 bg-white text-muted"
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    checked={dagen.includes(dag)}
-                    onChange={() => wisselDag(dag)}
-                    className="sr-only"
-                  />
-                  {dag}
+          {toontDagen && (
+            <fieldset className="border-0 p-0">
+              <legend className="field-label">{dagLabel}</legend>
+              <div className="flex flex-wrap gap-2">
+                {DAGEN.map((dag) => (
+                  <label
+                    key={dag.kort}
+                    className={`cursor-pointer rounded-xl border-[1.5px] px-3.5 py-2 text-sm font-bold transition-colors ${
+                      dagen.includes(dag.kort)
+                        ? "border-clay-700 bg-clay-100 text-brand-900"
+                        : "border-brand-700/20 bg-white text-muted"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={dagen.includes(dag.kort)}
+                      onChange={() => wisselDag(dag.kort)}
+                      className="sr-only"
+                    />
+                    <span className="sr-only">{dag.lang}</span>
+                    <span aria-hidden="true">{dag.kort}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          )}
+
+          {toontPeriode && (
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div>
+                <label className="field-label" htmlFor={`${idPrefix}-van`}>
+                  Van
                 </label>
-              ))}
+                <input
+                  id={`${idPrefix}-van`}
+                  className="field"
+                  type="date"
+                  value={startdatum}
+                  onChange={(e) => setStartdatum(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="field-label" htmlFor={`${idPrefix}-tot`}>
+                  Tot
+                </label>
+                <input
+                  id={`${idPrefix}-tot`}
+                  className="field"
+                  type="date"
+                  min={startdatum || undefined}
+                  value={einddatum}
+                  onChange={(e) => setEinddatum(e.target.value)}
+                />
+              </div>
             </div>
-          </fieldset>
+          )}
+
+          {frequentie && (
+            <div>
+              <label className="field-label" htmlFor={`${idPrefix}-moment`}>
+                Welk moment van de dag?
+              </label>
+              <select
+                id={`${idPrefix}-moment`}
+                className="field"
+                value={moment}
+                onChange={(e) => setMoment(e.target.value)}
+              >
+                <option value="">Nog te bespreken</option>
+                {MOMENTEN.filter((m) => m.id !== "overleg").map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.naam}
+                  </option>
+                ))}
+              </select>
+              {moment === "middag" && (
+                <p className="mt-2 rounded-xl bg-clay-100 px-3.5 py-2.5 text-xs leading-relaxed text-clay-700">
+                  Mijn solo-plekken in de middag zijn volzet. Een middagwandeling kan enkel
+                  als jouw hond kan meelopen met een retriever die ik al vast uitlaat — ik
+                  laat je eerlijk weten of dat past.
+                </p>
+              )}
+            </div>
+          )}
+
+          {toontDagen && (
+            <div>
+              <label className="field-label" htmlFor={`${idPrefix}-start`}>
+                Vanaf wanneer?
+              </label>
+              <input
+                id={`${idPrefix}-start`}
+                className="field"
+                type="date"
+                value={startdatum}
+                onChange={(e) => setStartdatum(e.target.value)}
+              />
+            </div>
+          )}
 
           <div>
-            <label className="field-label" htmlFor={`${idPrefix}-moment`}>
-              Welk moment van de dag?
-            </label>
-            <select
-              id={`${idPrefix}-moment`}
-              className="field"
-              value={moment}
-              onChange={(e) => setMoment(e.target.value)}
-            >
-              <option value="">Maakt niet uit / nog te bespreken</option>
-              {MOMENTEN.map((m) => (
-                <option key={m.id} value={m.id}>
-                  {m.naam}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="field-label" htmlFor={`${idPrefix}-start`}>
-              Vanaf wanneer?
+            <label className="field-label" htmlFor={`${idPrefix}-naam`}>
+              Hoe heet je?
             </label>
             <input
-              id={`${idPrefix}-start`}
+              id={`${idPrefix}-naam`}
               className="field"
-              type="date"
-              value={startdatum}
-              onChange={(e) => setStartdatum(e.target.value)}
+              type="text"
+              autoComplete="given-name"
+              placeholder="Je voornaam"
+              value={naam}
+              onChange={(e) => setNaam(e.target.value)}
             />
           </div>
         </div>
