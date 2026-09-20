@@ -19,7 +19,10 @@ export default function Hero() {
       />
 
       <div className="shell relative grid items-center gap-12 pb-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:pb-24">
-        <div>
+        {/* min-w-0 zet de standaard min-width van een grid-item uit. Zonder
+            dat mag de kolom nooit smaller worden dan het langste woord en
+            loopt hij dus over de padding heen. */}
+        <div className="min-w-0">
           {/* De H1 draagt het zoekwoord voluit: dienst plus plaats. */}
           <h1>
             Hondenuitlaatservice

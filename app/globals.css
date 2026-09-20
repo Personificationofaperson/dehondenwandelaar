@@ -53,10 +53,18 @@
     line-height: 1.05;
     letter-spacing: -0.03em;
     text-wrap: balance;
+    /* "Hondenuitlaatservice" is een lang woord zonder breekpunt. Zonder deze
+       twee regels duwt het zichzelf op smalle schermen buiten de kolom en
+       plakt de kop tegen de rand. */
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
-  h1 { font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem); }
-  h2 { font-size: clamp(1.9rem, 1.35rem + 2.4vw, 2.9rem); }
+  /* De ondergrens stond op 2,5rem. Bij 390 px breed was dat 40 px en werd
+     het woord 364 px, breder dan de 350 px die de kolom heeft. Nu schaalt de
+     kop wel echt mee naar beneden. */
+  h1 { font-size: clamp(2rem, 1.2rem + 4.2vw, 4.5rem); }
+  h2 { font-size: clamp(1.6rem, 1.1rem + 2.6vw, 2.9rem); }
   h3 { font-size: clamp(1.3rem, 1.12rem + .8vw, 1.75rem); }
   h4 { font-size: clamp(1.05rem, 1rem + .35vw, 1.2rem); }
 
