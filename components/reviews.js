@@ -36,7 +36,7 @@ export default function Reviews() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <span className="eyebrow !text-moss-text">Wat klanten zeggen</span>
-            <h2 className="mt-3 !text-white">Baasjes over de uitlaatservice</h2>
+            <h2 className="mt-3 !text-white">Baasjes over de uitlaatservice in Dilsen-Stokkem</h2>
           </div>
           <div className="flex shrink-0 items-center gap-3 rounded-2xl bg-white/10 px-5 py-4">
             <Sterren aantal={5} label="5 van de 5 sterren" />

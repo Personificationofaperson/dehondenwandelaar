@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { RINGTWICE_URL, whatsappLink } from "../lib/prijzen"
+import { RINGTWICE_URL, TELEFOON_LINK, TELEFOON_WEERGAVE, whatsappLink } from "../lib/prijzen"
 
 const MENU = [
   { label: "Diensten", href: "#diensten" },
@@ -47,7 +47,12 @@ export default function Footer() {
         <div>
           <h2 className="mb-4 font-display text-lg text-ink">Contact</h2>
           <ul className="space-y-2 text-[15px] text-muted">
-            <li>Dilsen-Stokkem, Limburg</li>
+            <li>De Hondenwandelaar, Dilsen-Stokkem, Limburg</li>
+            <li>
+              <a href={`tel:${TELEFOON_LINK}`} className="font-bold text-ink hover:underline">
+                {TELEFOON_WEERGAVE}
+              </a>
+            </li>
             <li>Werkgebied: 6 km rondom Dilsen-Stokkem</li>
             <li className="pt-2">
               <a

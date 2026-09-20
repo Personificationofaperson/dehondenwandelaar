@@ -36,7 +36,7 @@ export default function Diensten() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
             <span className="eyebrow">Mijn diensten</span>
-            <h2 className="mt-3">Wandelingen en dagopvang in Dilsen-Stokkem</h2>
+            <h2 className="mt-3">Wandelingen in Dilsen-Stokkem</h2>
           </div>
           <p className="lead md:max-w-sm md:text-right">
             Alle prijzen zijn exclusief reiskost. Hoeveel dat voor jouw adres
