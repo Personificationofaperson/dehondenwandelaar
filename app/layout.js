@@ -3,7 +3,7 @@ import { Lilita_One, Nunito } from "next/font/google"
 import Nav from "../components/nav"
 import Footer from "../components/footer"
 import Whatsapp from "../components/whatsapp"
-import Analytics from "../components/analytics"
+import { GtmScript, GtmNoScript } from "../components/gtm"
 
 // next/font host de fonts mee vanaf je eigen domein en zet ze in de
 // <head> met preload. Dat scheelt twee render-blokkerende requests naar
@@ -139,6 +139,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="nl" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
       <body>
+        <GtmNoScript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -153,7 +154,7 @@ export default function RootLayout({ children }) {
         <main id="hoofdinhoud">{children}</main>
         <Footer />
         <Whatsapp />
-        <Analytics />
+        <GtmScript />
       </body>
     </html>
   )
