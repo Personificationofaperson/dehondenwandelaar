@@ -7,6 +7,7 @@ import {
   FREQUENTIES,
   DAGEN,
   MOMENTEN,
+  MOMENTEN_SAMENVATTING,
   reiskost,
   euro,
   whatsappLink,
@@ -803,6 +804,15 @@ function ExtraVragen({
                   </option>
                 ))}
               </select>
+              {/* Wanneer ik kan, los van wat de bezoeker kiest. Zolang er niets
+                  gekozen is staat het overzicht er, daarna enkel de regel die
+                  bij die keuze hoort. */}
+              <p className="mt-2 text-xs leading-relaxed text-muted">
+                {moment
+                  ? MOMENTEN.find((m) => m.id === moment)?.toelichting
+                  : MOMENTEN_SAMENVATTING}
+              </p>
+
               {moment === "middag" && (
                 <p className="mt-2 rounded-xl bg-accent-soft px-3.5 py-2.5 text-xs leading-relaxed text-accent">
                   Mijn solo-plekken in de middag zijn volzet. Een middagwandeling kan enkel
