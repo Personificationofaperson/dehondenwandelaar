@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { DIENSTEN, euro } from "../lib/prijzen"
 import DienstKnop from "./dienst-knop"
+import Poot from "./poot"
 
 const KAARTEN = [
   {
@@ -35,7 +36,7 @@ export default function Diensten() {
       <div className="shell section">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
-            <span className="eyebrow">Mijn diensten</span>
+            <span className="eyebrow"><Poot size={13} /> Mijn diensten</span>
             <h2 className="mt-3">Wandelingen in Dilsen-Stokkem</h2>
           </div>
           <p className="lead md:max-w-sm md:text-right">

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Poot from "./poot"
 
 const PUNTEN = [
   {
@@ -47,7 +48,7 @@ export default function Over() {
         </div>
 
         <div>
-          <span className="eyebrow">Over mij</span>
+          <span className="eyebrow"><Poot size={13} /> Over mij</span>
           <h2 className="mt-3">Hoi, ik ben Kimberly, jouw hondenwandelaar</h2>
           <p className="lead mt-4">
             Jouw hond is een waardevol deel van je gezin. Mijn doel is om jullie

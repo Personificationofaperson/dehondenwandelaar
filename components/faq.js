@@ -1,3 +1,5 @@
+import Poot from "./poot"
+
 // Alle antwoorden komen uit informatie die al op de site stond.
 // Voeg gerust vragen toe, de lijst rendert zichzelf.
 const VRAGEN = [
@@ -54,7 +56,7 @@ export default function Faq() {
       <div className="shell section">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
-            <span className="eyebrow">Veelgestelde vragen</span>
+            <span className="eyebrow"><Poot size={13} /> Veelgestelde vragen</span>
             <h2 className="mt-3">Veelgestelde vragen over de uitlaatservice</h2>
             <p className="lead mt-4">
               Staat je vraag er niet bij? Stuur gerust een berichtje, ik antwoord

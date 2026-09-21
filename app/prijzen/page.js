@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Calculator from "../../components/calculator"
 import Cta from "../../components/cta"
+import Poot from "../../components/poot"
 import {
   DIENSTEN,
   HONDEN_OPTIES,
@@ -390,11 +391,18 @@ export default function Prijzen() {
           <div>
             <h3 className="text-xl">Inbegrepen</h3>
             <ul className="mt-4 space-y-3 text-[15px] leading-relaxed text-muted">
-              <li>Een wandeling op maat van je hond, solo of in een vast duo</li>
-              <li>Een gratis kennismaking vooraf, zonder verplichting</li>
-              <li>Een bericht met foto&apos;s na elke wandeling</li>
-              <li>Verzekering via Ring Twice op elke opdracht</li>
-              <li>Poepzakjes, water bij warm weer en een handdoek bij regen</li>
+              {[
+                "Een wandeling op maat van je hond, solo of in een vast duo",
+                "Een gratis kennismaking vooraf, zonder verplichting",
+                "Een bericht met foto's na elke wandeling",
+                "Verzekering via Ring Twice op elke opdracht",
+                "Poepzakjes, water bij warm weer en een handdoek bij regen",
+              ].map((punt) => (
+                <li key={punt} className="flex gap-3">
+                  <Poot size={15} className="mt-1 shrink-0 text-accent" />
+                  <span>{punt}</span>
+                </li>
+              ))}
             </ul>
           </div>
 

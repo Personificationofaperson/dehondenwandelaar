@@ -1,3 +1,5 @@
+import Poot from "./poot"
+
 const PUNTEN = [
   {
     titel: "De scan",
@@ -60,7 +62,7 @@ export default function Voordelen() {
     <section id="voordelen" className="section">
       <div className="shell">
         <div className="max-w-2xl">
-          <span className="eyebrow">Waarom bij mij</span>
+          <span className="eyebrow"><Poot size={13} /> Waarom bij mij</span>
           <h2 className="mt-3">Wat deze hondenuitlaatservice anders maakt</h2>
           <p className="lead mt-4">
             Elk detail telt wanneer het om het welzijn van jouw viervoeter gaat.

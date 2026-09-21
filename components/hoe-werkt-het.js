@@ -1,3 +1,5 @@
+import Poot, { PootBadge } from "./poot"
+
 const STAPPEN = [
   {
     nummer: "01",
@@ -24,7 +26,7 @@ export default function HoeWerktHet() {
     <section id="hoe-werkt-het" className="section">
       <div className="shell">
         <div className="max-w-2xl">
-          <span className="eyebrow">Zo gaat het in zijn werk</span>
+          <span className="eyebrow"><Poot size={13} /> Zo gaat het in zijn werk</span>
           <h2 className="mt-3">Zo werkt de uitlaatservice, stap voor stap</h2>
         </div>
 
@@ -33,11 +35,23 @@ export default function HoeWerktHet() {
             /* Het nummer stond eerst half achter de titel. Nu staat het
                erboven als een eigen merkteken, dus de titel blijft leesbaar. */
             <li key={stap.nummer} className="card reveal p-7">
-              <span
-                aria-hidden="true"
-                className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-moss-soft font-display text-base font-semibold text-moss"
-              >
-                {stap.nummer}
+              {/* Het cijfer staat op de zool van een pootafdruk in plaats van
+                  in een vierkantje. De zool zit iets onder het midden van het
+                  icoon, vandaar de verschuiving. */}
+              <span aria-hidden="true" className="relative mb-5 block h-16 w-16">
+                <PootBadge
+                  size={64}
+                  className="absolute inset-0 text-moss-soft"
+                  style={{ transform: "rotate(-8deg)" }}
+                />
+                {/* De zool is een cirkel met haar middelpunt op 66 procent
+                    van de hoogte, daar staat het cijfer precies in. */}
+                <span
+                  className="absolute left-0 right-0 text-center font-display text-lg font-bold leading-none text-moss"
+                  style={{ top: "66%", transform: "translateY(-50%)" }}
+                >
+                  {stap.nummer}
+                </span>
               </span>
               <h3>{stap.titel}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-muted">{stap.tekst}</p>

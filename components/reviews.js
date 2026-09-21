@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { ZICHTBARE_REVIEWS, BRONNEN } from "../lib/reviews"
 import Sterren from "./sterren"
+import Poot from "./poot"
 
 // Drie gelijke kaarten naast elkaar. Heeft een review een foto, dan staat
 // die bovenaan. Heeft ze er geen, dan krijgt de tekst de volle kaart en wordt
@@ -11,11 +12,18 @@ export default function Reviews() {
 
   return (
     <section id="reviews" className="px-3 py-6 sm:px-6 lg:px-10">
-      <div className="rounded-[2.5rem] bg-moss py-16 text-white sm:rounded-[2.75rem] sm:py-20">
-        <div className="shell">
+      <div className="relative overflow-hidden rounded-[2.5rem] bg-moss py-16 text-white sm:rounded-[2.75rem] sm:py-20">
+        {/* Watermerk. Heel laag contrast, puur sfeer. */}
+        <Poot
+          size={320}
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-16 -top-12 text-white/[.04] sm:-right-8"
+          style={{ transform: "rotate(18deg)" }}
+        />
+        <div className="relative shell">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <span className="eyebrow !text-moss-text">Wat klanten zeggen</span>
+              <span className="eyebrow !text-moss-text"><Poot size={13} /> Wat klanten zeggen</span>
               <h2 className="mt-3 !text-white">Baasjes over de uitlaatservice in Dilsen-Stokkem</h2>
             </div>
             <div className="flex shrink-0 items-center gap-3 rounded-2xl bg-white/10 px-5 py-4">

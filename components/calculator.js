@@ -12,6 +12,7 @@ import {
   whatsappLink,
 } from "../lib/prijzen"
 import { track, EVENTS } from "../lib/analytics"
+import Poot from "./poot"
 
 const CALCULEERBARE_DIENSTEN = DIENSTEN.filter((d) => d.inCalculator)
 
@@ -205,7 +206,7 @@ export default function Calculator({
       <div className="shell section">
         {toonKop && (
           <div className="max-w-2xl">
-            <span className="eyebrow">{eyebrow}</span>
+            <span className="eyebrow"><Poot size={13} /> {eyebrow}</span>
             <h2 className="mt-3">{titel}</h2>
             <p className="lead mt-4">{lead}</p>
             {onderKop}

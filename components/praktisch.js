@@ -1,3 +1,5 @@
+import Poot from "./poot"
+
 // Korte regels in plaats van alinea's. Wie dit blok bekijkt wil weten of
 // zijn moment erbij zit, niet de redenering erachter lezen.
 const MOMENTEN = [
@@ -38,7 +40,7 @@ export default function Praktisch() {
     <section id="werkgebied" className="full-bleed bg-white">
       <div className="shell section">
         <div className="max-w-2xl">
-          <span className="eyebrow">Praktisch</span>
+          <span className="eyebrow"><Poot size={13} /> Praktisch</span>
           <h2 className="mt-3">Beschikbaarheid en werkgebied rond Dilsen-Stokkem</h2>
           <p className="lead mt-4">
             Vaste momenten, één duidelijke zone. Past er niets, stuur dan gewoon een

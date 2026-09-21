@@ -1,5 +1,6 @@
 import Image from "next/image"
 import CtaKnoppen from "./cta-knoppen"
+import Poot from "./poot"
 
 const FOTOS = [
   { src: "/hondenoppas.webp", alt: "Kimberly met een witte hond" },
@@ -10,9 +11,15 @@ const FOTOS = [
 
 export default function Cta() {
   return (
-    <section className="full-bleed bg-moss">
-      <div className="shell section text-center">
-        <span className="eyebrow !text-moss-text">Klaar om te starten?</span>
+    <section className="full-bleed relative overflow-hidden bg-moss">
+      <Poot
+        size={280}
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-16 bottom-4 text-white/[.04]"
+        style={{ transform: "rotate(-24deg)" }}
+      />
+      <div className="shell section relative text-center">
+        <span className="eyebrow !text-moss-text"><Poot size={13} /> Klaar om te starten?</span>
         <h2 className="mx-auto mt-3 max-w-3xl !text-white">
           Hondenuitlaatservice boeken in Dilsen-Stokkem
         </h2>
