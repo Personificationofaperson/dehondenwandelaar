@@ -53,18 +53,22 @@
     line-height: 1.05;
     letter-spacing: -0.03em;
     text-wrap: balance;
-    /* "Hondenuitlaatservice" is een lang woord zonder breekpunt. Zonder deze
-       twee regels duwt het zichzelf op smalle schermen buiten de kolom en
-       plakt de kop tegen de rand. */
     overflow-wrap: break-word;
-    hyphens: auto;
   }
 
-  /* De ondergrens stond op 2,5rem. Bij 390 px breed was dat 40 px en werd
-     het woord 364 px, breder dan de 350 px die de kolom heeft. Nu schaalt de
-     kop wel echt mee naar beneden. */
-  h1 { font-size: clamp(2rem, 1.2rem + 4.2vw, 4.5rem); }
-  h2 { font-size: clamp(1.6rem, 1.1rem + 2.6vw, 2.9rem); }
+  /* Afbreken alleen op telefoons. "Hondenuitlaatservice" is het zoekwoord,
+     en daar wil je op een breed scherm geen streepje middenin. Onder de
+     640 px is er simpelweg geen ruimte en is afbreken beter dan overlopen. */
+  @media (max-width: 639px) {
+    h1, h2, h3, h4 { hyphens: auto; }
+  }
+
+  /* De bovengrens stond op 4,5rem. In de hero is de tekstkolom 534 px breed,
+     en bij 72 px heeft "Hondenuitlaatservice" 655 px nodig. Vandaar dat de
+     kop op een laptop over drie regels liep en tegen het menu plakte. Bij
+     3,25rem past het woord op één regel. */
+  h1 { font-size: clamp(2rem, 1.1rem + 3.4vw, 3.25rem); }
+  h2 { font-size: clamp(1.6rem, 1.1rem + 2.2vw, 2.5rem); }
   h3 { font-size: clamp(1.3rem, 1.12rem + .8vw, 1.75rem); }
   h4 { font-size: clamp(1.05rem, 1rem + .35vw, 1.2rem); }
 

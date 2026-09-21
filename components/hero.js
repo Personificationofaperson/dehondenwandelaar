@@ -12,13 +12,13 @@ const KPIS = [
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-[calc(var(--nav-h)+1.5rem)]">
+    <section className="relative overflow-hidden pt-[calc(var(--nav-h)+2.5rem)] lg:pt-[calc(var(--nav-h)+3.5rem)]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-48 -top-32 h-[36rem] w-[36rem] rounded-full bg-accent-soft opacity-70 blur-3xl"
       />
 
-      <div className="shell relative grid items-center gap-12 pb-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14 lg:pb-24">
+      <div className="shell relative grid items-center gap-12 pb-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:pb-24">
         {/* min-w-0 zet de standaard min-width van een grid-item uit. Zonder
             dat mag de kolom nooit smaller worden dan het langste woord en
             loopt hij dus over de padding heen. */}
