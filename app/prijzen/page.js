@@ -349,20 +349,29 @@ export default function Prijzen() {
           </div>
 
           <div className="card p-7">
-            <h4>Een werkweek weg van huis</h4>
+            <h4>Eén lange dag van huis</h4>
             <p className="mt-3 text-[15px] leading-relaxed text-muted">
-              Eén hond, een adres op 4 km. Vijf dagen een dagpakket, dus tien bezoeken
-              van 45 minuten, telkens {euro(dagpakket.prijs + reiskost(4, 2))} inclusief
-              reiskost.
+              Eén hond, een adres op 4 km. Een dagpakket met twee bezoeken van 45
+              minuten, &apos;s ochtends en &apos;s avonds, reiskost inbegrepen.
             </p>
             <p className="mt-4 font-display text-3xl text-accent">
-              {euro(5 * (dagpakket.prijs + reiskost(4, 2)))}
+              {euro(dagpakket.prijs + reiskost(4, 2))}
               <span className="ml-2 font-body text-sm font-semibold text-muted">
-                voor vijf dagen
+                voor die dag
               </span>
             </p>
           </div>
         </div>
+
+        {/* Eerlijk zijn over wanneer een pension logischer is. Wie een week
+            weg is en dit zelf uitrekent, schrikt van het totaal en haakt af
+            zonder te weten waarom het duurder is. */}
+        <p className="mt-8 max-w-2xl rounded-2xl border border-ink/12 bg-accent-soft px-6 py-5 text-[15px] leading-relaxed text-muted">
+          <strong className="text-ink">Ben je een hele week weg?</strong> Dan is een
+          hondenpension goedkoper, en dat zeg ik er liever meteen bij. Het dagpakket is
+          bedoeld voor losse dagen dat je van huis bent, en voor baasjes die hun hond
+          liever in zijn eigen omgeving houden dan in een kennel.
+        </p>
       </section>
 
       {/* ------------------------ CALCULATOR ------------------------ */}
