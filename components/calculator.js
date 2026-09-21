@@ -49,7 +49,6 @@ export default function Calculator({
 
   // Extra vragen
   const [detailsOpen, setDetailsOpen] = useState(false)
-  const [vraagAandacht, setVraagAandacht] = useState(false)
   const [naam, setNaam] = useState("")
   const [frequentie, setFrequentie] = useState("")
   const [dagen, setDagen] = useState([])
@@ -63,15 +62,6 @@ export default function Calculator({
   const subtotaal = dienst.prijs + hondenOptie.meerprijs
   const totaal = subtotaal + reis
   const prijsKlaar = status === "klaar"
-
-  // Eén keer de aandacht trekken zodra de prijs er staat, zonder herhaling.
-  // Een knop die blijft bewegen wordt snel vervelend.
-  useEffect(() => {
-    if (!prijsKlaar) return
-    setVraagAandacht(true)
-    const t = setTimeout(() => setVraagAandacht(false), 2000)
-    return () => clearTimeout(t)
-  }, [prijsKlaar])
 
   function eersteInteractie() {
     if (gestart.current) return
@@ -167,7 +157,6 @@ export default function Calculator({
       const afstand = Number(data.distanceValue)
       setKm(afstand)
       setStatus("klaar")
-      setDetailsOpen(true)
       track(EVENTS.PRIJS_BEREKEND, {
         dienst: dienst.korteNaam,
         aantal_honden: aantalHonden,
@@ -501,7 +490,6 @@ export default function Calculator({
                         <ExtraVragen
                           idPrefix={idPrefix}
                           open={detailsOpen}
-                          aandacht={false}
                           setOpen={(v) => {
                             setDetailsOpen(v)
                             if (v) track(EVENTS.DETAILS_GEOPEND)
@@ -653,7 +641,6 @@ function Regel({ label, waarde, grijs }) {
 function ExtraVragen({
   idPrefix,
   open,
-  aandacht,
   setOpen,
   naam,
   setNaam,
@@ -677,32 +664,25 @@ function ExtraVragen({
       : "Op welke dagen heb je me meestal nodig?"
 
   return (
-    <div
-      className={`overflow-hidden rounded-2xl border-[1.5px] bg-accent-soft transition-colors ${
-        aandacht ? "attentie border-accent" : "border-ink/12"
-      }`}
-    >
+    /* Dit stond eerst als een oranje kaart náást de verzendknop, en trok daar
+       de aandacht weg van de eindactie. Binnen het formulier is het een
+       ingeklapte, optionele regel: wie het invult krijgt sneller antwoord,
+       wie het overslaat kan gewoon versturen. */
+    <div className="overflow-hidden rounded-2xl border border-ink/12 bg-sand">
       <button
         type="button"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-controls={`${idPrefix}-extra`}
-        className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left"
+        className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
       >
-        <span className="flex items-start gap-3">
-          <span
-            aria-hidden="true"
-            className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-white"
-          >
-            ?
+        <span>
+          <span className="block text-sm font-semibold text-ink">
+            Wanneer heb je me nodig?{" "}
+            <span className="font-normal text-muted">(optioneel)</span>
           </span>
-          <span>
-            <span className="block text-sm font-bold text-ink">
-              Wanneer heb je me nodig?
-            </span>
-            <span className="block text-xs text-muted">
-              Vul dit in, dan kan ik meteen zeggen of het past
-            </span>
+          <span className="block text-xs text-muted">
+            Vul je dit in, dan kan ik meteen zeggen of het past
           </span>
         </span>
         <svg
