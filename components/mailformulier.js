@@ -12,7 +12,7 @@ import { track, EVENTS } from "../lib/analytics"
  * deed bovendien niets bij iemand zonder ingesteld mailprogramma, wat op een
  * laptop met webmail vaak zo is.
  */
-export default function Mailformulier({ bericht, naam, onVerstuurd }) {
+export default function Mailformulier({ bericht, naam, extra, onVerstuurd }) {
   const [open, setOpen] = useState(false)
   const [email, setEmail] = useState("")
   const [status, setStatus] = useState("leeg") // leeg | laden | klaar | fout
@@ -96,6 +96,11 @@ export default function Mailformulier({ bericht, naam, onVerstuurd }) {
       <p className="mt-1.5 text-xs text-muted">
         Daar antwoord ik op. Verder doe ik er niets mee.
       </p>
+
+      {/* De vragen over wanneer je me nodig hebt stonden eerst als eigen blok
+          naast de verzendknoppen, en concurreerden daar met de eindactie.
+          Binnen het formulier zijn het gewoon extra velden. */}
+      {extra && <div className="mt-5">{extra}</div>}
 
       {/* Honeypot: uit beeld en overgeslagen bij tabben, maar geen display:none
           omdat sommige bots daar juist op letten. */}

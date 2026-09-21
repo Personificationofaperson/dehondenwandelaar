@@ -496,49 +496,31 @@ export default function Calculator({
                     <VerzendKnoppen
                       bericht={bouwBericht()}
                       naam={naam}
-                      onKlik={(kanaal) => meetContact("boven", kanaal)}
-                    />
-                    <p className="mb-5 mt-3 text-center text-xs text-muted">
-                      Of vul hieronder nog even in wanneer je me nodig hebt, dan staat
-                      dat meteen in je bericht.
-                    </p>
-
-                    <ExtraVragen
-                      idPrefix={idPrefix}
-                      open={detailsOpen}
-                      aandacht={vraagAandacht}
-                      setOpen={(v) => {
-                        setDetailsOpen(v)
-                        if (v) track(EVENTS.DETAILS_GEOPEND)
-                      }}
-                      naam={naam}
-                      setNaam={setNaam}
-                      frequentie={frequentie}
-                      kiesFrequentie={kiesFrequentie}
-                      dagen={dagen}
-                      wisselDag={wisselDag}
-                      moment={moment}
-                      setMoment={setMoment}
-                      startdatum={startdatum}
-                      setStartdatum={setStartdatum}
-                      einddatum={einddatum}
-                      setEinddatum={setEinddatum}
-                    />
-
-                    {ingevuld && (
-                      <>
-                        <VerzendKnoppen
-                          bericht={bouwBericht()}
+                      onKlik={(kanaal) => meetContact("enig", kanaal)}
+                      extra={
+                        <ExtraVragen
+                          idPrefix={idPrefix}
+                          open={detailsOpen}
+                          aandacht={false}
+                          setOpen={(v) => {
+                            setDetailsOpen(v)
+                            if (v) track(EVENTS.DETAILS_GEOPEND)
+                          }}
                           naam={naam}
-                          onKlik={(kanaal) => meetContact("onder", kanaal)}
-                          className="mt-5"
+                          setNaam={setNaam}
+                          frequentie={frequentie}
+                          kiesFrequentie={kiesFrequentie}
+                          dagen={dagen}
+                          wisselDag={wisselDag}
+                          moment={moment}
+                          setMoment={setMoment}
+                          startdatum={startdatum}
+                          setStartdatum={setStartdatum}
+                          einddatum={einddatum}
+                          setEinddatum={setEinddatum}
                         />
-                        <p className="mt-3 text-center text-xs text-muted">
-                          Alles wat je invulde staat straks in je bericht. Je kan het nog
-                          aanpassen voor je verstuurt.
-                        </p>
-                      </>
-                    )}
+                      }
+                    />
                   </>
                 ) : (
                   /* De verzendknop zat volledig verborgen tot er gerekend was.
@@ -609,20 +591,33 @@ export default function Calculator({
  * eronder staan, want bijna vier op de vijf bezoekers komt van mobiel en
  * daar is dat de laagste drempel.
  */
-function VerzendKnoppen({ bericht, naam, onKlik, className = "" }) {
+/**
+ * Eén eindactie: versturen. WhatsApp stond hier eerst als tweede volle knop
+ * in verzadigd groen, waardoor er twee even luide knoppen naast elkaar
+ * stonden en geen van beide de primaire was. Nu is het een rustige
+ * alternatieve link eronder.
+ */
+function VerzendKnoppen({ bericht, naam, extra, onKlik, className = "" }) {
   return (
     <div className={`relative ${className}`}>
       <Mailformulier
         bericht={bericht}
         naam={naam}
+        extra={extra}
         onVerstuurd={() => onKlik("email")}
       />
-      <div className="my-3 flex items-center gap-3 text-xs text-muted">
-        <span className="h-px flex-1 bg-ink/12" />
-        of
-        <span className="h-px flex-1 bg-ink/12" />
-      </div>
-      <VerzendKnop href={whatsappLink(bericht)} onKlik={() => onKlik("whatsapp")} />
+      <p className="mt-4 text-center text-xs text-muted">
+        Liever via WhatsApp?{" "}
+        <a
+          href={whatsappLink(bericht)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => onKlik("whatsapp")}
+          className="font-bold text-accent underline underline-offset-4"
+        >
+          Stuur het zo door
+        </a>
+      </p>
     </div>
   )
 }
