@@ -1,36 +1,36 @@
+// Korte regels in plaats van alinea's. Wie dit blok bekijkt wil weten of
+// zijn moment erbij zit, niet de redenering erachter lezen.
 const MOMENTEN = [
   {
     titel: "Avond",
     dagen: "Elke dag",
-    tekst: "Vanaf 17:30 de deur uit. Dit is het ruimste moment in mijn agenda.",
+    tekst: "Vanaf 17:30. Dit is het ruimste moment in mijn agenda.",
   },
   {
     titel: "Vroege ochtend",
-    dagen: "Maandag, dinsdag & woensdag",
-    tekst:
-      "Lukt het 's ochtends zelf niet? Dan spring ik graag bij, voor jij de deur uitgaat.",
+    dagen: "Ma, di en wo",
+    tekst: "Voor jij zelf de deur uitgaat.",
   },
   {
     titel: "Middag",
     dagen: "Alleen in duo",
     tekst:
-      "Mijn solo-plekken in de middag zijn volzet. Een middagwandeling kan enkel nog als jouw hond kan meelopen met een retriever die ik al vast uitlaat, en alleen als de karakters bij elkaar passen.",
+      "Solo-plekken zijn volzet. Kan enkel als je hond meeloopt met een retriever die ik al uitlaat.",
   },
 ]
 
-const ZONES = [
-  {
-    titel: "Wandelingen",
-    straal: "6",
-    tekst:
-      "Gefocust op Dilsen-Stokkem en de directe omstreken. Door lokaal te blijven gaat de tijd naar de wandeling in plaats van naar de auto.",
-  },
-  {
-    titel: "Dagpakket",
-    straal: "6",
-    tekst:
-      "Bij een dagpakket rijd ik twee keer heen en terug op dezelfde dag. Daarom blijft ook hier 7 km de grens, zodat de tijd naar je hond gaat in plaats van naar de weg.",
-  },
+export const STRAAL_KM = 7
+
+// De twee zones stonden eerst als aparte kaarten, allebei met dezelfde
+// straal en bijna dezelfde tekst. Dat was pure herhaling. Nu één blok met
+// de plaatsen waar ik echt kom, wat meteen scanbaarder is.
+const PLAATSEN = [
+  "Dilsen",
+  "Stokkem",
+  "Lanklaar",
+  "Rotem",
+  "Elen",
+  "Meeswijk",
 ]
 
 export default function Praktisch() {
@@ -41,9 +41,8 @@ export default function Praktisch() {
           <span className="eyebrow">Praktisch</span>
           <h2 className="mt-3">Beschikbaarheid en werkgebied rond Dilsen-Stokkem</h2>
           <p className="lead mt-4">
-            Ik werk met vaste momenten en duidelijke zones. Zo blijft er tijd over
-            voor de wandeling zelf. Past een ander moment beter, stuur dan gewoon
-            een berichtje.
+            Vaste momenten, één duidelijke zone. Past er niets, stuur dan gewoon een
+            berichtje.
           </p>
         </div>
 
@@ -86,26 +85,26 @@ export default function Praktisch() {
               Werkgebied
             </h3>
 
-            <ul className="space-y-3">
-              {ZONES.map((zone) => (
-                <li key={zone.titel} className="card reveal flex gap-5 p-6">
-                  <span className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-moss-soft text-center">
-                    <span className="font-display text-xl leading-none text-ink">
-                      {zone.straal}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-muted">
-                      km
-                    </span>
-                  </span>
-                  <span>
-                    <strong className="block text-ink">{zone.titel}</strong>
-                    <span className="mt-1 block text-[15px] leading-relaxed text-muted">
-                      {zone.tekst}
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <div className="card reveal p-6">
+              <p className="font-display text-2xl leading-none text-ink">
+                {STRAAL_KM} km rond Dilsen-Stokkem
+              </p>
+              <p className="mt-2.5 text-[15px] leading-relaxed text-muted">
+                Voor wandelingen én dagpakketten. Door lokaal te blijven gaat de tijd
+                naar je hond in plaats van naar de weg.
+              </p>
+
+              <p className="mt-6 text-xs font-bold uppercase tracking-wider text-muted">
+                Waar ik kom
+              </p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {PLAATSEN.map((plaats) => (
+                  <li key={plaats} className="chip">
+                    {plaats}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <p className="mt-4 text-sm text-muted">
               Woon je net buiten de zone? Vraag het gerust, dan kijken we samen wat

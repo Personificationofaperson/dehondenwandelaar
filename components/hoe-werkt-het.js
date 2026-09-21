@@ -30,15 +30,17 @@ export default function HoeWerktHet() {
 
         <ol className="mt-12 grid gap-5 md:grid-cols-3">
           {STAPPEN.map((stap) => (
-            <li key={stap.nummer} className="card reveal relative p-7 pt-9">
+            /* Het nummer stond eerst half achter de titel. Nu staat het
+               erboven als een eigen merkteken, dus de titel blijft leesbaar. */
+            <li key={stap.nummer} className="card reveal p-7">
               <span
                 aria-hidden="true"
-                className="absolute right-6 top-5 font-display text-5xl leading-none text-moss-soft"
+                className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-moss-soft font-display text-base font-semibold text-moss"
               >
                 {stap.nummer}
               </span>
-              <h3 className="relative">{stap.titel}</h3>
-              <p className="relative mt-3 text-[15px] leading-relaxed text-muted">{stap.tekst}</p>
+              <h3>{stap.titel}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-muted">{stap.tekst}</p>
             </li>
           ))}
         </ol>

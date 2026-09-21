@@ -185,6 +185,16 @@
   }
   .btn-soft:hover { background: #fffdfb; }
 
+  /* Wit op wit was niet als knop te herkennen. Deze heeft een rand en
+     accentkleur, dus hij leest als secundaire actie zonder de hoofdknop
+     te beconcurreren. */
+  .btn-outline {
+    background: #fff;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+  }
+  .btn-outline:hover { background: var(--accent-soft); }
+
   .btn-ghost-light {
     background: rgba(255, 255, 255, .12);
     color: #fff;

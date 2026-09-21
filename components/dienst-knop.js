@@ -10,7 +10,7 @@ export default function DienstKnop({ dienstId, label }) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => track(EVENTS.CONTACT_KLIK, { plek: "diensten", dienst: dienstId, kanaal: "ringtwice" })}
-      className="btn btn-soft mt-auto w-full"
+      className="btn btn-outline mt-auto w-full"
     >
       {label}
     </a>
