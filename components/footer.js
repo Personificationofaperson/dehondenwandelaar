@@ -2,13 +2,13 @@ import Image from "next/image"
 import { RINGTWICE_URL, TELEFOON_LINK, TELEFOON_WEERGAVE, whatsappLink } from "../lib/prijzen"
 
 const MENU = [
-  { label: "Diensten", href: "#diensten" },
-  { label: "Tarieven", href: "#tarieven" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Zo werkt het", href: "#hoe-werkt-het" },
-  { label: "Werkgebied", href: "#werkgebied" },
-  { label: "Over mij", href: "#over" },
-  { label: "Veelgestelde vragen", href: "#faq" },
+  { label: "Diensten", href: "/#diensten" },
+  { label: "Prijzen", href: "/prijzen" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Zo werkt het", href: "/#hoe-werkt-het" },
+  { label: "Werkgebied", href: "/#werkgebied" },
+  { label: "Over mij", href: "/#over" },
+  { label: "Veelgestelde vragen", href: "/#faq" },
 ]
 
 export default function Footer() {

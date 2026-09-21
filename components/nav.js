@@ -6,12 +6,15 @@ import Link from "next/link"
 import { RINGTWICE_URL } from "../lib/prijzen"
 import { track, EVENTS } from "../lib/analytics"
 
+// De ankers staan bewust als /#... genoteerd. Het menu staat ook op
+// /prijzen, en daar moet een klik op Reviews eerst terug naar de homepage
+// gaan in plaats van een sectie te zoeken die er niet is.
 const LINKS = [
-  { label: "Diensten", href: "#diensten" },
-  { label: "Tarieven", href: "#tarieven" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Werkgebied", href: "#werkgebied" },
-  { label: "Over mij", href: "#over" },
+  { label: "Diensten", href: "/#diensten" },
+  { label: "Prijzen", href: "/prijzen" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Werkgebied", href: "/#werkgebied" },
+  { label: "Over mij", href: "/#over" },
 ]
 
 export default function Nav() {

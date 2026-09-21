@@ -67,6 +67,7 @@ export const viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": "https://dehondenwandelaar.be/#bedrijf",
   name: "De Hondenwandelaar",
   description:
     "Persoonlijke hondenuitlaatservice in Dilsen-Stokkem en omgeving. Solo of in duo, nooit in groep.",

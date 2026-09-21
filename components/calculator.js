@@ -15,7 +15,20 @@ import { track, EVENTS } from "../lib/analytics"
 
 const CALCULEERBARE_DIENSTEN = DIENSTEN.filter((d) => d.inCalculator)
 
-export default function Calculator() {
+/**
+ * De calculator staat zowel op de homepage als op /prijzen. Op de homepage
+ * draagt hij zijn eigen kop, op /prijzen staat er al een kop boven en zetten
+ * we die uit met toonKop={false}. Zo staat dezelfde h2 nooit twee keer op
+ * dezelfde pagina.
+ */
+export default function Calculator({
+  id = "tarieven",
+  eyebrow = "Tarieven",
+  titel = "Wat kost een hondenuitlaatservice in Dilsen-Stokkem?",
+  lead = "Geen verrassingen achteraf. Kies je dienst, vul je adres in en je ziet meteen wat een wandeling voor jouw adres kost, reiskost inbegrepen.",
+  toonKop = true,
+  onderKop = null,
+} = {}) {
   const idPrefix = useId()
   const gestart = useRef(false)
 
@@ -188,18 +201,18 @@ export default function Calculator() {
   }
 
   return (
-    <section id="tarieven" className="full-bleed bg-white">
+    <section id={id} className="full-bleed bg-white">
       <div className="shell section">
-        <div className="max-w-2xl">
-          <span className="eyebrow">Tarieven</span>
-          <h2 className="mt-3">Wat kost een hondenuitlaatservice in Dilsen-Stokkem?</h2>
-          <p className="lead mt-4">
-            Geen verrassingen achteraf. Kies je dienst, vul je adres in en je ziet
-            meteen wat een wandeling voor jouw adres kost, reiskost inbegrepen.
-          </p>
-        </div>
+        {toonKop && (
+          <div className="max-w-2xl">
+            <span className="eyebrow">{eyebrow}</span>
+            <h2 className="mt-3">{titel}</h2>
+            <p className="lead mt-4">{lead}</p>
+            {onderKop}
+          </div>
+        )}
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
+        <div className={`grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:gap-12 ${toonKop ? "mt-12" : ""}`}>
           {/* ------------------------- FORMULIER ------------------------- */}
           <form onSubmit={berekenReiskost}>
             <fieldset className="border-0 p-0">
