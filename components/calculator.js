@@ -10,6 +10,8 @@ import {
   reiskost,
   euro,
   whatsappLink,
+  mailtoLink,
+  EMAIL,
 } from "../lib/prijzen"
 import { track, EVENTS } from "../lib/analytics"
 import Poot from "./poot"
@@ -188,11 +190,11 @@ export default function Calculator({
 
   const ingevuld = Boolean(frequentie || dagen.length > 0 || moment || startdatum || naam)
 
-  function meetContact(positie) {
+  function meetContact(positie, kanaal = "whatsapp") {
     track(EVENTS.CONTACT_KLIK, {
       plek: "calculator",
       positie,
-      kanaal: "whatsapp",
+      kanaal,
       dienst: dienst.korteNaam,
       aantal_honden: aantalHonden,
       prijs: totaal,
@@ -374,7 +376,7 @@ export default function Calculator({
                 ? "Even rekenen…"
                 : prijsKlaar
                   ? "Opnieuw berekenen"
-                  : "Bereken mijn richtprijs"}
+                  : "Bereken mijn totaalprijs"}
             </button>
           </form>
 
@@ -385,7 +387,17 @@ export default function Calculator({
                 <span className="text-xs font-bold uppercase tracking-[0.14em] text-moss-text">
                   Jouw richtprijs
                 </span>
-                <p className="mt-2 font-display text-5xl leading-none">{euro(totaal)}</p>
+                {/* Zonder "vanaf" leest dit bedrag als het eindantwoord, en dan
+                    drukt niemand meer op Berekenen. En juist achter die knop zit
+                    de knop om je een bericht te sturen. */}
+                <p className="mt-2 font-display text-5xl leading-none">
+                  {!prijsKlaar && (
+                    <span className="mr-2 align-middle font-body text-base font-semibold text-moss-text">
+                      vanaf
+                    </span>
+                  )}
+                  {euro(totaal)}
+                </p>
                 <p className="mt-2 text-sm text-moss-text">
                   {prijsKlaar
                     ? dienst.ritten > 1
@@ -414,8 +426,10 @@ export default function Calculator({
                     grijs={!prijsKlaar}
                   />
                   <div className="flex items-baseline justify-between border-t border-ink/12 pt-3 font-bold text-ink">
-                    <dt>Totaal</dt>
-                    <dd className="font-display text-xl">{euro(totaal)}</dd>
+                    <dt>{prijsKlaar ? "Totaal" : "Totaal, zonder reiskost"}</dt>
+                    <dd className="font-display text-xl">
+                      {prijsKlaar ? euro(totaal) : `vanaf ${euro(totaal)}`}
+                    </dd>
                   </div>
                 </dl>
 
@@ -427,9 +441,9 @@ export default function Calculator({
 
                 {prijsKlaar ? (
                   <>
-                    <VerzendKnop
-                      href={whatsappLink(bouwBericht())}
-                      onKlik={() => meetContact("boven")}
+                    <VerzendKnoppen
+                      bericht={bouwBericht()}
+                      onKlik={(kanaal) => meetContact("boven", kanaal)}
                     />
                     <p className="mb-5 mt-3 text-center text-xs text-muted">
                       Of vul hieronder nog even in wanneer je me nodig hebt, dan staat
@@ -460,9 +474,9 @@ export default function Calculator({
 
                     {ingevuld && (
                       <>
-                        <VerzendKnop
-                          href={whatsappLink(bouwBericht())}
-                          onKlik={() => meetContact("onder")}
+                        <VerzendKnoppen
+                          bericht={bouwBericht()}
+                          onKlik={(kanaal) => meetContact("onder", kanaal)}
                           className="mt-5"
                         />
                         <p className="mt-3 text-center text-xs text-muted">
@@ -473,11 +487,28 @@ export default function Calculator({
                     )}
                   </>
                 ) : (
-                  <p className="rounded-2xl bg-accent-soft px-4 py-3 text-sm text-muted">
-                    Vul je adres in en druk op{" "}
-                    <strong className="text-ink">Bereken mijn richtprijs</strong>. Daarna
-                    kan je alles in één klik naar me doorsturen.
-                  </p>
+                  /* De verzendknop zat volledig verborgen tot er gerekend was.
+                     Niemand wist dus dat die knop er was, en er stond al een
+                     bedrag op het scherm. Hier staat hij grijs in beeld, zodat
+                     zichtbaar is wat die berekening oplevert. */
+                  <>
+                    <div
+                      aria-hidden="true"
+                      className="btn w-full cursor-default select-none bg-ink/[.07] text-muted"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="4" y="10.5" width="16" height="10" rx="2.5" />
+                        <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5" />
+                      </svg>
+                      Je bericht staat hier klaar
+                    </div>
+                    <p className="mt-3 text-center text-xs leading-relaxed text-muted">
+                      Vul je adres in en druk op{" "}
+                      <strong className="text-ink">Bereken mijn totaalprijs</strong>. Dan
+                      weet je wat de reiskost is en zet ik je bericht hier klaar, met
+                      alles er al in.
+                    </p>
+                  </>
                 )}
               </div>
             </div>
@@ -491,6 +522,34 @@ export default function Calculator({
         </div>
       </div>
     </section>
+  )
+}
+
+/**
+ * WhatsApp blijft de eerste keuze, maar er staat nu een mailknop onder voor
+ * wie geen WhatsApp heeft of op een laptop zit. Zonder die tweede uitgang
+ * liep een deel van de bezoekers dood op het moment dat ze wilden boeken.
+ */
+function VerzendKnoppen({ bericht, onKlik, className = "" }) {
+  const mail = mailtoLink("Aanvraag via de prijscalculator", bericht)
+
+  return (
+    <div className={className}>
+      <VerzendKnop href={whatsappLink(bericht)} onKlik={() => onKlik("whatsapp")} />
+      {mail && (
+        <a
+          href={mail}
+          onClick={() => onKlik("email")}
+          className="btn btn-outline mt-2.5 w-full"
+        >
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
+            <path d="m3 7 9 6 9-6" />
+          </svg>
+          Of stuur het via e-mail
+        </a>
+      )}
+    </div>
   )
 }
 
