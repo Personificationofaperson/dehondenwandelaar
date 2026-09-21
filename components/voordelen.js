@@ -32,6 +32,17 @@ const PUNTEN = [
     ),
   },
   {
+    titel: "Niet elke keer hetzelfde rondje",
+    tekst:
+      "Vaste klanten gaan er geregeld op uit. Naar de losloopzone in het bos aan de Brugstraat in Rotem, of naar de Negenoordplas. Afwisseling doet een hond meer dan een extra kwartier om de blok.",
+    icoon: (
+      <>
+        <path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11Z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </>
+    ),
+  },
+  {
     titel: "Verplichte kennismaking",
     tekst:
       "Vertrouwen bouw je op. Ik wil jouw hond kennen en begrijpen nog voor we samen de deur uitgaan. Daarom kom ik eerst langs, gratis en vrijblijvend.",
@@ -57,9 +68,16 @@ export default function Voordelen() {
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {PUNTEN.map((p) => (
-            <li key={p.titel} className="card card-hover reveal p-7">
+        {/* Zes kolommen in plaats van drie, zodat de vijf kaarten netjes
+            verdelen als drie plus twee in plaats van een gat rechtsonder. */}
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
+          {PUNTEN.map((p, i) => (
+            <li
+              key={p.titel}
+              className={`card card-hover reveal p-7 ${
+                i < 3 ? "lg:col-span-2" : "lg:col-span-3"
+              }`}
+            >
               <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-moss-soft">
                 <svg
                   width="22"

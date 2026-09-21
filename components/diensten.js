@@ -12,8 +12,8 @@ const KAARTEN = [
     alt: "Kimberly met een Mechelse herder tijdens een wandeling",
     objectPosition: "center 65%",
     tekst:
-      "Een actieve, verfrissende wandeling in de eigen buurt. Ideaal terwijl jij aan het werk bent, even geen tijd hebt of gewoon een helpende hand kan gebruiken.",
-    kenmerken: ["30 min", "Max 7 km rond Dilsen", "Solo of in duo"],
+      "Een actieve, verfrissende wandeling in de eigen buurt. Ideaal terwijl jij aan het werk bent, even geen tijd hebt of gewoon een helpende hand kan gebruiken. Bij vaste klanten trekken we er geregeld op uit, naar de losloopzone in Rotem of de Negenoordplas.",
+    kenmerken: ["30 min", "Max 7 km rond Dilsen", "Solo of in duo", "Wisselende routes"],
     uitgelicht: true,
   },
   {

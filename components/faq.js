@@ -12,6 +12,16 @@ const VRAGEN = [
       "'s Avonds vanaf 17:30, elke dag van de week. In de vroege ochtend op maandag, dinsdag en woensdag. Middagwandelingen kunnen alleen nog als duo: mijn solo-plekken in de middag zijn volzet, dus jouw hond moet dan kunnen meelopen met een retriever die ik al vast uitlaat.",
   },
   {
+    vraag: "Waar wandel je precies?",
+    antwoord:
+      "Meestal in de eigen buurt van je hond, want vertrouwde geuren en routines doen veel. Bij vaste klanten trekken we er geregeld op uit: naar de omheinde losloopzone in het bos aan de Brugstraat in Rotem, achter de Kapel van de Weerstand, of naar de Negenoordplas waar honden al jaren los mogen. In het natuurgebied Negenoord-Kerkeweerd blijft je hond aan de leiband en komen we niet in de struinzone, want daar grazen de runderen en paarden.",
+  },
+  {
+    vraag: "Mag mijn hond los tijdens de wandeling?",
+    antwoord:
+      "Alleen in een officiële losloopzone, en alleen als jij daar toestemming voor geeft en als ik je hond goed genoeg ken. Daarbuiten blijft hij altijd aan de leiband. Ook op weg naar zo'n zone, dat is trouwens gewoon de regel in Dilsen-Stokkem.",
+  },
+  {
     vraag: "Is de kennismaking echt verplicht?",
     antwoord:
       "Ja, en ze is gratis en vrijblijvend. Ik kom langs om je hond en zijn routines te leren kennen, en om te zien of hij in duo kan wandelen en met welk maatje dat zou klikken. Er wordt tijdens die kennismaking nog niet gewandeld. Pas daarna beslis je of je verder wil.",
