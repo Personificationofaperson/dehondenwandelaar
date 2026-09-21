@@ -492,21 +492,42 @@ export default function Calculator({
                      bedrag op het scherm. Hier staat hij grijs in beeld, zodat
                      zichtbaar is wat die berekening oplevert. */
                   <>
+                    {/* Een uitgeschakelde versie van de echte knop, met een
+                        verzendpictogram. Een slotje leest als een blokkade, dit
+                        leest als iets dat zo meteen kan. */}
                     <div
                       aria-hidden="true"
                       className="btn w-full cursor-default select-none bg-ink/[.07] text-muted"
                     >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="4" y="10.5" width="16" height="10" rx="2.5" />
-                        <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5" />
+                        <path d="M21 3 10.5 13.5" />
+                        <path d="M21 3 14.5 21l-4-8-8-4L21 3Z" />
                       </svg>
-                      Je bericht staat hier klaar
+                      Verstuur je aanvraag in één klik
                     </div>
-                    <p className="mt-3 text-center text-xs leading-relaxed text-muted">
+                    <ul className="mt-4 space-y-2 text-xs leading-relaxed text-muted">
+                      <li className="flex gap-2">
+                        <span aria-hidden="true" className="text-accent">✓</span>
+                        <span>
+                          Je ziet wat het <strong className="text-ink">bij jou thuis</strong>{" "}
+                          kost, reiskost inbegrepen
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span aria-hidden="true" className="text-accent">✓</span>
+                        <span>
+                          Je bericht staat klaar met je dienst, adres en prijs er al in,{" "}
+                          <strong className="text-ink">je typt zelf niets</strong>
+                        </span>
+                      </li>
+                      <li className="flex gap-2">
+                        <span aria-hidden="true" className="text-accent">✓</span>
+                        <span>Je kan het nog aanpassen voor je verstuurt</span>
+                      </li>
+                    </ul>
+                    <p className="mt-3 text-center text-xs text-muted">
                       Vul je adres in en druk op{" "}
-                      <strong className="text-ink">Bereken mijn totaalprijs</strong>. Dan
-                      weet je wat de reiskost is en zet ik je bericht hier klaar, met
-                      alles er al in.
+                      <strong className="text-ink">Bereken mijn totaalprijs</strong>.
                     </p>
                   </>
                 )}
