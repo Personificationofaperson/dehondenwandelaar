@@ -94,7 +94,28 @@ export async function POST(request) {
     if (!response.ok) {
       const detail = await response.text()
       console.error("Resend gaf status", response.status, detail)
-      return Response.json({ error: "Versturen mislukt" }, { status: 502 })
+
+      // Resend antwoordt met JSON waarin `name` het soort fout benoemt.
+      // Dat is geen geheim, en het scheelt Kimberly een zoektocht in de logs.
+      let soort = ""
+      try {
+        soort = JSON.parse(detail)?.name || ""
+      } catch {}
+
+      // De twee fouten die in de praktijk voorkomen, in gewone taal.
+      // 403 zonder geverifieerd domein betekent altijd hetzelfde: je mag
+      // dan enkel naar het adres van je eigen Resend-account sturen.
+      let uitleg = "Versturen mislukt"
+      if (response.status === 401 || response.status === 403) {
+        uitleg =
+          "De mailinstellingen kloppen nog niet. " +
+          "Stuur je bericht gerust via WhatsApp, dan lees ik het meteen."
+      }
+
+      return Response.json(
+        { error: uitleg, code: soort || `http_${response.status}` },
+        { status: 502 },
+      )
     }
 
     return Response.json({ ok: true })
@@ -102,4 +123,15 @@ export async function POST(request) {
     console.error("Versturen mislukt:", error)
     return Response.json({ error: "Er is iets misgegaan bij het versturen" }, { status: 500 })
   }
+}
+
+// Een snelle controle zonder de logs van Vercel te openen. Geeft alleen terug
+// óf een instelling bestaat, nooit de waarde zelf, dus hier lekt niets mee.
+// Open hiervoor https://dehondenwandelaar.be/api/contact in je browser.
+export async function GET() {
+  return Response.json({
+    resend_sleutel_ingesteld: Boolean(process.env.RESEND_API_KEY),
+    ontvanger_ingesteld: Boolean(process.env.CONTACT_EMAIL),
+    eigen_afzender_ingesteld: Boolean(process.env.RESEND_FROM),
+  })
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { track, EVENTS } from "../lib/analytics"
+import { whatsappLink } from "../lib/prijzen"
 
 /**
  * Stuurt de samenvatting uit de calculator naar Kimberly, via de eigen
@@ -36,6 +37,9 @@ export default function Mailformulier({ bericht, naam, extra, onVerstuurd }) {
       if (!res.ok) {
         setStatus("fout")
         setFout(data.error || "Versturen lukte even niet. Probeer het zo nog eens.")
+        // Staat in de console van de browser, zodat een fout te herleiden is
+        // zonder dat de bezoeker technische taal te zien krijgt.
+        if (data.code) console.warn("contact:", data.code)
         return
       }
 
@@ -123,6 +127,20 @@ export default function Mailformulier({ bericht, naam, extra, onVerstuurd }) {
       <p aria-live="polite" className="mt-2 min-h-[1.25rem] text-center text-sm">
         {status === "fout" && <span className="font-semibold text-accent">{fout}</span>}
       </p>
+
+      {/* Lukt mailen niet, dan is de aanvraag nog niet weg. WhatsApp staat
+          normaal als stille tekstlink onderaan, hier mag hij wel opvallen. */}
+      {status === "fout" && (
+        <a
+          href={whatsappLink(bericht)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => onVerstuurd?.()}
+          className="btn btn-outline mt-1 w-full"
+        >
+          Stuur het via WhatsApp
+        </a>
+      )}
     </form>
   )
 }
