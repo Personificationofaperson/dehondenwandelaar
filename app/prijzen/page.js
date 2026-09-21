@@ -51,7 +51,7 @@ const VRAGEN = [
       .toFixed(2)
       .replace(".", ",")} per gereden kilometer, heen en terug gerekend. Voor de meeste adressen in Dilsen-Stokkem komt dat neer op ${euro(
       ritkost(2),
-    )} tot ${euro(ritkost(6))} per bezoek.`,
+    )} tot ${euro(ritkost(7))} per bezoek.`,
   },
   {
     vraag: "Wat kost een tweede hond?",
