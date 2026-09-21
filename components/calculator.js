@@ -34,6 +34,9 @@ export default function Calculator({
 } = {}) {
   const idPrefix = useId()
   const gestart = useRef(false)
+  // Het adres waarvoor we al bij Google zijn geweest, zodat we niet twee keer
+  // hetzelfde opvragen.
+  const laatsteAdres = useRef("")
 
   // Keuzes die meteen in de prijs doorwerken
   const [dienstId, setDienstId] = useState(CALCULEERBARE_DIENSTEN[0].id)
@@ -98,12 +101,54 @@ export default function Calculator({
     setEinddatum("")
   }
 
+  /**
+   * Het adres is compleet genoeg om Google iets zinnigs te kunnen vragen.
+   * De postcode moet vier cijfers zijn, anders sturen we requests weg die
+   * toch niets opleveren.
+   */
+  function adresCompleet() {
+    return (
+      adres.straat.trim().length > 1 &&
+      adres.huisnummer.trim() !== "" &&
+      /^\d{4}$/.test(adres.postcode.trim()) &&
+      adres.stad.trim().length > 1
+    )
+  }
+
+  function adresAlsTekst() {
+    return `${adres.straat.trim()} ${adres.huisnummer.trim()}, ${adres.postcode.trim()} ${adres.stad.trim()}`
+  }
+
+  /**
+   * Rekent vanzelf zodra het adres compleet is, met een pauze van 800 ms na
+   * de laatste toetsaanslag. Er stond eerst een knop tussen, maar naast de
+   * prijskaart stond al een bedrag, dus niemand had een reden om erop te
+   * drukken. En juist achter die knop zat de verzendknop.
+   *
+   * `laatsteAdres` onthoudt waarvoor we al gerekend hebben, zodat een
+   * hertekening of een wijziging elders in het formulier geen tweede
+   * request naar Google stuurt.
+   */
+  useEffect(() => {
+    if (!adresCompleet()) return
+    const tekst = adresAlsTekst()
+    if (tekst === laatsteAdres.current) return
+
+    const timer = setTimeout(() => {
+      laatsteAdres.current = tekst
+      berekenReiskost()
+    }, 800)
+    return () => clearTimeout(timer)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [adres.straat, adres.huisnummer, adres.postcode, adres.stad])
+
   async function berekenReiskost(e) {
-    e.preventDefault()
+    if (e) e.preventDefault()
+    if (!adresCompleet()) return
     setStatus("laden")
     setFoutmelding("")
 
-    const volledigAdres = `${adres.straat} ${adres.huisnummer}, ${adres.postcode} ${adres.stad}`
+    const volledigAdres = adresAlsTekst()
 
     try {
       const res = await fetch(`/api/distance?destination=${encodeURIComponent(volledigAdres)}`)
@@ -111,6 +156,7 @@ export default function Calculator({
 
       if (!res.ok || !data.distanceValue || Number.isNaN(Number(data.distanceValue))) {
         setStatus("fout")
+        laatsteAdres.current = ""
         setFoutmelding(
           res.status === 404
             ? "Dat adres vinden we niet terug. Klopt de straatnaam en de postcode?"
@@ -131,6 +177,7 @@ export default function Calculator({
       })
     } catch {
       setStatus("fout")
+      laatsteAdres.current = ""
       setFoutmelding(
         "Het berekenen lukte even niet. Probeer het zo nog eens, of stuur me gewoon een berichtje."
       )
@@ -367,17 +414,23 @@ export default function Calculator({
               </div>
             </fieldset>
 
-            <button
-              type="submit"
-              className="btn btn-primary mt-6 w-full sm:w-auto"
-              disabled={status === "laden"}
-            >
-              {status === "laden"
-                ? "Even rekenen…"
-                : prijsKlaar
-                  ? "Opnieuw berekenen"
-                  : "Bereken mijn totaalprijs"}
-            </button>
+            {/* Geen knop meer: de reiskost wordt vanzelf opgehaald zodra het
+                adres compleet is. Alleen bij een fout kan je het opnieuw
+                proberen, want dan is er iets misgegaan dat je zelf niet ziet. */}
+            <p aria-live="polite" className="mt-5 min-h-[1.5rem] text-sm text-muted">
+              {status === "laden" && "Even de reiskost naar je adres ophalen…"}
+              {prijsKlaar && (
+                <span className="font-semibold text-moss">
+                  Je totaalprijs staat hiernaast, inclusief reiskost.
+                </span>
+              )}
+            </p>
+
+            {status === "fout" && (
+              <button type="submit" className="btn btn-outline mt-1">
+                Opnieuw proberen
+              </button>
+            )}
           </form>
 
           {/* ------------------------- PRIJSKAART ------------------------- */}
@@ -403,7 +456,7 @@ export default function Calculator({
                     ? dienst.ritten > 1
                       ? `Inclusief ${dienst.ritten} ritten van en naar jouw adres op ${km} km.`
                       : `Inclusief reiskost voor ${km} km enkele rit.`
-                    : "Reiskost komt hier nog bij zodra je je adres invult."}
+                    : "Vul je adres in, dan tel ik de reiskost er vanzelf bij."}
                 </p>
               </div>
 
@@ -526,8 +579,7 @@ export default function Calculator({
                       </li>
                     </ul>
                     <p className="mt-3 text-center text-xs text-muted">
-                      Vul je adres in en druk op{" "}
-                      <strong className="text-ink">Bereken mijn totaalprijs</strong>.
+                      Vul hiernaast je adres in, de rest gaat vanzelf.
                     </p>
                   </>
                 )}
