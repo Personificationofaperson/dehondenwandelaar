@@ -87,7 +87,7 @@ const jsonLd = {
       latitude: 51.0347,
       longitude: 5.7381,
     },
-    geoRadius: 6000,
+    geoRadius: 7000,
   },
   priceRange: "€€",
   hasOfferCatalog: {

@@ -24,7 +24,7 @@ const VRAGEN = [
   {
     vraag: "Ik woon net buiten je werkgebied. Kan het dan niet?",
     antwoord:
-      "Ik blijf binnen 6 km rond Dilsen-Stokkem, ook voor het dagpakket. Zit je er net buiten? Stuur een berichtje, dan kijken we samen wat haalbaar is.",
+      "Ik blijf binnen 7 km rond Dilsen-Stokkem, ook voor het dagpakket. Zit je er net buiten? Stuur een berichtje, dan kijken we samen wat haalbaar is.",
   },
   {
     vraag: "Wat houdt het dagpakket precies in?",

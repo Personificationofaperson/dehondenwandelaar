@@ -34,7 +34,7 @@ const tweedeHond = HONDEN_OPTIES.find((h) => h.aantal === 2)
 
 // De rekenvoorbeelden komen uit dezelfde functies als de calculator, dus ze
 // kunnen nooit uit elkaar lopen met wat een bezoeker zelf uitrekent.
-const AFSTANDEN = [2, 4, 6]
+const AFSTANDEN = [2, 4, 7]
 
 const VRAGEN = [
   {
@@ -77,7 +77,7 @@ const VRAGEN = [
   {
     vraag: "Wat als ik net buiten je werkgebied woon?",
     antwoord:
-      "Ik blijf binnen 6 km rond Dilsen-Stokkem, ook voor het dagpakket. Zit je er net buiten, stuur dan een berichtje, dan kijken we samen wat haalbaar is.",
+      "Ik blijf binnen 7 km rond Dilsen-Stokkem, ook voor het dagpakket. Zit je er net buiten, stuur dan een berichtje, dan kijken we samen wat haalbaar is.",
   },
 ]
 
@@ -105,7 +105,7 @@ const jsonLd = {
       areaServed: {
         "@type": "GeoCircle",
         geoMidpoint: { "@type": "GeoCoordinates", latitude: 51.0347, longitude: 5.7381 },
-        geoRadius: 6000,
+        geoRadius: 7000,
       },
       offers: [
         {
@@ -281,7 +281,7 @@ export default function Prijzen() {
         <h2>Wat betaal je in totaal?</h2>
         <p className="lead mt-4 max-w-2xl">
           Hieronder staan volledige prijzen, reiskost inbegrepen, voor drie afstanden
-          binnen mijn werkgebied van 6 km rond Dilsen-Stokkem.
+          binnen mijn werkgebied van 7 km rond Dilsen-Stokkem.
         </p>
 
         <div className="mt-8 overflow-x-auto">
@@ -395,7 +395,7 @@ export default function Prijzen() {
               <li>De reiskost, die komt er apart bij en hangt af van je adres</li>
               <li>Hondenoppas of verblijf, dat bied ik niet meer aan</li>
               <li>Groepswandelingen, ik wandel met hoogstens twee honden</li>
-              <li>Bezoeken buiten 6 km rond Dilsen-Stokkem</li>
+              <li>Bezoeken buiten 7 km rond Dilsen-Stokkem</li>
             </ul>
           </div>
         </div>

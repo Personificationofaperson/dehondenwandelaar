@@ -29,7 +29,7 @@ const ZONES = [
     titel: "Dagpakket",
     straal: "6",
     tekst:
-      "Bij een dagpakket rijd ik twee keer heen en terug op dezelfde dag. Daarom blijft ook hier 6 km de grens, zodat de tijd naar je hond gaat in plaats van naar de weg.",
+      "Bij een dagpakket rijd ik twee keer heen en terug op dezelfde dag. Daarom blijft ook hier 7 km de grens, zodat de tijd naar je hond gaat in plaats van naar de weg.",
   },
 ]
 

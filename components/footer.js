@@ -53,7 +53,7 @@ export default function Footer() {
                 {TELEFOON_WEERGAVE}
               </a>
             </li>
-            <li>Werkgebied: 6 km rondom Dilsen-Stokkem</li>
+            <li>Werkgebied: 7 km rondom Dilsen-Stokkem</li>
             <li className="pt-2">
               <a
                 href={whatsappLink("Hoi Kimberly! Ik heb een vraag over de hondenuitlaatservice.")}

@@ -13,7 +13,7 @@ const KAARTEN = [
     objectPosition: "center 65%",
     tekst:
       "Een actieve, verfrissende wandeling in de eigen buurt. Ideaal terwijl jij aan het werk bent, even geen tijd hebt of gewoon een helpende hand kan gebruiken.",
-    kenmerken: ["30 min", "Max 6 km rond Dilsen", "Solo of in duo"],
+    kenmerken: ["30 min", "Max 7 km rond Dilsen", "Solo of in duo"],
     uitgelicht: true,
   },
   {
@@ -24,7 +24,7 @@ const KAARTEN = [
     objectPosition: "center",
     tekst:
       "Ben je de hele dag weg? Dan kom ik twee keer langs, 's ochtends en 's avonds, telkens voor drie kwartier. Je hond komt buiten, krijgt aandacht en blijft in zijn vertrouwde omgeving.",
-    kenmerken: ["2 × 45 min", "Ochtend en avond", "Max 6 km rond Dilsen"],
+    kenmerken: ["2 × 45 min", "Ochtend en avond", "Max 7 km rond Dilsen"],
     uitgelicht: false,
   },
 ]

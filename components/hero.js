@@ -7,7 +7,7 @@ import Sterren from "./sterren"
 const KPIS = [
   { cijfer: "20+", label: "jaar met honden" },
   { cijfer: "5,0", label: "uit klantreviews" },
-  { cijfer: "6 km", label: "rond Dilsen" },
+  { cijfer: "7 km", label: "rond Dilsen" },
 ]
 
 export default function Hero() {
