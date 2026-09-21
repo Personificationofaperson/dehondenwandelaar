@@ -10,10 +10,9 @@ import {
   reiskost,
   euro,
   whatsappLink,
-  mailtoLink,
-  EMAIL,
 } from "../lib/prijzen"
 import { track, EVENTS } from "../lib/analytics"
+import Mailformulier from "./mailformulier"
 import Poot from "./poot"
 
 const CALCULEERBARE_DIENSTEN = DIENSTEN.filter((d) => d.inCalculator)
@@ -496,6 +495,7 @@ export default function Calculator({
                   <>
                     <VerzendKnoppen
                       bericht={bouwBericht()}
+                      naam={naam}
                       onKlik={(kanaal) => meetContact("boven", kanaal)}
                     />
                     <p className="mb-5 mt-3 text-center text-xs text-muted">
@@ -529,6 +529,7 @@ export default function Calculator({
                       <>
                         <VerzendKnoppen
                           bericht={bouwBericht()}
+                          naam={naam}
                           onKlik={(kanaal) => meetContact("onder", kanaal)}
                           className="mt-5"
                         />
@@ -603,25 +604,25 @@ export default function Calculator({
  * wie geen WhatsApp heeft of op een laptop zit. Zonder die tweede uitgang
  * liep een deel van de bezoekers dood op het moment dat ze wilden boeken.
  */
-function VerzendKnoppen({ bericht, onKlik, className = "" }) {
-  const mail = mailtoLink("Aanvraag via de prijscalculator", bericht)
-
+/**
+ * Mail is de hoofdweg, want die werkt op elk apparaat. WhatsApp blijft
+ * eronder staan, want bijna vier op de vijf bezoekers komt van mobiel en
+ * daar is dat de laagste drempel.
+ */
+function VerzendKnoppen({ bericht, naam, onKlik, className = "" }) {
   return (
-    <div className={className}>
+    <div className={`relative ${className}`}>
+      <Mailformulier
+        bericht={bericht}
+        naam={naam}
+        onVerstuurd={() => onKlik("email")}
+      />
+      <div className="my-3 flex items-center gap-3 text-xs text-muted">
+        <span className="h-px flex-1 bg-ink/12" />
+        of
+        <span className="h-px flex-1 bg-ink/12" />
+      </div>
       <VerzendKnop href={whatsappLink(bericht)} onKlik={() => onKlik("whatsapp")} />
-      {mail && (
-        <a
-          href={mail}
-          onClick={() => onKlik("email")}
-          className="btn btn-outline mt-2.5 w-full"
-        >
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
-            <path d="m3 7 9 6 9-6" />
-          </svg>
-          Of stuur het via e-mail
-        </a>
-      )}
     </div>
   )
 }
